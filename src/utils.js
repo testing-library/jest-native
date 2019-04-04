@@ -35,10 +35,7 @@ class ReactElementTypeError extends Error {
     let withType = '';
     try {
       withType = printWithType('Received', received, printReceived);
-    } catch (e) {
-      // Can throw for Document:
-      // https://github.com/jsdom/jsdom/issues/2304
-    }
+    } catch (e) {}
     this.message = [
       matcherHint(`${context.isNot ? '.not' : ''}.${matcherFn.name}`, 'received', ''),
       '',
@@ -51,23 +48,6 @@ class ReactElementTypeError extends Error {
 function checkReactElement(element, ...args) {
   if (!VALID_ELEMENTS.includes(element.type)) {
     throw new ReactElementTypeError(element, ...args);
-  }
-}
-
-class InvalidCSSError extends Error {
-  constructor(received, matcherFn) {
-    super();
-
-    /* istanbul ignore next */
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, matcherFn);
-    }
-    this.message = [
-      received.message,
-      '',
-      receivedColor(`Failing css:`),
-      receivedColor(`${received.css}`),
-    ].join('\n');
   }
 }
 
@@ -118,4 +98,5 @@ export {
   matches,
   normalize,
   printElement,
+  VALID_ELEMENTS,
 };

@@ -11,7 +11,7 @@ import { render } from 'native-testing-library';
 
 test('.toBeDisabled', () => {
   const { queryByTestId, queryByText } = render(
-    <View>
+    <View disabled testID="view">
       <Button disabled testID="button" title="button" />
       <TouchableHighlight disabled testID="highlight">
         <Text>highlight</Text>
@@ -24,6 +24,9 @@ test('.toBeDisabled', () => {
       </TouchableWithoutFeedback>
     </View>,
   );
+
+  expect(queryByTestId('view')).toBeDisabled();
+  expect(() => expect(queryByTestId('view')).not.toBeDisabled()).toThrowError();
 
   expect(queryByTestId('button')).toBeDisabled();
   expect(queryByText('button')).toBeDisabled();
@@ -48,7 +51,7 @@ test('.toBeDisabled', () => {
 
 test('.toBeEnabled', () => {
   const { queryByTestId, queryByText } = render(
-    <View>
+    <View testID="view">
       <Button testID="button" title="button" />
       <TouchableHighlight testID="highlight">
         <Text>highlight</Text>
@@ -61,6 +64,9 @@ test('.toBeEnabled', () => {
       </TouchableWithoutFeedback>
     </View>,
   );
+
+  expect(queryByTestId('view')).toBeEnabled();
+  expect(() => expect(queryByTestId('view')).not.toBeEnabled()).toThrowError();
 
   expect(queryByTestId('button')).toBeEnabled();
   expect(queryByText('button')).toBeEnabled();

@@ -30,15 +30,11 @@ function isElementDisabled(element) {
 }
 
 function isAncestorDisabled(element) {
-  if (element.parent) {
-    const parent = element.parent;
+  const parent = element.parent;
 
-    return (
-      Boolean(parent) && (isElementDisabledByParent(element, parent) || isAncestorDisabled(parent))
-    );
-  }
-
-  return false;
+  return (
+    Boolean(parent) && (isElementDisabledByParent(element, parent) || isAncestorDisabled(parent))
+  );
 }
 
 export function toBeDisabled(element) {
