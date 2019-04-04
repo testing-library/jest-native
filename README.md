@@ -6,10 +6,9 @@ Custom jest matchers to test the state of React Native
 
 - [x] toBeDisabled()
 - [x] toBeEnabled()
-- [ ] toBeEmpty()
-- [ ] toBeInTheTree()
+- [x] toBeEmpty()
 - [ ] toBeVisible() {?}
 - [ ] toContainElement(FiberNode) {?}
 - [ ] toHaveProp(prop: string, value: any)
 - [ ] toHaveStyle(any) {?}
-- [ ] toHaveTextContent(text: string | RegExp, options?: {normalizeWhitespace: boolean})
+- [x] toHaveTextContent(text: string | RegExp, options?: {normalizeWhitespace: boolean})

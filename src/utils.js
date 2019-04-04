@@ -46,7 +46,7 @@ class ReactElementTypeError extends Error {
 }
 
 function checkReactElement(element, ...args) {
-  if (!VALID_ELEMENTS.includes(element.type)) {
+  if (!VALID_ELEMENTS.includes(element.type) && !element._fiber) {
     throw new ReactElementTypeError(element, ...args);
   }
 }
