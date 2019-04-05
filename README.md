@@ -65,7 +65,7 @@ import { toBeEmpty, toHaveTextContent } from 'jest-native';
 expect.extend({ toBeEmpty, toHaveTextContent });
 ```
 
-## Custom matchers
+## Matchers
 
 `jest-native` has only been tested to work with `native-testing-library`. Keep in mind that these
 queries will only work on UI elements that bridge to native.
@@ -146,6 +146,6 @@ It was inspired by [jest-dom](https://github.com/gnapse/jest-dom/), the companio
 [dom-testing-library](https://github.com/kentcdodds/dom-testing-library/). We emulated as many of
 those helpers as we could while keeping in mind the guiding principles.
 
-## Other Solutions
+## Other solutions
 
-None known [add the first one](http://makeapullrequest.com)!
+None known, [you can add the first](http://makeapullrequest.com)!
