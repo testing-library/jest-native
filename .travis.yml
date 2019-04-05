@@ -1,0 +1,26 @@
+sudo: false
+language: node_js
+node_js:
+  - '8'
+  - '9'
+  - '10'
+  - '11'
+cache:
+  npm: true
+  directories:
+    - coverage
+notifications:
+  email: false
+branches:
+  only:
+    - master
+install: npm install
+script: npm run test
+jobs:
+  include:
+    - stage: release
+      node_js: '10'
+      install: npm install -g codecov
+      script:
+        - codecov
+        - npm run semantic-release
