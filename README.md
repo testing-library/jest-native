@@ -9,6 +9,6 @@ Custom jest matchers to test the state of React Native
 - [x] toBeEmpty()
 - [ ] toBeVisible() {?}
 - [x] toContainElement(FiberNode)
-- [ ] toHaveProp(prop: string, value: any)
+- [x] toHaveProp(prop: string, value: any)
 - [ ] toHaveStyle(any) {?}
 - [x] toHaveTextContent(text: string | RegExp, options?: {normalizeWhitespace: boolean})
