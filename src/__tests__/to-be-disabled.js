@@ -88,3 +88,15 @@ test('.toBeEnabled', () => {
   expect(() => expect(queryByTestId('without')).not.toBeEnabled()).toThrowError();
   expect(() => expect(queryByText('without')).not.toBeEnabled()).toThrowError();
 });
+
+test('matcher misses', () => {
+  const { queryByTestId, queryByText } = render(
+    <View testID="view">
+      <Button testID="enabled" title="enabled" />
+      <Button disabled testID="disabled" title="disabled" />
+    </View>,
+  );
+
+  expect(() => expect(queryByTestId('enabled')).toBeDisabled()).toThrowError();
+  expect(() => expect(queryByText('disabled')).toBeEnabled()).toThrowError();
+});

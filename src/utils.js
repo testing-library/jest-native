@@ -51,10 +51,6 @@ function checkReactElement(element, ...args) {
   }
 }
 
-function display(value) {
-  return typeof value === 'string' ? value : stringify(value);
-}
-
 function getType({ type }) {
   return type.displayName || type.name || type;
 }
@@ -68,6 +64,10 @@ function printElement({ props }) {
       highlight: true,
     },
   )}`;
+}
+
+function display(value) {
+  return typeof value === 'string' ? value : stringify(value)
 }
 
 function getMessage(matcher, expectedLabel, expectedValue, receivedLabel, receivedValue) {
