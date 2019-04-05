@@ -15,7 +15,7 @@ branches:
   only:
     - master
 install: npm install
-script: npm run test
+script: npm test
 jobs:
   include:
     - stage: release
