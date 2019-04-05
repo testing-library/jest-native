@@ -10,7 +10,7 @@ export function toBeEmpty(element) {
     pass: compose(
       isEmpty,
       defaultTo({}),
-      path(['props', 'children'])
+      path(['props', 'children']),
     )(element),
     message: () => {
       return [

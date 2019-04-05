@@ -30,7 +30,7 @@ describe('.toHaveTextContent', () => {
               of
                 4
           `}
-          <Text />
+        <Text />
       </Text>,
     );
 

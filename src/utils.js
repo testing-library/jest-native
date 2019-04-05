@@ -67,7 +67,7 @@ function printElement({ props }) {
 }
 
 function display(value) {
-  return typeof value === 'string' ? value : stringify(value)
+  return typeof value === 'string' ? value : stringify(value);
 }
 
 function getMessage(matcher, expectedLabel, expectedValue, receivedLabel, receivedValue) {
