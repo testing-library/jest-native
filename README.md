@@ -65,13 +65,87 @@ import { toBeEmpty, toHaveTextContent } from 'jest-native';
 expect.extend({ toBeEmpty, toHaveTextContent });
 ```
 
+## Custom matchers
+
+`jest-native` has only been tested to work with `native-testing-library`. Keep in mind that these
+queries will only work on UI elements that bridge to native.
+
+### `toBeDisabled`
+
+```javascript
+toBeDisabled();
+```
+
+Check whether or not an element is disabled from a user perspective.
+
+This matcher will check if the element or its parent has a `disabled` prop, or if it has
+`accessibilityStates={['disabled']}`.
+
+### `toBeEnabled`
+
+```javascript
+toBeEnabled();
+```
+
+Check whether or not an element is enabled from a user perspective.
+
+Works similarly to `expect().not.toBeDisabled()`.
+
+### `toBeEmpty`
+
+```javascript
+toBeEmpty();
+```
+
+Check that the given element has no content.
+
+### `toContainElement(element)`
+
+```javascript
+toContainElement();
+```
+
+Check if an element contains another element as a descendant. Again, will only work for native
+elements.
+
+### `toHaveProp(prop, value)`
+
+```javascript
+toHaveProp(prop, value);
+```
+
+Check that an element has a given prop. Only works for native elements, so this is similar to
+checking for attributes in the DOM.
+
+You can optionally check that the attribute has a specific expected value.
+
+### `toHaveTextContent(text)`
+
+```javascript
+toHaveTextContent(text);
+```
+
+Check if an element has the supplied text.
+
+This will perform a partial, case-sensitive match when a string match is provided. To perform a
+case-insensitive match, you can use a `RegExp` with the `/i` modifier.
+
+To enforce matching the complete text content, pass a `RegExp`.
+
 ## Todo list
 
-- [x] toBeDisabled()
-- [x] toBeEnabled()
-- [x] toBeEmpty()
 - [ ] toBeVisible() {?}
-- [x] toContainElement(FiberNode)
-- [x] toHaveProp(prop: string, value: any)
 - [ ] toHaveStyle(any) {?}
-- [x] toHaveTextContent(text: string | RegExp, options?: {normalizeWhitespace: boolean})
+
+## Inspiration
+
+This library was made to be a companion for
+[native-testing-library](https://github.com/bcarroll22/native-testing-library).
+
+It was inspired by [jest-dom](https://github.com/gnapse/jest-dom/), the companion library for
+[dom-testing-library](https://github.com/kentcdodds/dom-testing-library/). We emulated as many of
+those helpers as we could while keeping in mind the guiding principles.
+
+## Other Solutions
+
+None known [add the first one](http://makeapullrequest.com)!
