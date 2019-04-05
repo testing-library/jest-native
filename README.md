@@ -39,17 +39,19 @@ These will make your tests more declarative, clear to read and to maintain.
 
 ## Installation
 
-This module is distributed via [npm][npm] which is bundled with [node][node] and should be installed
-as one of your project's `devDependencies`:
+This module should be installed as one of your project's `devDependencies`:
 
 ```
 npm install --save-dev jest-native
 ```
 
+You will need `native-testing-library`, `react`, and `react-native` installed in order to use this
+package.
+
 ## Usage
 
-Import `jest-native/extend-expect` once (for instance in your [tests setup
-file][https://facebook.github.io/jest/docs/en/configuration.html#setuptestframeworkscriptfile-string])
+Import `jest-native/extend-expect` once (for instance in your
+[tests setup file](https://facebook.github.io/jest/docs/en/configuration.html#setuptestframeworkscriptfile-string))
 and you're good to go:
 
 ```javascript
