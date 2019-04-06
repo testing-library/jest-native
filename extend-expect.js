@@ -1,1 +1,1 @@
-require('./dist/extend-expect')
+require('./dist/extend-expect');

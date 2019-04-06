@@ -22,7 +22,7 @@ describe('.toHaveTextContent', () => {
   });
 
   test('normalizes whitespace by default', () => {
-    const { rootInstance } = render(
+    const { baseElement } = render(
       <Text>
         {`
           Step
@@ -34,7 +34,7 @@ describe('.toHaveTextContent', () => {
       </Text>,
     );
 
-    expect(rootInstance).toHaveTextContent('Step 1 of 4');
+    expect(baseElement).toHaveTextContent('Step 1 of 4');
   });
 
   test('can handle multiple levels', () => {
@@ -63,14 +63,14 @@ describe('.toHaveTextContent', () => {
   });
 
   test('does not throw error with empty content', () => {
-    const { rootInstance } = render(<Text />);
-    expect(rootInstance).toHaveTextContent('');
+    const { baseElement } = render(<Text />);
+    expect(baseElement).toHaveTextContent('');
   });
 
   test('is case-sensitive', () => {
-    const { rootInstance } = render(<Text>Sensitive text</Text>);
+    const { baseElement } = render(<Text>Sensitive text</Text>);
 
-    expect(rootInstance).toHaveTextContent('Sensitive text');
-    expect(rootInstance).not.toHaveTextContent('sensitive text');
+    expect(baseElement).toHaveTextContent('Sensitive text');
+    expect(baseElement).not.toHaveTextContent('sensitive text');
   });
 });
