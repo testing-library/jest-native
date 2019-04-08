@@ -225,7 +225,6 @@ expect(queryByTestId('count-value')).not.toHaveTextContent('21');
 
 ## Todo list
 
-- [ ] toBeVisible() {?}
 - [ ] toHaveStyle(any) {?}
 
 ## Inspiration
