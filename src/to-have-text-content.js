@@ -8,10 +8,10 @@ function getText(child, currentValue = '') {
 
   if (!child) {
     return value;
-  } else if (typeof child === 'string') {
-    return `${value}${child}`;
-  } else {
+  } else if (typeof child === 'object') {
     return getText(path(['props', 'children'], child), value);
+  } else {
+    return `${value}${child}`;
   }
 }
 
@@ -25,7 +25,7 @@ export function toHaveTextContent(element, checkWith) {
     // step 6: join the resulting array
     join(''),
     // step 5: map the array to get text content
-    map(child => (typeof child === 'string' ? child : getText(child))),
+    map(child => (typeof child === 'object' ? getText(child) : child)),
     // step 4: make sure non-array children end up in an array
     Array.from,
     // step 3: default to an array
