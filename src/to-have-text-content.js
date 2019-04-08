@@ -1,5 +1,5 @@
 import { matcherHint } from 'jest-matcher-utils';
-import { compose, defaultTo, join, map, path } from 'ramda';
+import { compose, defaultTo, is, join, map, path } from 'ramda';
 
 import { checkReactElement, getMessage, matches, normalize } from './utils';
 
@@ -27,7 +27,7 @@ export function toHaveTextContent(element, checkWith) {
     // step 5: map the array to get text content
     map(child => (typeof child === 'object' ? getText(child) : child)),
     // step 4: make sure non-array children end up in an array
-    Array.from,
+    child => (is(Array, child) ? child : [child]),
     // step 3: default to an array
     defaultTo([]),
     // step 2: drill down to the children
