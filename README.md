@@ -25,6 +25,28 @@
 [![Watch on GitHub](https://img.shields.io/github/watchers/bcarroll22/jest-native.svg?style=social)](https://github.com/bcarroll22/jest-native/watchers)
 [![Star on GitHub](https://img.shields.io/github/stars/bcarroll22/jest-native.svg?style=social)](https://github.com/bcarroll22/jest-native/stargazers)
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+# Table of Contents
+
+- [The problem](#the-problem)
+- [This solution](#this-solution)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Matchers](#matchers)
+  - [`toBeDisabled`](#tobedisabled)
+  - [`toBeEnabled`](#tobeenabled)
+  - [`toBeEmpty`](#tobeempty)
+  - [`toContainElement(element)`](#tocontainelementelement)
+  - [`toHaveProp(prop, value)`](#tohavepropprop-value)
+  - [`toHaveTextContent(text)`](#tohavetextcontenttext)
+- [Todo list](#todo-list)
+- [Inspiration](#inspiration)
+- [Other solutions](#other-solutions)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## The problem
 
 You want to use [jest](https://facebook.github.io/jest/) to write tests that assert various things
