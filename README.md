@@ -83,6 +83,20 @@ Check whether or not an element is disabled from a user perspective.
 This matcher will check if the element or its parent has a `disabled` prop, or if it has
 `accessibilityStates={['disabled']}`.
 
+#### Examples
+
+```javascript
+const { getByTestId } = render(
+  <View>
+    <Button disabled testID="button" title="submit" onPress={e => e} />
+    <TextInput accessibilityStates={['disabled']} testID="input" value="text" />
+  </View>,
+);
+
+expect(getByTestId('button')).toBeDisabled();
+expect(getByTestId('input')).toBeDisabled();
+```
+
 ### `toBeEnabled`
 
 ```javascript
@@ -93,6 +107,20 @@ Check whether or not an element is enabled from a user perspective.
 
 Works similarly to `expect().not.toBeDisabled()`.
 
+#### Examples
+
+```javascript
+const { getByTestId } = render(
+  <View>
+    <Button testID="button" title="submit" onPress={e => e} />
+    <TextInput testID="input" value="text" />
+  </View>,
+);
+
+expect(getByTestId('button')).toBeEnabled();
+expect(getByTestId('input')).toBeEnabled();
+```
+
 ### `toBeEmpty`
 
 ```javascript
@@ -100,6 +128,14 @@ toBeEmpty();
 ```
 
 Check that the given element has no content.
+
+#### Examples
+
+```javascript
+const { getByTestId } = render(<View testID="empty" />);
+
+expect(getByTestId('empty')).toBeEmpty();
+```
 
 ### `toContainElement(element)`
 
@@ -109,6 +145,30 @@ toContainElement();
 
 Check if an element contains another element as a descendant. Again, will only work for native
 elements.
+
+#### Examples
+
+```javascript
+const { queryByTestId } = render(
+  <View testID="grandparent">
+    <View testID="parent">
+      <View testID="child" />
+    </View>
+    <Text testID="text-element" />
+  </View>,
+);
+
+const grandparent = queryByTestId('grandparent');
+const parent = queryByTestId('parent');
+const child = queryByTestId('child');
+const textElement = queryByTestId('text-element');
+
+expect(grandparent).toContainElement(parent);
+expect(grandparent).toContainElement(child);
+expect(grandparent).toContainElement(textElement);
+expect(parent).toContainElement(child);
+expect(parent).not.toContainElement(grandparent);
+```
 
 ### `toHaveProp(prop, value)`
 
@@ -120,6 +180,24 @@ Check that an element has a given prop. Only works for native elements, so this 
 checking for attributes in the DOM.
 
 You can optionally check that the attribute has a specific expected value.
+
+#### Examples
+
+```javascript
+const { queryByTestId } = render(
+  <View>
+    <Text allowFontScaling={false} testID="text">
+      text
+    </Text>
+    <Button disabled testID="button" title="ok" />
+  </View>,
+);
+
+expect(queryByTestId('button')).toHaveProp('accessibilityStates', ['disabled']);
+expect(queryByTestId('button')).toHaveProp('accessible');
+expect(queryByTestId('button')).not.toHaveProp('disabled');
+expect(queryByTestId('button')).not.toHaveProp('title', 'ok');
+```
 
 ### `toHaveTextContent(text)`
 
@@ -133,6 +211,17 @@ This will perform a partial, case-sensitive match when a string match is provide
 case-insensitive match, you can use a `RegExp` with the `/i` modifier.
 
 To enforce matching the complete text content, pass a `RegExp`.
+
+#### Examples
+
+```javascript
+const { queryByTestId } = render(<Text testID="count-value">2</Text>);
+
+expect(queryByTestId('count-value')).toHaveTextContent('2');
+expect(queryByTestId('count-value')).toHaveTextContent(2);
+expect(queryByTestId('count-value')).toHaveTextContent(/2/);
+expect(queryByTestId('count-value')).not.toHaveTextContent('21');
+```
 
 ## Todo list
 
