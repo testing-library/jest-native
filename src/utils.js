@@ -36,6 +36,7 @@ class ReactElementTypeError extends Error {
     try {
       withType = printWithType('Received', received, printReceived);
     } catch (e) {}
+    /* istanbul ignore next */
     this.message = [
       matcherHint(`${context.isNot ? '.not' : ''}.${matcherFn.name}`, 'received', ''),
       '',

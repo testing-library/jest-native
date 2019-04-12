@@ -27,6 +27,7 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 ## Table of Contents
 
 - [The problem](#the-problem)
@@ -40,7 +41,7 @@
   - [`toContainElement(element)`](#tocontainelementelement)
   - [`toHaveProp(prop, value)`](#tohavepropprop-value)
   - [`toHaveTextContent(text)`](#tohavetextcontenttext)
-- [Todo list](#todo-list)
+  - [`toHaveStyle(styles)`](#tohavestylestyles)
 - [Inspiration](#inspiration)
 - [Other solutions](#other-solutions)
 
@@ -244,9 +245,33 @@ expect(queryByTestId('count-value')).toHaveTextContent(/2/);
 expect(queryByTestId('count-value')).not.toHaveTextContent('21');
 ```
 
-## Todo list
+### `toHaveStyle(styles)`
 
-- [ ] toHaveStyle(any) {?}
+```javascript
+toHaveStyle(styles);
+```
+
+Check if an element has the supplied styles.
+
+You can pass either an object of React Native style properties, or an array of objects with style
+properties. You cannot pass properties from a React Native stylesheet..
+
+#### Examples
+
+```javascript
+const styles = StyleSheet.create({ text: { fontSize: 16 } });
+
+const { queryByText } = render(
+  <Text style={[{ color: 'black', fontWeight: '600' }, styles.text]}>Hello World</Text>,
+);
+
+expect(queryByText('Hello World')).toHaveStyle({ color: 'black', fontWeight: '600', fontSize: 16 });
+expect(queryByText('Hello World')).toHaveStyle({ color: 'black' });
+expect(queryByText('Hello World')).toHaveStyle({ fontWeight: '600' });
+expect(queryByText('Hello World')).toHaveStyle({ fontSize: 16 });
+expect(queryByText('Hello World')).toHaveStyle([{ color: 'black' }, { fontWeight: '600' }]);
+expect(queryByText('Hello World')).not.toHaveStyle({ color: 'white' });
+```
 
 ## Inspiration
 
