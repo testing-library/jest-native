@@ -15,11 +15,7 @@
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch --coverage"
   },
-  "files": [
-    "dist",
-    "extend-expect.js",
-    "extend-expect.d.ts"
-  ],
+  "files": ["dist"],
   "keywords": [
     "testing",
     "native-testing-library",
