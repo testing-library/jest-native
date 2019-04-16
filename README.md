@@ -1,5 +1,4 @@
 <div align="center">
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
   <h1>jest-native</h1>
   
   <a href="https://www.joypixels.com/emoji/1f985">
@@ -21,7 +20,10 @@
 [![version](https://img.shields.io/npm/v/jest-native.svg?style=flat-square)](https://www.npmjs.com/package/jest-native)
 [![downloads](https://img.shields.io/npm/dm/jest-native.svg?style=flat-square)](http://www.npmtrends.com/jest-native)
 [![MIT License](https://img.shields.io/npm/l/jest-native.svg?style=flat-square)](https://github.com/bcarroll22/jest-native/blob/master/LICENSE)
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![Code of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/bcarroll22/jest-native/blob/master/CODE_OF_CONDUCT.md)
 
 [![Watch on GitHub](https://img.shields.io/github/watchers/bcarroll22/jest-native.svg?style=social)](https://github.com/bcarroll22/jest-native/watchers)
 [![Star on GitHub](https://img.shields.io/github/stars/bcarroll22/jest-native.svg?style=social)](https://github.com/bcarroll22/jest-native/stargazers)
@@ -297,4 +299,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors)
+specification. Contributions of any kind welcome!
