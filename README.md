@@ -30,7 +30,6 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 ## Table of Contents
 
 - [The problem](#the-problem)
@@ -47,6 +46,7 @@
   - [`toHaveStyle(styles)`](#tohavestylestyles)
 - [Inspiration](#inspiration)
 - [Other solutions](#other-solutions)
+- [Contributors](#contributors)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
