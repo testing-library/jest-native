@@ -16,7 +16,8 @@
     "test:watch": "jest --watch --coverage"
   },
   "files": [
-    "dist"
+    "dist",
+    "extend-expect.js"
   ],
   "keywords": [
     "testing",
