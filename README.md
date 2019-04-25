@@ -6,7 +6,7 @@
       height="80"
       width="80"
       alt="goat"
-      src="https://raw.githubusercontent.com/bcarroll22/jest-native/master/other/eagle.png"
+      src="https://raw.githubusercontent.com/testing-library/jest-native/master/other/eagle.png"
     />
   </a>
     
@@ -15,18 +15,18 @@
 
 <hr />
 
-[![Build Status](https://travis-ci.org/bcarroll22/jest-native.svg?branch=master)](https://travis-ci.org/bcarroll22/jest-native)
-[![Code Coverage](https://img.shields.io/codecov/c/github/bcarroll22/jest-native.svg?style=flat-square)](https://codecov.io/github/bcarroll22/jest-native)
+[![Build Status](https://travis-ci.org/testing-library/jest-native.svg?branch=master)](https://travis-ci.org/testing-library/jest-native)
+[![Code Coverage](https://img.shields.io/codecov/c/github/testing-library/jest-native.svg?style=flat-square)](https://codecov.io/github/testing-library/jest-native)
 [![version](https://img.shields.io/npm/v/jest-native.svg?style=flat-square)](https://www.npmjs.com/package/jest-native)
 [![downloads](https://img.shields.io/npm/dm/jest-native.svg?style=flat-square)](http://www.npmtrends.com/jest-native)
-[![MIT License](https://img.shields.io/npm/l/jest-native.svg?style=flat-square)](https://github.com/bcarroll22/jest-native/blob/master/LICENSE)
+[![MIT License](https://img.shields.io/npm/l/jest-native.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/master/LICENSE)
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Code of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/bcarroll22/jest-native/blob/master/CODE_OF_CONDUCT.md)
+[![Code of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/master/CODE_OF_CONDUCT.md)
 
-[![Watch on GitHub](https://img.shields.io/github/watchers/bcarroll22/jest-native.svg?style=social)](https://github.com/bcarroll22/jest-native/watchers)
-[![Star on GitHub](https://img.shields.io/github/stars/bcarroll22/jest-native.svg?style=social)](https://github.com/bcarroll22/jest-native/stargazers)
+[![Watch on GitHub](https://img.shields.io/github/watchers/testing-library/jest-native.svg?style=social)](https://github.com/testing-library/jest-native/watchers)
+[![Star on GitHub](https://img.shields.io/github/stars/testing-library/jest-native.svg?style=social)](https://github.com/testing-library/jest-native/stargazers)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -279,7 +279,7 @@ expect(queryByText('Hello World')).not.toHaveStyle({ color: 'white' });
 ## Inspiration
 
 This library was made to be a companion for
-[native-testing-library](https://github.com/bcarroll22/native-testing-library).
+[native-testing-library](https://github.com/testing-library/native-testing-library).
 
 It was inspired by [jest-dom](https://github.com/gnapse/jest-dom/), the companion library for
 [dom-testing-library](https://github.com/kentcdodds/dom-testing-library/). We emulated as many of
@@ -295,7 +295,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-<table><tr><td align="center"><a href="https://github.com/bcarroll22"><img src="https://avatars2.githubusercontent.com/u/11020406?v=4" width="100px;" alt="Brandon Carroll"/><br /><sub><b>Brandon Carroll</b></sub></a><br /><a href="https://github.com/bcarroll22/jest-native/commits?author=bcarroll22" title="Code">💻</a> <a href="https://github.com/bcarroll22/jest-native/commits?author=bcarroll22" title="Documentation">📖</a> <a href="#infra-bcarroll22" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/bcarroll22/jest-native/commits?author=bcarroll22" title="Tests">⚠️</a></td></tr></table>
+<table><tr><td align="center"><a href="https://github.com/bcarroll22"><img src="https://avatars2.githubusercontent.com/u/11020406?v=4" width="100px;" alt="Brandon Carroll"/><br /><sub><b>Brandon Carroll</b></sub></a><br /><a href="https://github.com/bcarroll22/jest-native/commits?author=bcarroll22" title="Code">💻</a> <a href="https://github.com/testing-library/jest-native/commits?author=bcarroll22" title="Documentation">📖</a> <a href="#infra-bcarroll22" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/testing-library/jest-native/commits?author=bcarroll22" title="Tests">⚠️</a></td></tr></table>
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 

@@ -82,12 +82,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bcarroll22/jest-native.git"
+    "url": "git+https://github.com/testing-library/jest-native.git"
   },
   "author": "Brandon Carroll",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bcarroll22/jest-native/issues"
+    "url": "https://github.com/testing-library/jest-native/issues"
   },
-  "homepage": "https://github.com/bcarroll22/jest-native#readme"
+  "homepage": "https://github.com/testing-library/jest-native#readme"
 }
