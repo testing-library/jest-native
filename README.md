@@ -30,20 +30,22 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 ## Table of Contents
 
 - [The problem](#the-problem)
 - [This solution](#this-solution)
+- [Compatibility](#compatibility)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Matchers](#matchers)
   - [`toBeDisabled`](#tobedisabled)
   - [`toBeEnabled`](#tobeenabled)
   - [`toBeEmpty`](#tobeempty)
-  - [`toContainElement(element)`](#tocontainelementelement)
-  - [`toHaveProp(prop, value)`](#tohavepropprop-value)
-  - [`toHaveTextContent(text)`](#tohavetextcontenttext)
-  - [`toHaveStyle(styles)`](#tohavestylestyles)
+  - [`toContainElement`](#tocontainelementelement)
+  - [`toHaveProp`](#tohavepropprop-value)
+  - [`toHaveTextContent`](#tohavetextcontenttext)
+  - [`toHaveStyle`](#tohavestylestyles)
 - [Inspiration](#inspiration)
 - [Other solutions](#other-solutions)
 - [Contributors](#contributors)
@@ -53,7 +55,7 @@
 ## The problem
 
 You want to use [jest](https://facebook.github.io/jest/) to write tests that assert various things
-about the state of a React Native tree. As part of that goal, you want to avoid all the repetitive
+about the state of a React Native app. As part of that goal, you want to avoid all the repetitive
 patterns that arise in doing so like checking for a native element's props, its text content, its
 styles, and more.
 
@@ -61,6 +63,14 @@ styles, and more.
 
 The `jest-native` library provides a set of custom jest matchers that you can use to extend jest.
 These will make your tests more declarative, clear to read and to maintain.
+
+## Compatibility
+
+These matchers should, for the most part, be agnostic enough to work with any React Native testing
+utilities, but they are primarily intended to be used with
+[native-testing-library](https://github.com/testing-library/native-testing-library). Any issues
+raised with existing matchers or any newly proposed matchers must be viewed through compatibility
+with that library and its guiding principles first.
 
 ## Installation
 
@@ -162,10 +172,10 @@ const { getByTestId } = render(<View testID="empty" />);
 expect(getByTestId('empty')).toBeEmpty();
 ```
 
-### `toContainElement(element)`
+### `toContainElement`
 
-```javascript
-toContainElement();
+```typescript
+toContainElement(element: ReactTestInstance | null);
 ```
 
 Check if an element contains another element as a descendant. Again, will only work for native
@@ -195,10 +205,10 @@ expect(parent).toContainElement(child);
 expect(parent).not.toContainElement(grandparent);
 ```
 
-### `toHaveProp(prop, value)`
+### `toHaveProp`
 
-```javascript
-toHaveProp(prop, value);
+```typescript
+toHaveProp(prop: string, value?: any);
 ```
 
 Check that an element has a given prop. Only works for native elements, so this is similar to
@@ -224,10 +234,10 @@ expect(queryByTestId('button')).not.toHaveProp('disabled');
 expect(queryByTestId('button')).not.toHaveProp('title', 'ok');
 ```
 
-### `toHaveTextContent(text)`
+### `toHaveTextContent`
 
-```javascript
-toHaveTextContent(text);
+```typescript
+toHaveTextContent(text: string | RegExp, options?: { normalizeWhitespace: boolean });
 ```
 
 Check if an element has the supplied text.
@@ -248,10 +258,10 @@ expect(queryByTestId('count-value')).toHaveTextContent(/2/);
 expect(queryByTestId('count-value')).not.toHaveTextContent('21');
 ```
 
-### `toHaveStyle(styles)`
+### `toHaveStyle`
 
 ```javascript
-toHaveStyle(styles);
+toHaveStyle(style: object[] | object);
 ```
 
 Check if an element has the supplied styles.

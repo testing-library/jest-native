@@ -10,7 +10,7 @@ import {
 import { render } from 'native-testing-library';
 
 test('.toBeDisabled', () => {
-  const { queryByTestId, queryByText } = render(
+  const { queryByTestId, queryByText, queryByTitle } = render(
     <View disabled testID="view">
       <Button disabled testID="button" title="button" />
       <TouchableHighlight disabled testID="highlight">
@@ -28,10 +28,8 @@ test('.toBeDisabled', () => {
   expect(queryByTestId('view')).toBeDisabled();
   expect(() => expect(queryByTestId('view')).not.toBeDisabled()).toThrowError();
 
-  expect(queryByTestId('button')).toBeDisabled();
-  expect(queryByText('button')).toBeDisabled();
-  expect(() => expect(queryByTestId('button')).not.toBeDisabled()).toThrowError();
-  expect(() => expect(queryByText('button')).not.toBeDisabled()).toThrowError();
+  expect(queryByTitle('button')).toBeDisabled();
+  expect(() => expect(queryByTitle('button')).not.toBeDisabled()).toThrowError();
 
   expect(queryByTestId('highlight')).toBeDisabled();
   expect(queryByText('highlight')).toBeDisabled();
@@ -50,9 +48,9 @@ test('.toBeDisabled', () => {
 });
 
 test('.toBeEnabled', () => {
-  const { queryByTestId, queryByText } = render(
+  const { queryByTestId, queryByText, queryByTitle } = render(
     <View testID="view">
-      <Button testID="button" title="button" />
+      <Button title="button" />
       <TouchableHighlight testID="highlight">
         <Text>highlight</Text>
       </TouchableHighlight>
@@ -68,10 +66,8 @@ test('.toBeEnabled', () => {
   expect(queryByTestId('view')).toBeEnabled();
   expect(() => expect(queryByTestId('view')).not.toBeEnabled()).toThrowError();
 
-  expect(queryByTestId('button')).toBeEnabled();
-  expect(queryByText('button')).toBeEnabled();
-  expect(() => expect(queryByTestId('button')).not.toBeEnabled()).toThrowError();
-  expect(() => expect(queryByText('button')).not.toBeEnabled()).toThrowError();
+  expect(queryByTitle('button')).toBeEnabled();
+  expect(() => expect(queryByTitle('button')).not.toBeEnabled()).toThrowError();
 
   expect(queryByTestId('highlight')).toBeEnabled();
   expect(queryByText('highlight')).toBeEnabled();
@@ -90,7 +86,7 @@ test('.toBeEnabled', () => {
 });
 
 test('matcher misses', () => {
-  const { queryByTestId, queryByText } = render(
+  const { queryByTestId, queryByTitle } = render(
     <View testID="view">
       <Button testID="enabled" title="enabled" />
       <Button disabled testID="disabled" title="disabled" />
@@ -98,5 +94,5 @@ test('matcher misses', () => {
   );
 
   expect(() => expect(queryByTestId('enabled')).toBeDisabled()).toThrowError();
-  expect(() => expect(queryByText('disabled')).toBeEnabled()).toThrowError();
+  expect(() => expect(queryByTitle('disabled')).toBeEnabled()).toThrowError();
 });
