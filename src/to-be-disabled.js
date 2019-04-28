@@ -5,6 +5,7 @@ import { checkReactElement, getType, printElement } from './utils';
 
 // Elements that support 'disabled'
 const DISABLE_TYPES = [
+  'Button',
   'Slider',
   'Switch',
   'Text',

@@ -9,7 +9,7 @@
     "commit:all": "npm run commit:add && npm run commit",
     "readme:toc": "doctoc README.md --maxlevel 3 --title '## Table of Contents'",
     "test": "jest",
-    "pretty-quick": "pretty-quick --staged --pattern '**/*.(js|jsx|ts|tsx)'",
+    "pretty-quick": "pretty-quick --staged",
     "prepublishOnly": "rm -rf dist; babel src --out-dir dist --ignore 'src/__tests__/*'",
     "semantic-release": "semantic-release",
     "test:coverage": "jest --coverage",
@@ -17,7 +17,8 @@
   },
   "files": [
     "dist",
-    "extend-expect.js"
+    "extend-expect.js",
+    "extend-expect.d.ts"
   ],
   "keywords": [
     "testing",
@@ -31,6 +32,7 @@
     "jest-matcher-utils": "^24.0.0",
     "ramda": "^0.26.1",
     "pretty-format": "^24.0.0",
+    "react-test-renderer": "^16.8.0",
     "redent": "^2.0.0"
   },
   "devDependencies": {
@@ -42,7 +44,7 @@
     "husky": "^1.3.1",
     "jest": "^24.7.1",
     "metro-react-native-babel-preset": "^0.52.0",
-    "native-testing-library": "1.x",
+    "native-testing-library": "^3.0.0-beta.1",
     "prettier": "^1.16.4",
     "pretty-quick": "^1.10.0",
     "react": "16.8.3",
@@ -50,9 +52,8 @@
     "semantic-release": "^15.13.3"
   },
   "peerDependencies": {
-    "native-testing-library": ">=1.2.0",
     "react": "*",
-    "react-native": "*"
+    "react-native": ">0.55"
   },
   "husky": {
     "hooks": {

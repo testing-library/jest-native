@@ -30,6 +30,7 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 ## Table of Contents
 
 - [The problem](#the-problem)
@@ -40,10 +41,10 @@
   - [`toBeDisabled`](#tobedisabled)
   - [`toBeEnabled`](#tobeenabled)
   - [`toBeEmpty`](#tobeempty)
-  - [`toContainElement(element)`](#tocontainelementelement)
-  - [`toHaveProp(prop, value)`](#tohavepropprop-value)
-  - [`toHaveTextContent(text)`](#tohavetextcontenttext)
-  - [`toHaveStyle(styles)`](#tohavestylestyles)
+  - [`toContainElement`](#tocontainelementelement)
+  - [`toHaveProp`](#tohavepropprop-value)
+  - [`toHaveTextContent`](#tohavetextcontenttext)
+  - [`toHaveStyle`](#tohavestylestyles)
 - [Inspiration](#inspiration)
 - [Other solutions](#other-solutions)
 - [Contributors](#contributors)
@@ -162,10 +163,10 @@ const { getByTestId } = render(<View testID="empty" />);
 expect(getByTestId('empty')).toBeEmpty();
 ```
 
-### `toContainElement(element)`
+### `toContainElement`
 
-```javascript
-toContainElement();
+```typescript
+toContainElement(element: ReactTestInstance | null);
 ```
 
 Check if an element contains another element as a descendant. Again, will only work for native
@@ -195,10 +196,10 @@ expect(parent).toContainElement(child);
 expect(parent).not.toContainElement(grandparent);
 ```
 
-### `toHaveProp(prop, value)`
+### `toHaveProp`
 
-```javascript
-toHaveProp(prop, value);
+```typescript
+toHaveProp(prop: string, value?: any);
 ```
 
 Check that an element has a given prop. Only works for native elements, so this is similar to
@@ -224,10 +225,10 @@ expect(queryByTestId('button')).not.toHaveProp('disabled');
 expect(queryByTestId('button')).not.toHaveProp('title', 'ok');
 ```
 
-### `toHaveTextContent(text)`
+### `toHaveTextContent`
 
-```javascript
-toHaveTextContent(text);
+```typescript
+toHaveTextContent(text: string | RegExp, options?: { normalizeWhitespace: boolean });
 ```
 
 Check if an element has the supplied text.
@@ -248,10 +249,10 @@ expect(queryByTestId('count-value')).toHaveTextContent(/2/);
 expect(queryByTestId('count-value')).not.toHaveTextContent('21');
 ```
 
-### `toHaveStyle(styles)`
+### `toHaveStyle`
 
 ```javascript
-toHaveStyle(styles);
+toHaveStyle(style: object[] | object);
 ```
 
 Check if an element has the supplied styles.
