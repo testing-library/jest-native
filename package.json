@@ -17,7 +17,8 @@
   },
   "files": [
     "dist",
-    "extend-expect.js"
+    "extend-expect.js",
+    "extend-expect.d.ts"
   ],
   "keywords": [
     "testing",
@@ -31,6 +32,7 @@
     "jest-matcher-utils": "^24.0.0",
     "ramda": "^0.26.1",
     "pretty-format": "^24.0.0",
+    "react-test-renderer": "^16.8.0",
     "redent": "^2.0.0"
   },
   "devDependencies": {
