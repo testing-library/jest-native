@@ -35,6 +35,7 @@
 
 - [The problem](#the-problem)
 - [This solution](#this-solution)
+- [Compatibility](#compatibility)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Matchers](#matchers)
@@ -54,7 +55,7 @@
 ## The problem
 
 You want to use [jest](https://facebook.github.io/jest/) to write tests that assert various things
-about the state of a React Native tree. As part of that goal, you want to avoid all the repetitive
+about the state of a React Native app. As part of that goal, you want to avoid all the repetitive
 patterns that arise in doing so like checking for a native element's props, its text content, its
 styles, and more.
 
@@ -62,6 +63,14 @@ styles, and more.
 
 The `jest-native` library provides a set of custom jest matchers that you can use to extend jest.
 These will make your tests more declarative, clear to read and to maintain.
+
+## Compatibility
+
+These matchers should, for the most part, be agnostic enough to work with any React Native testing
+utilities, but they are primarily intended to be used with
+[native-testing-library](https://github.com/testing-library/native-testing-library). Any issues
+raised with existing matchers or any newly proposed matchers must be viewed through compatibility
+with that library and its guiding principles first.
 
 ## Installation
 
