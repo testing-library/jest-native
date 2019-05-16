@@ -22,8 +22,8 @@ describe('.toHaveTextContent', () => {
   });
 
   test('normalizes whitespace by default', () => {
-    const { container } = render(
-      <Text>
+    const { getByTestId } = render(
+      <Text testID="text">
         {`
           Step
             1
@@ -34,7 +34,7 @@ describe('.toHaveTextContent', () => {
       </Text>,
     );
 
-    expect(container).toHaveTextContent('Step 1 of 4');
+    expect(getByTestId('text')).toHaveTextContent('Step 1 of 4');
   });
 
   test('can handle multiple levels', () => {
