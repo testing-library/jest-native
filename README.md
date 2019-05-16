@@ -6,7 +6,7 @@
       height="80"
       width="80"
       alt="goat"
-      src="https://raw.githubusercontent.com/bcarroll22/jest-native/master/other/eagle.png"
+      src="https://raw.githubusercontent.com/testing-library/jest-native/master/other/eagle.png"
     />
   </a>
     
@@ -15,35 +15,37 @@
 
 <hr />
 
-[![Build Status](https://travis-ci.org/bcarroll22/jest-native.svg?branch=master)](https://travis-ci.org/bcarroll22/jest-native)
-[![Code Coverage](https://img.shields.io/codecov/c/github/bcarroll22/jest-native.svg?style=flat-square)](https://codecov.io/github/bcarroll22/jest-native)
+[![Build Status](https://travis-ci.org/testing-library/jest-native.svg?branch=master)](https://travis-ci.org/testing-library/jest-native)
+[![Code Coverage](https://img.shields.io/codecov/c/github/testing-library/jest-native.svg?style=flat-square)](https://codecov.io/github/testing-library/jest-native)
 [![version](https://img.shields.io/npm/v/jest-native.svg?style=flat-square)](https://www.npmjs.com/package/jest-native)
 [![downloads](https://img.shields.io/npm/dm/jest-native.svg?style=flat-square)](http://www.npmtrends.com/jest-native)
-[![MIT License](https://img.shields.io/npm/l/jest-native.svg?style=flat-square)](https://github.com/bcarroll22/jest-native/blob/master/LICENSE)
+[![MIT License](https://img.shields.io/npm/l/jest-native.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/master/LICENSE)
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Code of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/bcarroll22/jest-native/blob/master/CODE_OF_CONDUCT.md)
+[![Code of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/master/CODE_OF_CONDUCT.md)
 
-[![Watch on GitHub](https://img.shields.io/github/watchers/bcarroll22/jest-native.svg?style=social)](https://github.com/bcarroll22/jest-native/watchers)
-[![Star on GitHub](https://img.shields.io/github/stars/bcarroll22/jest-native.svg?style=social)](https://github.com/bcarroll22/jest-native/stargazers)
+[![Watch on GitHub](https://img.shields.io/github/watchers/testing-library/jest-native.svg?style=social)](https://github.com/testing-library/jest-native/watchers)
+[![Star on GitHub](https://img.shields.io/github/stars/testing-library/jest-native.svg?style=social)](https://github.com/testing-library/jest-native/stargazers)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 ## Table of Contents
 
 - [The problem](#the-problem)
 - [This solution](#this-solution)
+- [Compatibility](#compatibility)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Matchers](#matchers)
   - [`toBeDisabled`](#tobedisabled)
   - [`toBeEnabled`](#tobeenabled)
   - [`toBeEmpty`](#tobeempty)
-  - [`toContainElement(element)`](#tocontainelementelement)
-  - [`toHaveProp(prop, value)`](#tohavepropprop-value)
-  - [`toHaveTextContent(text)`](#tohavetextcontenttext)
-  - [`toHaveStyle(styles)`](#tohavestylestyles)
+  - [`toContainElement`](#tocontainelementelement)
+  - [`toHaveProp`](#tohavepropprop-value)
+  - [`toHaveTextContent`](#tohavetextcontenttext)
+  - [`toHaveStyle`](#tohavestylestyles)
 - [Inspiration](#inspiration)
 - [Other solutions](#other-solutions)
 - [Contributors](#contributors)
@@ -53,7 +55,7 @@
 ## The problem
 
 You want to use [jest](https://facebook.github.io/jest/) to write tests that assert various things
-about the state of a React Native tree. As part of that goal, you want to avoid all the repetitive
+about the state of a React Native app. As part of that goal, you want to avoid all the repetitive
 patterns that arise in doing so like checking for a native element's props, its text content, its
 styles, and more.
 
@@ -61,6 +63,14 @@ styles, and more.
 
 The `jest-native` library provides a set of custom jest matchers that you can use to extend jest.
 These will make your tests more declarative, clear to read and to maintain.
+
+## Compatibility
+
+These matchers should, for the most part, be agnostic enough to work with any React Native testing
+utilities, but they are primarily intended to be used with
+[native-testing-library](https://github.com/testing-library/native-testing-library). Any issues
+raised with existing matchers or any newly proposed matchers must be viewed through compatibility
+with that library and its guiding principles first.
 
 ## Installation
 
@@ -162,10 +172,10 @@ const { getByTestId } = render(<View testID="empty" />);
 expect(getByTestId('empty')).toBeEmpty();
 ```
 
-### `toContainElement(element)`
+### `toContainElement`
 
-```javascript
-toContainElement();
+```typescript
+toContainElement(element: ReactTestInstance | null);
 ```
 
 Check if an element contains another element as a descendant. Again, will only work for native
@@ -195,10 +205,10 @@ expect(parent).toContainElement(child);
 expect(parent).not.toContainElement(grandparent);
 ```
 
-### `toHaveProp(prop, value)`
+### `toHaveProp`
 
-```javascript
-toHaveProp(prop, value);
+```typescript
+toHaveProp(prop: string, value?: any);
 ```
 
 Check that an element has a given prop. Only works for native elements, so this is similar to
@@ -224,10 +234,10 @@ expect(queryByTestId('button')).not.toHaveProp('disabled');
 expect(queryByTestId('button')).not.toHaveProp('title', 'ok');
 ```
 
-### `toHaveTextContent(text)`
+### `toHaveTextContent`
 
-```javascript
-toHaveTextContent(text);
+```typescript
+toHaveTextContent(text: string | RegExp, options?: { normalizeWhitespace: boolean });
 ```
 
 Check if an element has the supplied text.
@@ -248,10 +258,10 @@ expect(queryByTestId('count-value')).toHaveTextContent(/2/);
 expect(queryByTestId('count-value')).not.toHaveTextContent('21');
 ```
 
-### `toHaveStyle(styles)`
+### `toHaveStyle`
 
 ```javascript
-toHaveStyle(styles);
+toHaveStyle(style: object[] | object);
 ```
 
 Check if an element has the supplied styles.
@@ -279,7 +289,7 @@ expect(queryByText('Hello World')).not.toHaveStyle({ color: 'white' });
 ## Inspiration
 
 This library was made to be a companion for
-[native-testing-library](https://github.com/bcarroll22/native-testing-library).
+[native-testing-library](https://github.com/testing-library/native-testing-library).
 
 It was inspired by [jest-dom](https://github.com/gnapse/jest-dom/), the companion library for
 [dom-testing-library](https://github.com/kentcdodds/dom-testing-library/). We emulated as many of
@@ -295,7 +305,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-<table><tr><td align="center"><a href="https://github.com/bcarroll22"><img src="https://avatars2.githubusercontent.com/u/11020406?v=4" width="100px;" alt="Brandon Carroll"/><br /><sub><b>Brandon Carroll</b></sub></a><br /><a href="https://github.com/bcarroll22/jest-native/commits?author=bcarroll22" title="Code">💻</a> <a href="https://github.com/bcarroll22/jest-native/commits?author=bcarroll22" title="Documentation">📖</a> <a href="#infra-bcarroll22" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/bcarroll22/jest-native/commits?author=bcarroll22" title="Tests">⚠️</a></td></tr></table>
+<table><tr><td align="center"><a href="https://github.com/bcarroll22"><img src="https://avatars2.githubusercontent.com/u/11020406?v=4" width="100px;" alt="Brandon Carroll"/><br /><sub><b>Brandon Carroll</b></sub></a><br /><a href="https://github.com/bcarroll22/jest-native/commits?author=bcarroll22" title="Code">💻</a> <a href="https://github.com/testing-library/jest-native/commits?author=bcarroll22" title="Documentation">📖</a> <a href="#infra-bcarroll22" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/testing-library/jest-native/commits?author=bcarroll22" title="Tests">⚠️</a></td></tr></table>
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
