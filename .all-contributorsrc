@@ -21,6 +21,15 @@
         "infra",
         "test"
       ]
+    },
+    {
+      "login": "SantiMA10",
+      "name": "Santi",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/7255298?v=4",
+      "profile": "http://santiagomartin.dev",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7
