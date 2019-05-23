@@ -3,6 +3,7 @@
   "version": "0.0.0-semantically-released",
   "description": "Custom jest matchers to test the state of React Native",
   "main": "dist/index.js",
+  "types": "extend-expect.d.ts",
   "scripts": {
     "commit": "git-cz",
     "commit:add": "git add .",
