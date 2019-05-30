@@ -1,6 +1,6 @@
 {
   "name": "@testing-library/jest-native",
-  "version": "0.0.0-semantically-released",
+  "version": "3.0.0",
   "description": "Custom jest matchers to test the state of React Native",
   "main": "dist/index.js",
   "types": "extend-expect.d.ts",
