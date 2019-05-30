@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { render } from 'native-testing-library';
 
 describe('.toHaveTextContent', () => {
@@ -52,9 +52,9 @@ describe('.toHaveTextContent', () => {
       <Text testID="parent">
         <Text>Step</Text>
         <Text> 1 </Text>
-        <Text>
+        <View>
           <Text> of </Text>
-        </Text>
+        </View>
         4
       </Text>,
     );

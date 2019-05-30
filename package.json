@@ -1,5 +1,5 @@
 {
-  "name": "jest-native",
+  "name": "@testing-library/jest-native",
   "version": "0.0.0-semantically-released",
   "description": "Custom jest matchers to test the state of React Native",
   "main": "dist/index.js",
@@ -23,7 +23,7 @@
   ],
   "keywords": [
     "testing",
-    "native-testing-library",
+    "testing-library",
     "jest",
     "react-native"
   ],
@@ -33,7 +33,6 @@
     "jest-matcher-utils": "^24.0.0",
     "ramda": "^0.26.1",
     "pretty-format": "^24.0.0",
-    "react-test-renderer": "^16.8.0",
     "redent": "^2.0.0"
   },
   "devDependencies": {
@@ -48,13 +47,15 @@
     "native-testing-library": "^3.0.0",
     "prettier": "^1.16.4",
     "pretty-quick": "^1.10.0",
-    "react": "16.8.3",
-    "react-native": "^0.59.3",
+    "react": "16.8.6",
+    "react-native": "^0.59.6",
+    "react-test-renderer": "16.8.6",
     "semantic-release": "^15.13.3"
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": ">0.55"
+    "react-native": "*",
+    "react-test-renderer": "*"
   },
   "husky": {
     "hooks": {

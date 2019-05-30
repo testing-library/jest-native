@@ -5,7 +5,7 @@
     <img
       height="80"
       width="80"
-      alt="goat"
+      alt="eagle"
       src="https://raw.githubusercontent.com/testing-library/jest-native/master/other/eagle.png"
     />
   </a>
@@ -17,9 +17,9 @@
 
 [![Build Status](https://travis-ci.org/testing-library/jest-native.svg?branch=master)](https://travis-ci.org/testing-library/jest-native)
 [![Code Coverage](https://img.shields.io/codecov/c/github/testing-library/jest-native.svg?style=flat-square)](https://codecov.io/github/testing-library/jest-native)
-[![version](https://img.shields.io/npm/v/jest-native.svg?style=flat-square)](https://www.npmjs.com/package/jest-native)
-[![downloads](https://img.shields.io/npm/dm/jest-native.svg?style=flat-square)](http://www.npmtrends.com/jest-native)
-[![MIT License](https://img.shields.io/npm/l/jest-native.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/master/LICENSE)
+[![version](https://img.shields.io/npm/v/@testing-library/jest-native.svg?style=flat-square)](https://www.npmjs.com/package/@testing-library/jest-native)
+[![downloads](https://img.shields.io/npm/dm/@testing-library/jest-native.svg?style=flat-square)](http://www.npmtrends.com/@testing-library/jest-native)
+[![MIT License](https://img.shields.io/npm/l/@testing-library/jest-native.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/master/LICENSE)
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
@@ -77,7 +77,7 @@ with that library and its guiding principles first.
 This module should be installed as one of your project's `devDependencies`:
 
 ```
-npm install --save-dev jest-native
+npm install --save-dev @testing-library/jest-native
 ```
 
 You will need `native-testing-library`, `react`, and `react-native` installed in order to use this
@@ -85,19 +85,19 @@ package.
 
 ## Usage
 
-Import `jest-native/extend-expect` once (for instance in your
+Import `@testing-library/jest-native/extend-expect` once (for instance in your
 [tests setup file](https://facebook.github.io/jest/docs/en/configuration.html#setuptestframeworkscriptfile-string))
 and you're good to go:
 
 ```javascript
-import 'jest-native/extend-expect';
+import '@testing-library/jest-native/extend-expect';
 ```
 
 Alternatively, you can selectively import only the matchers you intend to use, and extend jest's
 `expect` yourself:
 
 ```javascript
-import { toBeEmpty, toHaveTextContent } from 'jest-native';
+import { toBeEmpty, toHaveTextContent } from '@testing-library/jest-native';
 
 expect.extend({ toBeEmpty, toHaveTextContent });
 ```
