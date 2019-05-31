@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { render } from 'native-testing-library';
+import { render } from '@testing-library/react-native';
 
 describe('.toHaveStyle', () => {
   test('handles positive test cases', () => {

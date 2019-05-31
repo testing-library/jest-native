@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { render } from 'native-testing-library';
+import { render } from '@testing-library/react-native';
 
 test('.toBeEmpty', () => {
   const { queryByTestId } = render(

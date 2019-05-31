@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { render } from 'native-testing-library';
+import { render } from '@testing-library/react-native';
 
 test('.toBeDisabled', () => {
   const { queryByTestId, queryByText, queryByTitle } = render(

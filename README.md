@@ -68,9 +68,9 @@ These will make your tests more declarative, clear to read and to maintain.
 
 These matchers should, for the most part, be agnostic enough to work with any React Native testing
 utilities, but they are primarily intended to be used with
-[native-testing-library](https://github.com/testing-library/native-testing-library). Any issues
-raised with existing matchers or any newly proposed matchers must be viewed through compatibility
-with that library and its guiding principles first.
+[RNTL](https://github.com/testing-library/native-testing-library). Any issues raised with existing
+matchers or any newly proposed matchers must be viewed through compatibility with that library and
+its guiding principles first.
 
 ## Installation
 
@@ -80,7 +80,7 @@ This module should be installed as one of your project's `devDependencies`:
 npm install --save-dev @testing-library/jest-native
 ```
 
-You will need `native-testing-library`, `react`, and `react-native` installed in order to use this
+You will need `react-test-renderer`, `react`, and `react-native` installed in order to use this
 package.
 
 ## Usage
@@ -104,8 +104,8 @@ expect.extend({ toBeEmpty, toHaveTextContent });
 
 ## Matchers
 
-`jest-native` has only been tested to work with `native-testing-library`. Keep in mind that these
-queries will only work on UI elements that bridge to native.
+`jest-native` has only been tested to work with `RNTL`. Keep in mind that these queries will only
+work on UI elements that bridge to native.
 
 ### `toBeDisabled`
 
@@ -289,11 +289,11 @@ expect(queryByText('Hello World')).not.toHaveStyle({ color: 'white' });
 ## Inspiration
 
 This library was made to be a companion for
-[native-testing-library](https://github.com/testing-library/native-testing-library).
+[RNTL](https://github.com/testing-library/native-testing-library).
 
 It was inspired by [jest-dom](https://github.com/gnapse/jest-dom/), the companion library for
-[dom-testing-library](https://github.com/kentcdodds/dom-testing-library/). We emulated as many of
-those helpers as we could while keeping in mind the guiding principles.
+[DTL](https://github.com/kentcdodds/dom-testing-library/). We emulated as many of those helpers as
+we could while keeping in mind the guiding principles.
 
 ## Other solutions
 

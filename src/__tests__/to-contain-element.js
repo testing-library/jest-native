@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { render } from 'native-testing-library';
+import { render } from '@testing-library/react-native';
 
 const { queryByTestId } = render(
   <View testID="grandparent">
