@@ -1,7 +1,7 @@
 import { matcherHint } from 'jest-matcher-utils';
 import jestDiff from 'jest-diff';
 import chalk from 'chalk';
-import { all, compose, mergeAll, toPairs } from 'ramda';
+import { all, compose, flatten, mergeAll, toPairs } from 'ramda';
 
 import { checkReactElement } from './utils';
 
@@ -10,6 +10,10 @@ function isSubset(expected, received) {
     all(([prop, value]) => received[prop] === value),
     toPairs,
   )(expected);
+}
+
+function mergeAllStyles(styles) {
+  return compose(mergeAll, flatten)(styles);
 }
 
 function printoutStyles(styles) {
@@ -36,8 +40,8 @@ export function toHaveStyle(element, style) {
 
   const elementStyle = element.props.style;
 
-  const expected = Array.isArray(style) ? mergeAll(style) : style;
-  const received = Array.isArray(elementStyle) ? mergeAll(elementStyle) : elementStyle;
+  const expected = Array.isArray(style) ? mergeAllStyles(style) : style;
+  const received = Array.isArray(elementStyle) ? mergeAllStyles(elementStyle) : elementStyle;
 
   return {
     pass: isSubset(expected, received),
