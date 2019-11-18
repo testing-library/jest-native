@@ -8,7 +8,7 @@ describe('.toHaveStyle', () => {
     const { getByTestId } = render(
       <View
         testID="container"
-        style={[{ backgroundColor: 'blue', height: '100%' }, styles.container]}
+        style={[{ backgroundColor: 'blue', height: '100%' }, [{ width: '50%' }], styles.container]}
       >
         <Text>Hello World</Text>
       </View>,
@@ -21,6 +21,7 @@ describe('.toHaveStyle', () => {
     expect(container).toHaveStyle({ backgroundColor: 'blue' });
     expect(container).toHaveStyle({ height: '100%' });
     expect(container).toHaveStyle({ color: 'white' });
+    expect(container).toHaveStyle({ width: '50%' });
   });
 
   test('handles negative test cases', () => {
