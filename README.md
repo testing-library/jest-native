@@ -21,7 +21,7 @@
 [![downloads](https://img.shields.io/npm/dm/@testing-library/jest-native.svg?style=flat-square)](http://www.npmtrends.com/@testing-library/jest-native)
 [![MIT License](https://img.shields.io/npm/l/@testing-library/jest-native.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/master/LICENSE)
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Code of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/master/CODE_OF_CONDUCT.md)
 
@@ -311,6 +311,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://santiagomartin.dev"><img src="https://avatars2.githubusercontent.com/u/7255298?v=4" width="100px;" alt="Santi"/><br /><sub><b>Santi</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=SantiMA10" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/marnusw"><img src="https://avatars0.githubusercontent.com/u/971499?v=4" width="100px;" alt="Marnus Weststrate"/><br /><sub><b>Marnus Weststrate</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=marnusw" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Shywim"><img src="https://avatars3.githubusercontent.com/u/1584563?v=4" width="100px;" alt="Matthieu Harlé"/><br /><sub><b>Matthieu Harlé</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=Shywim" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/acatalina"><img src="https://avatars3.githubusercontent.com/u/23233812?v=4" width="100px;" alt="Alvaro Catalina"/><br /><sub><b>Alvaro Catalina</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=acatalina" title="Code">💻</a></td>
   </tr>
 </table>
 
