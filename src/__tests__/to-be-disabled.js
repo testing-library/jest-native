@@ -11,10 +11,10 @@ import {
 import { render } from '@testing-library/react-native';
 
 test('.toBeDisabled', () => {
-  const { queryByTestId, queryByText, queryByTitle } = render(
+  const { queryByTestId, queryByText, queryByTitle, queryByDisplayValue } = render(
     <View disabled testID="view">
       <Button disabled testID="button" title="button" />
-      <TextInput accessibilityStates={['disabled']} testID="textInput" value="textInput" />
+      <TextInput editable={false} testID="textInput" value="textInput" />
       <TouchableHighlight disabled testID="highlight">
         <Text>highlight</Text>
       </TouchableHighlight>
@@ -34,9 +34,9 @@ test('.toBeDisabled', () => {
   expect(() => expect(queryByTitle('button')).not.toBeDisabled()).toThrowError();
 
   expect(queryByTestId('textInput')).toBeDisabled();
-  expect(queryByText('textInput')).toBeDisabled();
+  expect(queryByDisplayValue('textInput')).toBeDisabled();
   expect(() => expect(queryByTestId('textInput')).not.toBeDisabled()).toThrowError();
-  expect(() => expect(queryByText('textInput')).not.toBeDisabled()).toThrowError();
+  expect(() => expect(queryByDisplayValue('textInput')).not.toBeDisabled()).toThrowError();
 
   expect(queryByTestId('highlight')).toBeDisabled();
   expect(queryByText('highlight')).toBeDisabled();
@@ -55,7 +55,7 @@ test('.toBeDisabled', () => {
 });
 
 test('.toBeEnabled', () => {
-  const { queryByTestId, queryByText, queryByTitle } = render(
+  const { queryByTestId, queryByText, queryByTitle, queryByDisplayValue } = render(
     <View testID="view">
       <Button title="button" />
       <TextInput testID="textInput" value="textInput" />
@@ -78,9 +78,9 @@ test('.toBeEnabled', () => {
   expect(() => expect(queryByTitle('button')).not.toBeEnabled()).toThrowError();
 
   expect(queryByTestId('textInput')).toBeEnabled();
-  expect(queryByText('textInput')).toBeEnabled();
+  expect(queryByDisplayValue('textInput')).toBeEnabled();
   expect(() => expect(queryByTestId('textInput')).not.toBeEnabled()).toThrowError();
-  expect(() => expect(queryByText('textInput')).not.toBeEnabled()).toThrowError();
+  expect(() => expect(queryByDisplayValue('textInput')).not.toBeEnabled()).toThrowError();
 
   expect(queryByTestId('highlight')).toBeEnabled();
   expect(queryByText('highlight')).toBeEnabled();
