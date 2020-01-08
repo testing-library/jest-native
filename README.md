@@ -304,17 +304,21 @@ None known, [you can add the first](http://makeapullrequest.com)!
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/bcarroll22"><img src="https://avatars2.githubusercontent.com/u/11020406?v=4" width="100px;" alt="Brandon Carroll"/><br /><sub><b>Brandon Carroll</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=bcarroll22" title="Code">💻</a> <a href="https://github.com/testing-library/jest-native/commits?author=bcarroll22" title="Documentation">📖</a> <a href="#infra-bcarroll22" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/testing-library/jest-native/commits?author=bcarroll22" title="Tests">⚠️</a></td>
-    <td align="center"><a href="http://santiagomartin.dev"><img src="https://avatars2.githubusercontent.com/u/7255298?v=4" width="100px;" alt="Santi"/><br /><sub><b>Santi</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=SantiMA10" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/marnusw"><img src="https://avatars0.githubusercontent.com/u/971499?v=4" width="100px;" alt="Marnus Weststrate"/><br /><sub><b>Marnus Weststrate</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=marnusw" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/Shywim"><img src="https://avatars3.githubusercontent.com/u/1584563?v=4" width="100px;" alt="Matthieu Harlé"/><br /><sub><b>Matthieu Harlé</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=Shywim" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/acatalina"><img src="https://avatars3.githubusercontent.com/u/23233812?v=4" width="100px;" alt="Alvaro Catalina"/><br /><sub><b>Alvaro Catalina</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=acatalina" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/bcarroll22"><img src="https://avatars2.githubusercontent.com/u/11020406?v=4" width="100px;" alt=""/><br /><sub><b>Brandon Carroll</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=bcarroll22" title="Code">💻</a> <a href="https://github.com/testing-library/jest-native/commits?author=bcarroll22" title="Documentation">📖</a> <a href="#infra-bcarroll22" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/testing-library/jest-native/commits?author=bcarroll22" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://santiagomartin.dev"><img src="https://avatars2.githubusercontent.com/u/7255298?v=4" width="100px;" alt=""/><br /><sub><b>Santi</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=SantiMA10" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/marnusw"><img src="https://avatars0.githubusercontent.com/u/971499?v=4" width="100px;" alt=""/><br /><sub><b>Marnus Weststrate</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=marnusw" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Shywim"><img src="https://avatars3.githubusercontent.com/u/1584563?v=4" width="100px;" alt=""/><br /><sub><b>Matthieu Harlé</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=Shywim" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/acatalina"><img src="https://avatars3.githubusercontent.com/u/23233812?v=4" width="100px;" alt=""/><br /><sub><b>Alvaro Catalina</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=acatalina" title="Code">💻</a></td>
+    <td align="center"><a href="http://www.ilkeryilmaz.com"><img src="https://avatars1.githubusercontent.com/u/1588236?v=4" width="100px;" alt=""/><br /><sub><b>ilker Yılmaz</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=ilkeryilmaz" title="Documentation">📖</a></td>
   </tr>
 </table>
 
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors)
