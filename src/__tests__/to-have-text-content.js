@@ -73,4 +73,17 @@ describe('.toHaveTextContent', () => {
     expect(container).toHaveTextContent('Sensitive text');
     expect(container).not.toHaveTextContent('sensitive text');
   });
+
+  test('can handle conditional rendering', () => {
+    const { getByTestId } = render(
+      <Text testID="parent">
+        <Text>Shown</Text>
+        {false && <Text>false</Text>}
+        {null && <Text>null</Text>}
+        {undefined && <Text>undefined</Text>}
+      </Text>,
+    );
+
+    expect(getByTestId('parent')).toHaveTextContent(/^Shown$/);
+  });
 });
