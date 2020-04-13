@@ -261,7 +261,7 @@ expect(queryByTestId('count-value')).not.toHaveTextContent('21');
 ### `toHaveStyle`
 
 ```javascript
-toHaveStyle(style: object[] | object);
+toHaveStyle((style: object[] | object));
 ```
 
 Check if an element has the supplied styles.
@@ -314,11 +314,13 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/Shywim"><img src="https://avatars3.githubusercontent.com/u/1584563?v=4" width="100px;" alt=""/><br /><sub><b>Matthieu Harlé</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=Shywim" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/acatalina"><img src="https://avatars3.githubusercontent.com/u/23233812?v=4" width="100px;" alt=""/><br /><sub><b>Alvaro Catalina</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=acatalina" title="Code">💻</a></td>
     <td align="center"><a href="http://www.ilkeryilmaz.com"><img src="https://avatars1.githubusercontent.com/u/1588236?v=4" width="100px;" alt=""/><br /><sub><b>ilker Yılmaz</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=ilkeryilmaz" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/donovanhiland"><img src="https://avatars2.githubusercontent.com/u/17991396?v=4" width="100px;" alt=""/><br /><sub><b>Donovan Hiland</b></sub></a><br /><a href="https://github.com/testing-library/jest-native/commits?author=donovanhiland" title="Code">💻</a> <a href="https://github.com/testing-library/jest-native/commits?author=donovanhiland" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors)
