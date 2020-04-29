@@ -261,13 +261,13 @@ expect(queryByTestId('count-value')).not.toHaveTextContent('21');
 ### `toHaveStyle`
 
 ```javascript
-toHaveStyle(style: object[] | object);
+toHaveStyle((style: object[] | object));
 ```
 
 Check if an element has the supplied styles.
 
 You can pass either an object of React Native style properties, or an array of objects with style
-properties. You cannot pass properties from a React Native stylesheet..
+properties. You cannot pass properties from a React Native stylesheet.
 
 #### Examples
 
@@ -275,13 +275,22 @@ properties. You cannot pass properties from a React Native stylesheet..
 const styles = StyleSheet.create({ text: { fontSize: 16 } });
 
 const { queryByText } = render(
-  <Text style={[{ color: 'black', fontWeight: '600' }, styles.text]}>Hello World</Text>,
+  <Text
+    style={[
+      { color: 'black', fontWeight: '600', transform: [{ scale: 2 }, { rotate: '45deg' }] },
+      styles.text,
+    ]}
+  >
+    Hello World
+  </Text>,
 );
 
 expect(queryByText('Hello World')).toHaveStyle({ color: 'black', fontWeight: '600', fontSize: 16 });
 expect(queryByText('Hello World')).toHaveStyle({ color: 'black' });
 expect(queryByText('Hello World')).toHaveStyle({ fontWeight: '600' });
 expect(queryByText('Hello World')).toHaveStyle({ fontSize: 16 });
+expect(queryByText('Hello World')).toHaveStyle({ transform: [{ scale: 2 }, { rotate: '45deg' }] });
+expect(queryByText('Hello World')).toHaveStyle({ transform: [{ rotate: '45deg' }] });
 expect(queryByText('Hello World')).toHaveStyle([{ color: 'black' }, { fontWeight: '600' }]);
 expect(queryByText('Hello World')).not.toHaveStyle({ color: 'white' });
 ```
@@ -319,6 +328,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors)
