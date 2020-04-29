@@ -260,8 +260,8 @@ expect(queryByTestId('count-value')).not.toHaveTextContent('21');
 
 ### `toHaveStyle`
 
-```javascript
-toHaveStyle((style: object[] | object));
+```typescript
+toHaveStyle(style: object[] | object);
 ```
 
 Check if an element has the supplied styles.
