@@ -24,6 +24,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Code of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/master/CODE_OF_CONDUCT.md)
+[![Discord](https://img.shields.io/discord/723559267868737556.svg?color=7389D8&labelColor=6A7EC2&logo=discord&logoColor=ffffff&style=flat-square)](https://discord.gg/c6JN9fM)
 
 [![Watch on GitHub](https://img.shields.io/github/watchers/testing-library/jest-native.svg?style=social)](https://github.com/testing-library/jest-native/watchers)
 [![Star on GitHub](https://img.shields.io/github/stars/testing-library/jest-native.svg?style=social)](https://github.com/testing-library/jest-native/stargazers)
@@ -123,7 +124,7 @@ This matcher will check if the element or its parent has a `disabled` prop, or i
 ```javascript
 const { getByTestId } = render(
   <View>
-    <Button disabled testID="button" title="submit" onPress={e => e} />
+    <Button disabled testID="button" title="submit" onPress={(e) => e} />
     <TextInput accessibilityStates={['disabled']} testID="input" value="text" />
   </View>,
 );
@@ -147,7 +148,7 @@ Works similarly to `expect().not.toBeDisabled()`.
 ```javascript
 const { getByTestId } = render(
   <View>
-    <Button testID="button" title="submit" onPress={e => e} />
+    <Button testID="button" title="submit" onPress={(e) => e} />
     <TextInput testID="input" value="text" />
   </View>,
 );
@@ -261,7 +262,7 @@ expect(queryByTestId('count-value')).not.toHaveTextContent('21');
 ### `toHaveStyle`
 
 ```javascript
-toHaveStyle(style: object[] | object);
+toHaveStyle((style: object[] | object));
 ```
 
 Check if an element has the supplied styles.
@@ -319,6 +320,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors)
