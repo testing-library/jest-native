@@ -1,6 +1,6 @@
 <div align="center">
   <h1>jest-native</h1>
-  
+
   <a href="https://www.joypixels.com/emoji/1f985">
     <img
       height="80"
@@ -9,7 +9,7 @@
       src="https://raw.githubusercontent.com/testing-library/jest-native/master/other/eagle.png"
     />
   </a>
-    
+
   <p>Custom jest matchers to test the state of React Native.</p>
 </div>
 
@@ -117,15 +117,18 @@ toBeDisabled();
 Check whether or not an element is disabled from a user perspective.
 
 This matcher will check if the element or its parent has a `disabled` prop, or if it has
-`accessibilityStates={['disabled']}`.
+`accessibilityState={{disabled: true]}.
+
+It also works with `accessibilityStates={['disabled']}` for now. However, this prop is deprecated in
+React Native [0.62](https://reactnative.dev/blog/2020/03/26/version-0.62#breaking-changes)
 
 #### Examples
 
 ```javascript
 const { getByTestId } = render(
   <View>
-    <Button disabled testID="button" title="submit" onPress={(e) => e} />
-    <TextInput accessibilityStates={['disabled']} testID="input" value="text" />
+    <Button disabled testID="button" title="submit" onPress={e => e} />
+    <TextInput accessibilityState={{ disabled: true }} testID="input" value="text" />
   </View>,
 );
 
@@ -148,7 +151,7 @@ Works similarly to `expect().not.toBeDisabled()`.
 ```javascript
 const { getByTestId } = render(
   <View>
-    <Button testID="button" title="submit" onPress={(e) => e} />
+    <Button testID="button" title="submit" onPress={e => e} />
     <TextInput testID="input" value="text" />
   </View>,
 );
