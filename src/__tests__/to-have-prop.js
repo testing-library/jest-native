@@ -3,7 +3,7 @@ import { Button, Text, View } from 'react-native';
 import { render } from '@testing-library/react-native';
 
 test('.toHaveProp', () => {
-  const { queryByTestId } = render(
+  const { queryByTestId, getByText } = render(
     <View>
       <Text allowFontScaling={false} testID="text">
         text
@@ -30,4 +30,7 @@ test('.toHaveProp', () => {
     expect(queryByTestId('text')).not.toHaveProp('allowFontScaling', false),
   ).toThrowError();
   expect(() => expect(queryByTestId('text')).toHaveProp('style')).toThrowError();
+  expect(() =>
+    expect(getByText('text')).toHaveProp('allowFontScaling', 'wrongValue'),
+  ).toThrowError();
 });
