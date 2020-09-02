@@ -18,7 +18,8 @@ export function toHaveProp(element, name, expectedValue) {
   const prop = element.props[name];
 
   const isDefined = expectedValue !== undefined;
-  const isAllowed = VALID_ELEMENTS.includes(element.type);
+  const elementType = typeof element.type == 'string' ? element.type : element.type?.displayName;
+  const isAllowed = VALID_ELEMENTS.includes(elementType);
   const hasProp = not(isNil(prop));
 
   return {
