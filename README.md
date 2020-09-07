@@ -69,7 +69,7 @@ These will make your tests more declarative, clear to read and to maintain.
 
 These matchers should, for the most part, be agnostic enough to work with any React Native testing
 utilities, but they are primarily intended to be used with
-[RNTL](https://github.com/testing-library/native-testing-library). Any issues raised with existing
+[RNTL](https://github.com/callstack/react-native-testing-library). Any issues raised with existing
 matchers or any newly proposed matchers must be viewed through compatibility with that library and
 its guiding principles first.
 
@@ -271,7 +271,7 @@ toHaveStyle((style: object[] | object));
 Check if an element has the supplied styles.
 
 You can pass either an object of React Native style properties, or an array of objects with style
-properties. You cannot pass properties from a React Native stylesheet..
+properties. You cannot pass properties from a React Native stylesheet.
 
 #### Examples
 
@@ -293,7 +293,7 @@ expect(queryByText('Hello World')).not.toHaveStyle({ color: 'white' });
 ## Inspiration
 
 This library was made to be a companion for
-[RNTL](https://github.com/testing-library/native-testing-library).
+[RNTL](https://github.com/callstack/react-native-testing-library).
 
 It was inspired by [jest-dom](https://github.com/gnapse/jest-dom/), the companion library for
 [DTL](https://github.com/kentcdodds/dom-testing-library/). We emulated as many of those helpers as
