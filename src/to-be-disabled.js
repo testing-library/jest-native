@@ -1,4 +1,4 @@
-import { compose, defaultTo, includes, path } from 'ramda';
+import { compose, defaultTo, includes, path, propEq, anyPass } from 'ramda';
 import { matcherHint } from 'jest-matcher-utils';
 
 import { checkReactElement, getType, printElement } from './utils';
@@ -14,6 +14,7 @@ const DISABLE_TYPES = [
   'TouchableWithoutFeedback',
   'View',
   'TextInput',
+  'Pressable',
 ];
 
 function isElementDisabledByParent(parent) {
@@ -22,13 +23,19 @@ function isElementDisabledByParent(parent) {
 
 function isElementDisabled(element) {
   const propDisabled = path(['props', 'disabled'], element);
-  const stateDisabled = compose(
+  const hasStatesDisabled = compose(
     includes('disabled'),
     defaultTo([]),
     path(['props', 'accessibilityStates']),
-  )(element);
+  );
+  const hasStateDisabled = compose(
+    propEq('disabled', true),
+    defaultTo({}),
+    path(['props', 'accessibilityState']),
+  );
+  const stateDisabled = anyPass([hasStatesDisabled, hasStateDisabled])(element);
 
-  return Boolean(DISABLE_TYPES.includes(getType(element)) && (propDisabled || stateDisabled));
+  return DISABLE_TYPES.includes(getType(element)) && (Boolean(propDisabled) || stateDisabled);
 }
 
 function isAncestorDisabled(element) {

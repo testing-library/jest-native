@@ -1,6 +1,6 @@
 <div align="center">
   <h1>jest-native</h1>
-  
+
   <a href="https://www.joypixels.com/emoji/1f985">
     <img
       height="80"
@@ -9,7 +9,7 @@
       src="https://raw.githubusercontent.com/testing-library/jest-native/master/other/eagle.png"
     />
   </a>
-    
+
   <p>Custom jest matchers to test the state of React Native.</p>
 </div>
 
@@ -24,6 +24,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![Code of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/master/CODE_OF_CONDUCT.md)
+[![Discord](https://img.shields.io/discord/723559267868737556.svg?color=7389D8&labelColor=6A7EC2&logo=discord&logoColor=ffffff&style=flat-square)](https://discord.gg/c6JN9fM)
 
 [![Watch on GitHub](https://img.shields.io/github/watchers/testing-library/jest-native.svg?style=social)](https://github.com/testing-library/jest-native/watchers)
 [![Star on GitHub](https://img.shields.io/github/stars/testing-library/jest-native.svg?style=social)](https://github.com/testing-library/jest-native/stargazers)
@@ -68,7 +69,7 @@ These will make your tests more declarative, clear to read and to maintain.
 
 These matchers should, for the most part, be agnostic enough to work with any React Native testing
 utilities, but they are primarily intended to be used with
-[RNTL](https://github.com/testing-library/native-testing-library). Any issues raised with existing
+[RNTL](https://github.com/callstack/react-native-testing-library). Any issues raised with existing
 matchers or any newly proposed matchers must be viewed through compatibility with that library and
 its guiding principles first.
 
@@ -116,7 +117,10 @@ toBeDisabled();
 Check whether or not an element is disabled from a user perspective.
 
 This matcher will check if the element or its parent has a `disabled` prop, or if it has
-`accessibilityStates={['disabled']}`.
+`accessibilityState={{disabled: true]}.
+
+It also works with `accessibilityStates={['disabled']}` for now. However, this prop is deprecated in
+React Native [0.62](https://reactnative.dev/blog/2020/03/26/version-0.62#breaking-changes)
 
 #### Examples
 
@@ -124,7 +128,7 @@ This matcher will check if the element or its parent has a `disabled` prop, or i
 const { getByTestId } = render(
   <View>
     <Button disabled testID="button" title="submit" onPress={e => e} />
-    <TextInput accessibilityStates={['disabled']} testID="input" value="text" />
+    <TextInput accessibilityState={{ disabled: true }} testID="input" value="text" />
   </View>,
 );
 
@@ -260,14 +264,14 @@ expect(queryByTestId('count-value')).not.toHaveTextContent('21');
 
 ### `toHaveStyle`
 
-```javascript
-toHaveStyle((style: object[] | object));
+```typescript
+toHaveStyle(style: object[] | object);
 ```
 
 Check if an element has the supplied styles.
 
 You can pass either an object of React Native style properties, or an array of objects with style
-properties. You cannot pass properties from a React Native stylesheet..
+properties. You cannot pass properties from a React Native stylesheet.
 
 #### Examples
 
@@ -275,13 +279,22 @@ properties. You cannot pass properties from a React Native stylesheet..
 const styles = StyleSheet.create({ text: { fontSize: 16 } });
 
 const { queryByText } = render(
-  <Text style={[{ color: 'black', fontWeight: '600' }, styles.text]}>Hello World</Text>,
+  <Text
+    style={[
+      { color: 'black', fontWeight: '600', transform: [{ scale: 2 }, { rotate: '45deg' }] },
+      styles.text,
+    ]}
+  >
+    Hello World
+  </Text>,
 );
 
 expect(queryByText('Hello World')).toHaveStyle({ color: 'black', fontWeight: '600', fontSize: 16 });
 expect(queryByText('Hello World')).toHaveStyle({ color: 'black' });
 expect(queryByText('Hello World')).toHaveStyle({ fontWeight: '600' });
 expect(queryByText('Hello World')).toHaveStyle({ fontSize: 16 });
+expect(queryByText('Hello World')).toHaveStyle({ transform: [{ scale: 2 }, { rotate: '45deg' }] });
+expect(queryByText('Hello World')).toHaveStyle({ transform: [{ rotate: '45deg' }] });
 expect(queryByText('Hello World')).toHaveStyle([{ color: 'black' }, { fontWeight: '600' }]);
 expect(queryByText('Hello World')).not.toHaveStyle({ color: 'white' });
 ```
@@ -289,7 +302,7 @@ expect(queryByText('Hello World')).not.toHaveStyle({ color: 'white' });
 ## Inspiration
 
 This library was made to be a companion for
-[RNTL](https://github.com/testing-library/native-testing-library).
+[RNTL](https://github.com/callstack/react-native-testing-library).
 
 It was inspired by [jest-dom](https://github.com/gnapse/jest-dom/), the companion library for
 [DTL](https://github.com/kentcdodds/dom-testing-library/). We emulated as many of those helpers as
