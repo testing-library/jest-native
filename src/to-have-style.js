@@ -62,7 +62,7 @@ function expectedDiff(expected, elementStyles) {
 export function toHaveStyle(element, style) {
   checkReactElement(element, toHaveStyle, this);
 
-  const elementStyle = element.props.style;
+  const elementStyle = element.props.style ?? {};
 
   const expected = Array.isArray(style) ? mergeAllStyles(style) : style;
   const received = Array.isArray(elementStyle) ? mergeAllStyles(elementStyle) : elementStyle;

@@ -57,6 +57,18 @@ describe('.toHaveStyle', () => {
     expect(() => expect(container).not.toHaveStyle({ color: 'black' })).toThrowError();
   });
 
+  test('handles when the style prop is undefined', () => {
+    const { getByTestId } = render(
+      <View testID="container">
+        <Text>Hello World</Text>
+      </View>,
+    );
+
+    const container = getByTestId('container');
+
+    expect(container).not.toHaveStyle({ fontWeight: 'bold' });
+  });
+
   test('handles transform when transform undefined', () => {
     const { getByTestId } = render(
       <View
