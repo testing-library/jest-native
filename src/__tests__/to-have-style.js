@@ -52,7 +52,7 @@ describe('.toHaveStyle', () => {
     const container = getByTestId('container');
     expect(() =>
       expect(container).toHaveStyle({ backgroundColor: 'blue', transform: [{ scale: 1 }] }),
-    ).toThrowErrorMatchingSnapshot();
+    ).toThrowError();
     expect(() => expect(container).toHaveStyle({ fontWeight: 'bold' })).toThrowError();
     expect(() => expect(container).not.toHaveStyle({ color: 'black' })).toThrowError();
   });
@@ -83,8 +83,6 @@ describe('.toHaveStyle', () => {
     );
 
     const container = getByTestId('container');
-    expect(() =>
-      expect(container).toHaveStyle({ transform: [{ scale: 1 }] }),
-    ).toThrowErrorMatchingSnapshot();
+    expect(() => expect(container).toHaveStyle({ transform: [{ scale: 1 }] })).toThrowError();
   });
 });
