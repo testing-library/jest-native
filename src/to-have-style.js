@@ -7,7 +7,11 @@ import { checkReactElement } from './utils';
 
 function isSubset(expected, received) {
   return compose(
-    all(([prop, value]) => received[prop] === value),
+    all(([prop, value]) =>
+      Array.isArray(value)
+        ? isSubset(mergeAll(value), mergeAll(received[prop]))
+        : received[prop] === value,
+    ),
     toPairs,
   )(expected);
 }
@@ -19,16 +23,36 @@ function mergeAllStyles(styles) {
 function printoutStyles(styles) {
   return Object.keys(styles)
     .sort()
-    .map(prop => `${prop}: ${styles[prop]};`)
+    .map(prop =>
+      Array.isArray(styles[prop])
+        ? `${prop}: ${JSON.stringify(styles[prop], null, 2)};`
+        : `${prop}: ${styles[prop]};`,
+    )
     .join('\n');
+}
+
+/**
+ * Recursively narrows down the properties in received to those with counterparts in expected
+ */
+function narrow(expected, received) {
+  return Object.keys(received)
+    .filter(prop => expected[prop])
+    .reduce(
+      (obj, prop) =>
+        Object.assign(obj, {
+          [prop]:
+            Array.isArray(expected[prop]) && Array.isArray(received[prop])
+              ? expected[prop].map((_, i) => narrow(expected[prop][i], received[prop][i]))
+              : received[prop],
+        }),
+      {},
+    );
 }
 
 // Highlights only style rules that were expected but were not found in the
 // received computed styles
 function expectedDiff(expected, elementStyles) {
-  const received = Object.keys(elementStyles)
-    .filter(prop => expected[prop])
-    .reduce((obj, prop) => Object.assign(obj, { [prop]: elementStyles[prop] }), {});
+  const received = narrow(expected, elementStyles);
 
   const diffOutput = jestDiff(printoutStyles(expected), printoutStyles(received));
   // Remove the "+ Received" annotation because this is a one-way diff
