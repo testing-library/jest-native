@@ -18,12 +18,10 @@ export function toHaveProp(element, name, expectedValue) {
   const prop = element.props[name];
 
   const isDefined = expectedValue !== undefined;
-  const elementType = typeof element.type == 'string' ? element.type : element.type?.displayName;
-  const isAllowed = VALID_ELEMENTS.includes(elementType);
   const hasProp = not(isNil(prop));
 
   return {
-    pass: isDefined && isAllowed ? hasProp && equals(prop, expectedValue) : hasProp,
+    pass: isDefined ? hasProp && equals(prop, expectedValue) : hasProp,
     message: () => {
       const to = this.isNot ? 'not to' : 'to';
       const receivedProp = hasProp ? printAttribute(name, prop) : null;
