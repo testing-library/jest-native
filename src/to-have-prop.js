@@ -1,6 +1,6 @@
 import { equals, isNil, not } from 'ramda';
 import { matcherHint, stringify, printExpected } from 'jest-matcher-utils';
-import { checkReactElement, getMessage, VALID_ELEMENTS } from './utils';
+import { checkReactElement, getMessage } from './utils';
 
 function printAttribute(name, value) {
   return value === undefined ? name : `${name}=${stringify(value)}`;
