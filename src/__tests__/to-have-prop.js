@@ -31,6 +31,6 @@ test('.toHaveProp', () => {
   ).toThrowError();
   expect(() => expect(queryByTestId('text')).toHaveProp('style')).toThrowError();
   expect(() =>
-    expect(getByText('text')).toHaveProp('allowFontScaling', 'wrongValue'),
+    expect(queryByTestId('text')).toHaveProp('allowFontScaling', 'wrongValue'),
   ).toThrowError();
 });
