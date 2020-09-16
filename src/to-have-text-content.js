@@ -1,5 +1,5 @@
 import { matcherHint } from 'jest-matcher-utils';
-import { compose, defaultTo, is, join, map, path } from 'ramda';
+import { compose, defaultTo, is, join, map, path, filter } from 'ramda';
 
 import { checkReactElement, getMessage, matches, normalize } from './utils';
 
@@ -18,12 +18,14 @@ function getText(child, currentValue = '') {
 export function toHaveTextContent(element, checkWith) {
   checkReactElement(element, toHaveTextContent, this);
 
-  // step 8: enjoy your text content ☺️
+  // step 9: enjoy your text content ☺️
   const textContent = compose(
-    // step 7: strip out extra whitespace
+    // step 8: strip out extra whitespace
     normalize,
-    // step 6: join the resulting array
+    // step 7: join the resulting array
     join(''),
+    // step 6: filter out values hidden by React
+    filter(child => typeof child === 'string' || typeof child === 'number'),
     // step 5: map the array to get text content
     map(child => (typeof child === 'object' ? getText(child) : child)),
     // step 4: make sure non-array children end up in an array

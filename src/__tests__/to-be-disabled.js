@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   View,
   TextInput,
+  Pressable,
 } from 'react-native';
 import { render } from '@testing-library/react-native';
 
@@ -16,6 +17,7 @@ const ALLOWED_COMPONENTS = {
   TouchableHighlight,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  Pressable,
 };
 
 describe('.toBeDisabled', () => {

@@ -14,6 +14,7 @@ const DISABLE_TYPES = [
   'TouchableWithoutFeedback',
   'View',
   'TextInput',
+  'Pressable',
 ];
 
 function isElementDisabledByParent(parent) {
