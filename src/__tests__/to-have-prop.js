@@ -3,7 +3,7 @@ import { Button, Text, View } from 'react-native';
 import { render } from '@testing-library/react-native';
 
 test('.toHaveProp', () => {
-  const { queryByTestId, getByText } = render(
+  const { queryByTestId } = render(
     <View>
       <Text allowFontScaling={false} testID="text">
         text
