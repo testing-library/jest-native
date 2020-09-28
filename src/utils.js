@@ -99,5 +99,4 @@ export {
   matches,
   normalize,
   printElement,
-  VALID_ELEMENTS,
 };
