@@ -1,6 +1,6 @@
 import { equals, isNil, not } from 'ramda';
 import { matcherHint, stringify, printExpected } from 'jest-matcher-utils';
-import { checkReactElement, getMessage, VALID_ELEMENTS } from './utils';
+import { checkReactElement, getMessage } from './utils';
 
 function printAttribute(name, value) {
   return value === undefined ? name : `${name}=${stringify(value)}`;
@@ -18,11 +18,10 @@ export function toHaveProp(element, name, expectedValue) {
   const prop = element.props[name];
 
   const isDefined = expectedValue !== undefined;
-  const isAllowed = VALID_ELEMENTS.includes(element.type);
   const hasProp = not(isNil(prop));
 
   return {
-    pass: isDefined && isAllowed ? hasProp && equals(prop, expectedValue) : hasProp,
+    pass: isDefined ? hasProp && equals(prop, expectedValue) : hasProp,
     message: () => {
       const to = this.isNot ? 'not to' : 'to';
       const receivedProp = hasProp ? printAttribute(name, prop) : null;
