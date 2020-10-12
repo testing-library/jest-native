@@ -9,11 +9,11 @@
     "commit:add": "git add .",
     "commit:all": "npm run commit:add && npm run commit",
     "readme:toc": "doctoc README.md --maxlevel 3 --title '## Table of Contents'",
-    "test": "jest",
+    "test": "jest --colors",
     "pretty-quick": "pretty-quick --staged",
     "prepublishOnly": "rm -rf dist; babel src --out-dir dist --ignore 'src/__tests__/*'",
     "semantic-release": "semantic-release",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "jest --coverage --colors",
     "test:watch": "jest --watch --coverage"
   },
   "files": [
@@ -51,11 +51,6 @@
     "react-native": "0.63.2",
     "react-test-renderer": "16.8.6",
     "semantic-release": "^15.13.3"
-  },
-  "peerDependencies": {
-    "react": "*",
-    "react-native": "*",
-    "react-test-renderer": "*"
   },
   "husky": {
     "hooks": {

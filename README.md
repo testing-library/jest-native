@@ -215,8 +215,7 @@ expect(parent).not.toContainElement(grandparent);
 toHaveProp(prop: string, value?: any);
 ```
 
-Check that an element has a given prop. Only works for native elements, so this is similar to
-checking for attributes in the DOM.
+Check that an element has a given prop.
 
 You can optionally check that the attribute has a specific expected value.
 
