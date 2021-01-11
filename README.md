@@ -87,8 +87,8 @@ package.
 ## Usage
 
 Import `@testing-library/jest-native/extend-expect` once (for instance in your
-[tests setup file](https://jestjs.io/docs/en/configuration.html#setupfilesafterenv-array))
-and you're good to go:
+[tests setup file](https://jestjs.io/docs/en/configuration.html#setupfilesafterenv-array)) and
+you're good to go:
 
 ```javascript
 import '@testing-library/jest-native/extend-expect';
@@ -243,7 +243,7 @@ expect(queryByTestId('button')).not.toHaveProp('title', 'ok');
 toHaveTextContent(text: string | RegExp, options?: { normalizeWhitespace: boolean });
 ```
 
-Check if an element has the supplied text.
+Check if an element or its children have the supplied text.
 
 This will perform a partial, case-sensitive match when a string match is provided. To perform a
 case-insensitive match, you can use a `RegExp` with the `/i` modifier.
