@@ -15,7 +15,7 @@ to get some great advice by searching for how to do something with it.
 
 ## ❓ React Testing Library Resources
 
-- Discord https://discord.gg/c6JN9fM
+- Discord https://discord.gg/testing-library
 - Stack Overflow https://stackoverflow.com/questions/tagged/react-testing-library
 
 ## ❓ Testing Library Resources
