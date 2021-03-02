@@ -49,17 +49,27 @@ describe('.toHaveTextContent', () => {
 
   test('can handle multiple levels with content spread across descendants', () => {
     const { queryByTestId } = render(
-      <Text testID="parent">
-        <Text>Step</Text>
-        <Text> 1 </Text>
+      <View testID="parent">
+        <Text>One</Text>
+        <Text>Two</Text>
         <View>
-          <Text> of </Text>
+          <Text>Three</Text>
         </View>
-        4
-      </Text>,
+        <View>
+          <Text>Four</Text>
+          {null}
+          <Text>Five</Text>
+          <View>
+            <Text>Six</Text>
+            <Text>Seven</Text>
+          </View>
+          <Text>Eight</Text>
+        </View>
+        Nine
+      </View>,
     );
 
-    expect(queryByTestId('parent')).toHaveTextContent('Step 1 of 4');
+    expect(queryByTestId('parent')).toHaveTextContent('OneTwoThreeFourFiveSixSevenEightNine');
   });
 
   test('does not throw error with empty content', () => {
