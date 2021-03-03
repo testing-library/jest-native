@@ -12,6 +12,7 @@ const DISABLE_TYPES = [
   'TouchableHighlight',
   'TouchableOpacity',
   'TouchableWithoutFeedback',
+  'TouchableNativeFeedback',
   'View',
   'TextInput',
   'Pressable',

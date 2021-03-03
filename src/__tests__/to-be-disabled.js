@@ -4,6 +4,7 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  TouchableNativeFeedback,
   View,
   TextInput,
   Pressable,
@@ -17,6 +18,7 @@ const ALLOWED_COMPONENTS = {
   TouchableHighlight,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  TouchableNativeFeedback,
   Pressable,
 };
 
