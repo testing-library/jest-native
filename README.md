@@ -87,8 +87,8 @@ package.
 ## Usage
 
 Import `@testing-library/jest-native/extend-expect` once (for instance in your
-[tests setup file](https://jestjs.io/docs/en/configuration.html#setupfilesafterenv-array)) and
-you're good to go:
+[tests setup file](https://jestjs.io/docs/configuration#setupfilesafterenv-array)) and you're good
+to go:
 
 ```javascript
 import '@testing-library/jest-native/extend-expect';
