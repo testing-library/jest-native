@@ -8,7 +8,6 @@ declare global {
       toBeEmpty(): R;
       toHaveProp(attr: string, value?: any): R;
       toHaveTextContent(text: string | RegExp, options?: { normalizeWhitespace: boolean }): R;
-      toBeEnabled(): R;
       toHaveStyle(style: object[] | object): R;
     }
   }

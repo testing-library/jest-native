@@ -41,7 +41,6 @@
 - [Usage](#usage)
 - [Matchers](#matchers)
   - [`toBeDisabled`](#tobedisabled)
-  - [`toBeEnabled`](#tobeenabled)
   - [`toBeEmpty`](#tobeempty)
   - [`toContainElement`](#tocontainelement)
   - [`toHaveProp`](#tohaveprop)
@@ -114,50 +113,22 @@ work on UI elements that bridge to native.
 toBeDisabled();
 ```
 
-Check whether or not an element is disabled from a user perspective.
-
-This matcher will check if the element or its parent has a `disabled` prop, or if it has
-`accessibilityState={{disabled: true]}.
-
-It also works with `accessibilityStates={['disabled']}` for now. However, this prop is deprecated in
-React Native [0.62](https://reactnative.dev/blog/2020/03/26/version-0.62#breaking-changes)
+This matcher internally uses `onStartShouldSetResponder` prop to assert whether or not the element
+is disabled, which should resemble the actual React Native runtime and RNTL
+[fireEvent](https://callstack.github.io/react-native-testing-library/docs/api/#fireevent) as well.
 
 #### Examples
 
 ```javascript
 const { getByTestId } = render(
   <View>
-    <Button disabled testID="button" title="submit" onPress={(e) => e} />
+    <Button disabled testID="button" title="submit" onPress={e => e} />
     <TextInput accessibilityState={{ disabled: true }} testID="input" value="text" />
   </View>,
 );
 
 expect(getByTestId('button')).toBeDisabled();
 expect(getByTestId('input')).toBeDisabled();
-```
-
-### `toBeEnabled`
-
-```javascript
-toBeEnabled();
-```
-
-Check whether or not an element is enabled from a user perspective.
-
-Works similarly to `expect().not.toBeDisabled()`.
-
-#### Examples
-
-```javascript
-const { getByTestId } = render(
-  <View>
-    <Button testID="button" title="submit" onPress={(e) => e} />
-    <TextInput testID="input" value="text" />
-  </View>,
-);
-
-expect(getByTestId('button')).toBeEnabled();
-expect(getByTestId('input')).toBeEnabled();
 ```
 
 ### `toBeEmpty`
@@ -231,10 +202,8 @@ const { queryByTestId } = render(
   </View>,
 );
 
-expect(queryByTestId('button')).toHaveProp('accessibilityStates', ['disabled']);
-expect(queryByTestId('button')).toHaveProp('accessible');
-expect(queryByTestId('button')).not.toHaveProp('disabled');
-expect(queryByTestId('button')).not.toHaveProp('title', 'ok');
+expect(queryByTestId('text')).toHaveProp('allowFontScaling', false);
+expect(queryByTestId('text')).not.toHaveProp('style');
 ```
 
 ### `toHaveTextContent`

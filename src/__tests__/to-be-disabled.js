@@ -1,99 +1,51 @@
 import React from 'react';
 import {
   Button,
+  Text,
   TouchableHighlight,
   TouchableOpacity,
   TouchableWithoutFeedback,
   TouchableNativeFeedback,
   View,
-  TextInput,
   Pressable,
 } from 'react-native';
 import { render } from '@testing-library/react-native';
 
-const ALLOWED_COMPONENTS = {
-  View,
-  Button,
-  TextInput,
-  TouchableHighlight,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  TouchableNativeFeedback,
-  Pressable,
+const TestComponent = () => {
+  return (
+    <TouchableOpacity disabled={false} testID="touchable">
+      <Text>Trigger Test</Text>
+    </TouchableOpacity>
+  );
 };
 
 describe('.toBeDisabled', () => {
-  Object.entries(ALLOWED_COMPONENTS).forEach(([name, Component]) => {
-    test(`handle disabled prop for element ${name}`, () => {
-      const { queryByTestId } = render(<Component disabled testID={name} />);
+  test.each([
+    ['Button', Button, { title: 'some button' }],
+    ['TouchableOpacity', TouchableOpacity, {}],
+    ['TouchableHighlight', TouchableHighlight, {}],
+    ['TouchableWithoutFeedback', TouchableWithoutFeedback, {}],
+    ['TouchableNativeFeedback', TouchableNativeFeedback, {}],
+    ['Pressable', Pressable, {}],
+  ])('handles disabled prop for %s', (_, Component, props) => {
+    const { queryByTestId } = render(
+      <Component disabled testID="touchable" {...props}>
+        <View />
+      </Component>,
+    );
 
-      expect(queryByTestId(name)).toBeDisabled();
-      expect(() => expect(queryByTestId(name)).not.toBeDisabled()).toThrowError();
-    });
+    expect(queryByTestId('touchable')).toBeDisabled();
   });
 
-  Object.entries(ALLOWED_COMPONENTS).forEach(([name, Component]) => {
-    test(`handle disabled in accessibilityStates for element ${name}`, () => {
-      const { queryByTestId } = render(
-        <Component accessibilityStates={['disabled']} testID={name} />,
-      );
+  it('is not fooled by non-native disabled prop', () => {
+    const { getByTestId } = render(<TestComponent disabled={true} />);
 
-      expect(queryByTestId(name)).toBeDisabled();
-      expect(() => expect(queryByTestId(name)).not.toBeDisabled()).toThrowError();
-    });
+    expect(getByTestId('touchable')).not.toBeDisabled();
   });
 
-  Object.entries(ALLOWED_COMPONENTS).forEach(([name, Component]) => {
-    test(`handle disabled in accessibilityState for element ${name}`, () => {
-      const { queryByTestId } = render(
-        <Component accessibilityState={{ disabled: true }} testID={name} />,
-      );
+  it('returns false when the component does not implement onStartShouldSetResponder', () => {
+    const { getByTestId } = render(<View testID="view" />);
 
-      expect(queryByTestId(name)).toBeDisabled();
-      expect(() => expect(queryByTestId(name)).not.toBeDisabled()).toThrowError();
-    });
+    expect(getByTestId('view')).not.toBeDisabled();
   });
-});
-
-describe('.toBeEnabled', () => {
-  Object.entries(ALLOWED_COMPONENTS).forEach(([name, Component]) => {
-    test(`handle disabled prop for element ${name} when undefined`, () => {
-      const { queryByTestId } = render(<Component testID={name} />);
-
-      expect(queryByTestId(name)).toBeEnabled();
-      expect(() => expect(queryByTestId(name)).not.toBeEnabled()).toThrowError();
-    });
-  });
-
-  Object.entries(ALLOWED_COMPONENTS).forEach(([name, Component]) => {
-    test(`handle disabled in accessibilityStates for element ${name} when not included`, () => {
-      const { queryByTestId } = render(<Component accessibilityStates={[]} testID={name} />);
-
-      expect(queryByTestId(name)).toBeEnabled();
-      expect(() => expect(queryByTestId(name)).not.toBeEnabled()).toThrowError();
-    });
-  });
-
-  Object.entries(ALLOWED_COMPONENTS).forEach(([name, Component]) => {
-    test(`handle disabled in accessibilityState for element ${name} when false`, () => {
-      const { queryByTestId } = render(
-        <Component accessibilityState={{ disabled: false }} testID={name} />,
-      );
-
-      expect(queryByTestId(name)).toBeEnabled();
-      expect(() => expect(queryByTestId(name)).not.toBeEnabled()).toThrowError();
-    });
-  });
-});
-
-test('matcher misses', () => {
-  const { queryByTestId, queryByTitle } = render(
-    <View testID="view">
-      <Button testID="enabled" title="enabled" />
-      <Button disabled testID="disabled" title="disabled" />
-    </View>,
-  );
-
-  expect(() => expect(queryByTestId('enabled')).toBeDisabled()).toThrowError();
-  expect(() => expect(queryByTitle('disabled')).toBeEnabled()).toThrowError();
 });
