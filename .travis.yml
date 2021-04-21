@@ -1,8 +1,9 @@
 sudo: false
 language: node_js
 node_js:
-  - '12'
-  - '14'
+  - 12
+  - 14
+  - 16
 cache:
   npm: true
   directories:
@@ -15,5 +16,5 @@ jobs:
   include:
     - stage: release
       if: branch = master AND type != pull_request
-      node_js: '12'
+      node_js: 14
       script: npm run semantic-release
