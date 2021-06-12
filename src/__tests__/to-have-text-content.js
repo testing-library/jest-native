@@ -96,4 +96,11 @@ describe('.toHaveTextContent', () => {
 
     expect(getByTestId('parent')).toHaveTextContent(/^Shown$/);
   });
+
+  test('can handle text with an interpolated variable', () => {
+    const variable = 'variable';
+    const { container } = render(<Text>With a {variable}</Text>);
+
+    expect(container).toHaveTextContent('With a variable');
+  });
 });
