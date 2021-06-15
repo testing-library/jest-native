@@ -1,5 +1,5 @@
 import { matcherHint } from 'jest-matcher-utils';
-import { compose, defaultTo, is, join, map, path, filter, pathOr } from 'ramda';
+import { compose, defaultTo, is, join, map, path, filter } from 'ramda';
 
 import { checkReactElement, getMessage, matches, normalize } from './utils';
 
