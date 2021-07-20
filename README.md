@@ -6,7 +6,7 @@
       height="80"
       width="80"
       alt="eagle"
-      src="https://raw.githubusercontent.com/testing-library/jest-native/main/other/eagle.png"
+      src="https://raw.githubusercontent.com/testing-library/jest-native/HEAD/other/eagle.png"
     />
   </a>
 
