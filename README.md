@@ -6,7 +6,7 @@
       height="80"
       width="80"
       alt="eagle"
-      src="https://raw.githubusercontent.com/testing-library/jest-native/master/other/eagle.png"
+      src="https://raw.githubusercontent.com/testing-library/jest-native/HEAD/other/eagle.png"
     />
   </a>
 
@@ -15,15 +15,15 @@
 
 <hr />
 
-[![Build Status](https://travis-ci.org/testing-library/jest-native.svg?branch=master)](https://travis-ci.org/testing-library/jest-native)
+[![Build Status](https://travis-ci.org/testing-library/jest-native.svg?branch=main)](https://travis-ci.org/testing-library/jest-native)
 [![Code Coverage](https://img.shields.io/codecov/c/github/testing-library/jest-native.svg?style=flat-square)](https://codecov.io/github/testing-library/jest-native)
 [![version](https://img.shields.io/npm/v/@testing-library/jest-native.svg?style=flat-square)](https://www.npmjs.com/package/@testing-library/jest-native)
 [![downloads](https://img.shields.io/npm/dm/@testing-library/jest-native.svg?style=flat-square)](http://www.npmtrends.com/@testing-library/jest-native)
-[![MIT License](https://img.shields.io/npm/l/@testing-library/jest-native.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/master/LICENSE)
+[![MIT License](https://img.shields.io/npm/l/@testing-library/jest-native.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/main/LICENSE)
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Code of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/master/CODE_OF_CONDUCT.md)
+[![Code of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/main/CODE_OF_CONDUCT.md)
 [![Discord](https://img.shields.io/discord/723559267868737556.svg?color=7389D8&labelColor=6A7EC2&logo=discord&logoColor=ffffff&style=flat-square)](https://discord.gg/testing-library)
 
 [![Watch on GitHub](https://img.shields.io/github/watchers/testing-library/jest-native.svg?style=social)](https://github.com/testing-library/jest-native/watchers)
@@ -127,7 +127,7 @@ React Native [0.62](https://reactnative.dev/blog/2020/03/26/version-0.62#breakin
 ```javascript
 const { getByTestId } = render(
   <View>
-    <Button disabled testID="button" title="submit" onPress={(e) => e} />
+    <Button disabled testID="button" title="submit" onPress={e => e} />
     <TextInput accessibilityState={{ disabled: true }} testID="input" value="text" />
   </View>,
 );
@@ -151,7 +151,7 @@ Works similarly to `expect().not.toBeDisabled()`.
 ```javascript
 const { getByTestId } = render(
   <View>
-    <Button testID="button" title="submit" onPress={(e) => e} />
+    <Button testID="button" title="submit" onPress={e => e} />
     <TextInput testID="input" value="text" />
   </View>,
 );

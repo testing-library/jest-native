@@ -14,6 +14,6 @@ script: npm run test:coverage && codecov
 jobs:
   include:
     - stage: release
-      if: branch = master AND type != pull_request
+      if: branch = main AND type != pull_request
       node_js: '12'
       script: npm run semantic-release
