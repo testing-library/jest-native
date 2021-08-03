@@ -9,7 +9,7 @@ function getText(child, currentValue = '') {
   if (!child) {
     return value;
   } else if (Array.isArray(child)) {
-    return child.reduce((acc, element) => acc + getText(path(['props', 'children'], element)), '');
+    return child.reduce((acc, element) => acc + getText(element), '');
   } else if (typeof child === 'object') {
     return getText(path(['props', 'children'], child), value);
   } else {
