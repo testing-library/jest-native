@@ -2,9 +2,9 @@ import React from 'react';
 import { Button, Text, View } from 'react-native';
 import { render } from '@testing-library/react-native';
 
-test('.toHaveProp', () => {
+describe('.toHaveProp', () => {
   const { queryByTestId } = render(
-    <View>
+    <View accessibilityLabel={null} testID="view">
       <Text allowFontScaling={false} testID="text">
         text
       </Text>
@@ -33,4 +33,8 @@ test('.toHaveProp', () => {
   expect(() =>
     expect(queryByTestId('text')).toHaveProp('allowFontScaling', 'wrongValue'),
   ).toThrowError();
+
+  it('checks null values', () => {
+    expect(queryByTestId('view')).toHaveProp('accessibilityLabel', null);
+  });
 });
