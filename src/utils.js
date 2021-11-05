@@ -7,9 +7,9 @@ import {
   printReceived,
   stringify,
 } from 'jest-matcher-utils';
-import prettyFormat from 'pretty-format';
+import prettyFormat, { plugins } from 'pretty-format';
 
-const { ReactTestComponent, ReactElement } = prettyFormat.plugins;
+const { ReactTestComponent, ReactElement } = plugins;
 
 const VALID_ELEMENTS = [
   'Image',
