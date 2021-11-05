@@ -31,8 +31,8 @@
     "chalk": "^2.4.1",
     "jest-diff": "^24.0.0",
     "jest-matcher-utils": "^24.0.0",
+    "pretty-format": "^27.3.1",
     "ramda": "^0.26.1",
-    "pretty-format": "^24.0.0",
     "redent": "^2.0.0"
   },
   "devDependencies": {
