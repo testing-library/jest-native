@@ -10,6 +10,7 @@ declare global {
       toHaveTextContent(text: string | RegExp, options?: { normalizeWhitespace: boolean }): R;
       toBeEnabled(): R;
       toHaveStyle(style: object[] | object): R;
+      toBeVisible(): R;
     }
   }
 }
