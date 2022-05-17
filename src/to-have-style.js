@@ -1,5 +1,5 @@
 import { matcherHint } from 'jest-matcher-utils';
-import jestDiff from 'jest-diff';
+import { diff } from 'jest-diff';
 import chalk from 'chalk';
 import { all, compose, flatten, mergeAll, toPairs } from 'ramda';
 
@@ -54,7 +54,7 @@ function narrow(expected, received) {
 function expectedDiff(expected, elementStyles) {
   const received = narrow(expected, elementStyles);
 
-  const diffOutput = jestDiff(printoutStyles(expected), printoutStyles(received));
+  const diffOutput = diff(printoutStyles(expected), printoutStyles(received));
   // Remove the "+ Received" annotation because this is a one-way diff
   return diffOutput.replace(`${chalk.red('+ Received')}\n`, '');
 }
