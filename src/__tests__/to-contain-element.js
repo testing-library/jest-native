@@ -28,6 +28,16 @@ test('.toContainElement positive test cases', () => {
   expect(child).not.toContainElement(grandparent);
   expect(child).not.toContainElement(textElement);
   expect(grandparent).not.toContainElement(nonExistantElement);
+  expect(child).not.toContainElement(nonExistantElement);
+  expect(parent).not.toContainElement(nonExistantElement);
+  expect(textElement).not.toContainElement(grandparent);
+  expect(textElement).not.toContainElement(parent);
+  expect(textElement).not.toContainElement(child);
+
+  // obscure cases
+  expect(() => expect(child).toContainElement(null)).toThrowError();
+  expect(() => expect(parent).toContainElement(null)).toThrowError();
+  expect(() => expect(grandparent).toContainElement(null)).toThrowError();
 });
 
 test('.toContainElement negative test cases', () => {

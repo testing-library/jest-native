@@ -5,27 +5,25 @@ import { render } from '@testing-library/react-native';
 describe('.toHaveProp', () => {
   const { queryByTestId } = render(
     <View accessibilityLabel={null} testID="view">
-      <Text allowFontScaling={false} testID="text">
+      <Text allowFontScaling={false} testID="text" editable={false}>
         text
       </Text>
       <Button disabled testID="button" title="ok" />
     </View>,
   );
 
-  expect(queryByTestId('button')).toHaveProp('disabled', true);
-  expect(queryByTestId('button')).toHaveProp('disabled');
-  expect(queryByTestId('button')).toHaveProp('title', 'ok');
-
+  expect(queryByTestId('button')).toHaveProp('accessibilityState', { disabled: true });
+  expect(queryByTestId('text')).toHaveProp('editable', false);
   expect(queryByTestId('text')).toHaveProp('allowFontScaling', false);
+
+  expect(queryByTestId('button')).not.toHaveProp('accessibilityStates');
+  expect(queryByTestId('button')).not.toHaveProp('editable', false);
+  expect(queryByTestId('button')).not.toHaveProp('allowFontScaling', false);
   expect(queryByTestId('text')).not.toHaveProp('style');
 
-  expect(() =>
-    expect(queryByTestId('button')).toHaveProp('accessibilityStates', ['disabled']),
-  ).toThrowError();
-  expect(() => expect(queryByTestId('button')).toHaveProp('accessible')).toThrowError();
-  expect(() => expect(queryByTestId('button')).not.toHaveProp('disabled')).toThrowError();
-  expect(() => expect(queryByTestId('button')).not.toHaveProp('title', 'ok')).toThrowError();
-
+  // title is no longer findable as it is a React child
+  expect(() => expect(queryByTestId('button')).toHaveProp('title', 'ok')).toThrowError();
+  expect(() => expect(queryByTestId('button')).toHaveProp('disabled')).toThrowError();
   expect(() =>
     expect(queryByTestId('text')).not.toHaveProp('allowFontScaling', false),
   ).toThrowError();

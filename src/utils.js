@@ -40,7 +40,7 @@ class ReactElementTypeError extends Error {
     this.message = [
       matcherHint(`${context.isNot ? '.not' : ''}.${matcherFn.name}`, 'received', ''),
       '',
-      `${receivedColor('received')} value must be an React Element.`,
+      `${receivedColor('received')} value must be a React Element.`,
       withType,
     ].join('\n');
   }

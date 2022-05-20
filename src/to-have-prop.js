@@ -24,6 +24,7 @@ export function toHaveProp(element, name, expectedValue) {
     pass: isDefined ? hasProp && equals(prop, expectedValue) : hasProp,
     message: () => {
       const to = this.isNot ? 'not to' : 'to';
+
       const receivedProp = hasProp ? printAttribute(name, prop) : null;
       const matcher = matcherHint(
         `${this.isNot ? '.not' : ''}.toHaveProp`,
