@@ -1,8 +1,11 @@
 import { matcherHint } from 'jest-matcher-utils';
 import { diff } from 'jest-diff';
 import chalk from 'chalk';
-import { all, compose, flatten, mergeAll, toPairs } from 'ramda';
-
+import compose from 'ramda/src/compose';
+import all from 'ramda/src/all';
+import flatten from 'ramda/src/flatten';
+import mergeAll from 'ramda/src/mergeAll';
+import toPairs from 'ramda/src/toPairs';
 import { checkReactElement } from './utils';
 
 function isSubset(expected, received) {
