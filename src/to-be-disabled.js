@@ -1,4 +1,9 @@
-import { compose, defaultTo, includes, path, propEq, anyPass } from 'ramda';
+import compose from 'ramda/src/compose';
+import defaultTo from 'ramda/src/defaultTo';
+import includes from 'ramda/src/includes';
+import path from 'ramda/src/path';
+import propEq from 'ramda/src/propEq';
+import anyPass from 'ramda/src/anyPass';
 import { matcherHint } from 'jest-matcher-utils';
 
 import { checkReactElement, getType, printElement } from './utils';
