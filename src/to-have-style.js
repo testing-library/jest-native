@@ -26,7 +26,7 @@ function mergeAllStyles(styles) {
 function printoutStyles(styles) {
   return Object.keys(styles)
     .sort()
-    .map(prop =>
+    .map((prop) =>
       Array.isArray(styles[prop])
         ? `${prop}: ${JSON.stringify(styles[prop], null, 2)};`
         : `${prop}: ${styles[prop]};`,
@@ -39,7 +39,7 @@ function printoutStyles(styles) {
  */
 function narrow(expected, received) {
   return Object.keys(received)
-    .filter(prop => expected[prop])
+    .filter((prop) => expected[prop])
     .reduce(
       (obj, prop) =>
         Object.assign(obj, {
