@@ -36,8 +36,8 @@
     "redent": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.13.6",
-    "@babel/core": "7.15.8",
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.18.10",
     "@babel/runtime": "^7.17.9",
     "@testing-library/react-native": "^11.0.0",
     "commitizen": "^3.1.2",
