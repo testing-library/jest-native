@@ -1,24 +1,17 @@
 import { matcherHint } from 'jest-matcher-utils';
-import pipe from 'ramda/src/pipe';
-import always from 'ramda/src/always';
-import is from 'ramda/src/is';
-import join from 'ramda/src/join';
-import reduce from 'ramda/src/reduce';
-import concat from 'ramda/src/concat';
-import unless from 'ramda/src/unless';
-
 import { checkReactElement, getMessage, matches, normalize } from './utils';
 
-const unlessStringEmpty = unless(is(String), always(''));
-
-const collectNormalizedText = pipe(collectChildrenText, join(''), normalize);
+function collectNormalizedText(element) {
+  const childrenText = collectChildrenText(element).join('');
+  return normalize(childrenText);
+}
 
 function collectChildrenText(element) {
   if (!element || !element.children) {
-    return [unlessStringEmpty(element)];
+    return typeof element === 'string' ? [element] : [''];
   }
 
-  return reduce((texts, child) => concat(texts, collectChildrenText(child)), [], element.children);
+  return element.children.reduce((texts, child) => texts.concat(collectChildrenText(child)), []);
 }
 
 export function toHaveTextContent(element, checkWith) {
