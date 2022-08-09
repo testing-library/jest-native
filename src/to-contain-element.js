@@ -1,4 +1,4 @@
-import equals from 'ramda/src/equals';
+import equals from 'ramda/src/equals.js';
 import { matcherHint, RECEIVED_COLOR as receivedColor } from 'jest-matcher-utils';
 
 import { checkReactElement, printElement } from './utils';

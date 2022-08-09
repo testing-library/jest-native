@@ -1,4 +1,4 @@
-import equals from 'ramda/src/equals';
+import equals from 'ramda/src/equals.js';
 import { matcherHint, stringify, printExpected } from 'jest-matcher-utils';
 import { checkReactElement, getMessage } from './utils';
 

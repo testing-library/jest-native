@@ -1,8 +1,8 @@
 import { matcherHint } from 'jest-matcher-utils';
-import compose from 'ramda/src/compose';
-import defaultTo from 'ramda/src/defaultTo';
-import path from 'ramda/src/path';
-import isEmpty from 'ramda/src/isEmpty';
+import compose from 'ramda/src/compose.js';
+import defaultTo from 'ramda/src/defaultTo.js';
+import path from 'ramda/src/path.js';
+import isEmpty from 'ramda/src/isEmpty.js';
 
 import { checkReactElement, printElement } from './utils';
 
