@@ -13,10 +13,7 @@ export function toContainElement(container, element) {
 
   if (element) {
     matches = container.findAll((node) => {
-      const sameType = equals(node.type, element.type);
-      const sameProps = equals(node.props, element.props);
-
-      return sameType && sameProps;
+      return node.type === element.type && this.equals(node.props, element.props);
     });
   }
 
