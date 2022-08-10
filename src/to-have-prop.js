@@ -1,5 +1,4 @@
 import { matcherHint, stringify, printExpected } from 'jest-matcher-utils';
-import { equals } from 'ramda';
 import { checkReactElement, getMessage } from './utils';
 
 function printAttribute(name, value) {
@@ -21,7 +20,7 @@ export function toHaveProp(element, name, expectedValue) {
   const hasProp = name in element.props;
 
   return {
-    pass: isDefined ? hasProp && equals(prop, expectedValue) : hasProp,
+    pass: isDefined ? hasProp && this.equals(prop, expectedValue) : hasProp,
     message: () => {
       const to = this.isNot ? 'not to' : 'to';
 

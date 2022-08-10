@@ -1,5 +1,4 @@
 import { matcherHint, RECEIVED_COLOR as receivedColor } from 'jest-matcher-utils';
-import { equals } from 'ramda';
 import { checkReactElement, printElement } from './utils';
 
 export function toContainElement(container, element) {
