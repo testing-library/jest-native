@@ -1,5 +1,5 @@
-import equals from 'ramda/src/equals.js';
 import { matcherHint, stringify, printExpected } from 'jest-matcher-utils';
+import { equals } from 'ramda';
 import { checkReactElement, getMessage } from './utils';
 
 function printAttribute(name, value) {
