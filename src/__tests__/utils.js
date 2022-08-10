@@ -38,6 +38,7 @@ test('isEmpty', () => {
   expect(isEmpty({})).toEqual(true);
   expect(isEmpty({ x: 0 })).toEqual(false);
   expect(isEmpty(0)).toEqual(true);
+  expect(isEmpty(1)).toEqual(false);
   expect(isEmpty(NaN)).toEqual(true);
   expect(isEmpty([''])).toEqual(false);
 });
