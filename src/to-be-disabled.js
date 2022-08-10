@@ -1,11 +1,5 @@
-import compose from 'ramda/src/compose.js';
-import defaultTo from 'ramda/src/defaultTo.js';
-import includes from 'ramda/src/includes.js';
-import path from 'ramda/src/path.js';
-import propEq from 'ramda/src/propEq.js';
-import anyPass from 'ramda/src/anyPass.js';
 import { matcherHint } from 'jest-matcher-utils';
-
+import { compose, defaultTo, includes, path, propEq, anyPass } from 'ramda';
 import { checkReactElement, getType, printElement } from './utils';
 
 // Elements that support 'disabled'
