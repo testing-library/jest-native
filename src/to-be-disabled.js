@@ -1,5 +1,4 @@
 import { matcherHint } from 'jest-matcher-utils';
-import { compose, defaultTo, includes, path, propEq, anyPass } from 'ramda';
 import { checkReactElement, getType, printElement } from './utils';
 
 // Elements that support 'disabled'
