@@ -24,10 +24,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: 📥 Download deps
-        uses: bahmutov/npm-install@v1
-        with:
-          useYarn: true
-          useLockFile: false
+        run: yarn install
 
       - name: ▶️ Run linter
         run: yarn lint
