@@ -45,6 +45,7 @@
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.21.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.0.0",
     "jest": "^28.1.3",
     "metro-react-native-babel-preset": "^0.70.3",
     "prettier": "^2.7.1",

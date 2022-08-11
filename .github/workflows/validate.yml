@@ -31,8 +31,8 @@ jobs:
       - name: ▶️ Run linter
         run: npm run lint
 
-      - name: ▶️ Run test script
         run: npm run test:coverage
+      - name: ▶️ Run tests with coverage
 
       - name: ⬆️ Upload coverage report
         uses: codecov/codecov-action@v3

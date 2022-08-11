@@ -32,7 +32,5 @@ test('.toHaveProp', () => {
     expect(queryByTestId('text')).toHaveProp('allowFontScaling', 'wrongValue'),
   ).toThrowError();
 
-  it('checks null values', () => {
-    expect(queryByTestId('view')).toHaveProp('accessibilityLabel', null);
-  });
+  expect(queryByTestId('view')).toHaveProp('accessibilityLabel', null);
 });
