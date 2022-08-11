@@ -10,6 +10,7 @@
     "commit:all": "npm run commit:add && npm run commit",
     "readme:toc": "doctoc README.md --maxlevel 3 --title '## Table of Contents'",
     "test": "jest --colors",
+    "lint": "eslint \"**/*.js\"",
     "pretty-quick": "pretty-quick --staged",
     "prepublishOnly": "rm -rf dist; babel src --out-dir dist --ignore 'src/__tests__/*'",
     "semantic-release": "semantic-release",
@@ -38,10 +39,12 @@
     "@babel/cli": "^7.18.10",
     "@babel/core": "^7.18.10",
     "@babel/runtime": "^7.18.9",
+    "@callstack/eslint-config": "^12.0.2",
     "@testing-library/react-native": "^11.0.0",
     "commitizen": "^3.1.2",
     "cz-conventional-changelog": "^3.3.0",
-    "husky": "^1.3.1",
+    "eslint": "^8.21.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "jest": "^28.1.3",
     "metro-react-native-babel-preset": "^0.70.3",
     "prettier": "^2.7.1",
@@ -51,11 +54,6 @@
     "react-test-renderer": "18.0.0",
     "semantic-release": "^19.0.3"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run pretty-quick"
-    }
-  },
   "prettier": {
     "printWidth": 100,
     "singleQuote": true,
@@ -63,6 +61,25 @@
     "tabWidth": 2,
     "proseWrap": "always"
   },
+  "eslintConfig": {
+    "extends": "@callstack",
+    "env": {
+      "jest": true
+    },
+    "rules": {
+      "react-native/no-color-literals": "off",
+      "react-native/no-inline-styles": "off",
+      "react-native/no-raw-text": "off",
+      "react-native-a11y/has-valid-accessibility-descriptors": "off",
+      "react-native-a11y/has-accessibility-hint": "off",
+      "react-native-a11y/has-valid-accessibility-ignores-invert-colors": "off",
+      "react-native-a11y/has-valid-accessibility-value": "off"
+    }
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ],
   "release": {
     "branches": [
       "main"

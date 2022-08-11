@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Text, View } from 'react-native';
 import { render } from '@testing-library/react-native';
 
-describe('.toHaveProp', () => {
+test('.toHaveProp', () => {
   const { queryByTestId } = render(
     <View accessibilityLabel={null} testID="view">
       <Text allowFontScaling={false} testID="text" editable={false}>
