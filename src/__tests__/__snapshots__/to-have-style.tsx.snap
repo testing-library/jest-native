@@ -15,6 +15,9 @@ exports[`.toHaveStyle handles negative test cases 1`] = `
 +     "rotate": "45deg"
     }
   ];"
+<dim>  backgroundColor: blue;</>
+<green>- transform: [{\\"scale\\": 1}];</>
+<red>+ transform: [{\\"scale\\": 2}];</>"
 `;
 
 exports[`.toHaveStyle handles transform when transform undefined 1`] = `
@@ -28,4 +31,6 @@ exports[`.toHaveStyle handles transform when transform undefined 1`] = `
 -   }
 - ];
 + transform: undefined;"
+<green>- transform: [{\\"scale\\": 1}];</>
+<red>+ transform: undefined;</>"
 `;

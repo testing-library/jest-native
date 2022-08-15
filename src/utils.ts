@@ -8,6 +8,8 @@ import {
   stringify,
 } from 'jest-matcher-utils';
 import prettyFormat, { plugins } from 'pretty-format';
+import type { ReactTestInstance } from 'react-test-renderer';
+import { Falsy, TextStyle, ViewStyle } from 'react-native';
 
 const { ReactTestComponent, ReactElement } = plugins;
 
@@ -25,7 +27,11 @@ const VALID_ELEMENTS = [
 ];
 
 class ReactElementTypeError extends Error {
-  constructor(received, matcherFn, context) {
+  constructor(
+    received: ReactTestInstance | null,
+    matcherFn: Function,
+    context: jest.MatcherContext,
+  ) {
     super();
 
     /* istanbul ignore next */
@@ -48,17 +54,26 @@ class ReactElementTypeError extends Error {
   }
 }
 
-function checkReactElement(element, ...args) {
-  if (!VALID_ELEMENTS.includes(element.type) && !element._fiber) {
-    throw new ReactElementTypeError(element, ...args);
+function checkReactElement(
+  element: ReactTestInstance | null,
+  matcherFn: Function,
+  context: jest.MatcherContext,
+) {
+  if (!element) {
+    throw new ReactElementTypeError(element, matcherFn, context);
+  }
+
+  // @ts-expect-error not sure where to get this fiber property
+  if (!VALID_ELEMENTS.includes(element.type.toString()) && !element._fiber) {
+    throw new ReactElementTypeError(element, matcherFn, context);
   }
 }
 
-function getType({ type }) {
+function getType({ type }: any) {
   return type.displayName || type.name || type;
 }
 
-function printElement({ props }) {
+function printElement({ props }: any) {
   return `  ${prettyFormat(
     { props },
     {
@@ -69,11 +84,17 @@ function printElement({ props }) {
   )}`;
 }
 
-function display(value) {
+function display(value: any) {
   return typeof value === 'string' ? value : stringify(value);
 }
 
-function getMessage(matcher, expectedLabel, expectedValue, receivedLabel, receivedValue) {
+function getMessage(
+  matcher: string,
+  expectedLabel: string,
+  expectedValue: string | RegExp,
+  receivedLabel: string,
+  receivedValue: string | null,
+) {
   return [
     `${matcher}\n`,
     `${expectedLabel}:\n${expectedColor(redent(display(expectedValue), 2))}`,
@@ -81,19 +102,45 @@ function getMessage(matcher, expectedLabel, expectedValue, receivedLabel, receiv
   ].join('\n');
 }
 
-function matches(textToMatch, matcher) {
+function matches(textToMatch: string, matcher: string | RegExp) {
   if (matcher instanceof RegExp) {
     return matcher.test(textToMatch);
-  } else {
-    return textToMatch.includes(String(matcher));
   }
+
+  return textToMatch.includes(matcher);
 }
 
-function normalize(text) {
+function normalize(text: string) {
   return text.replace(/\s+/g, ' ').trim();
 }
 
-function isEmpty(value) {
+type StyleRecord = {
+  [P in keyof TextStyle | keyof ViewStyle]?: TextStyle[P];
+};
+
+function getStylePropAsRecord(styles: Falsy | Object | Object[]): StyleRecord {
+  if (!styles) return {};
+
+  if (Array.isArray(styles)) {
+    const flatStyles = styles.flat();
+    let result = {};
+
+    for (const styleItem of flatStyles) {
+      const entries = Object.entries(styleItem);
+
+      for (const [key, value] of entries) {
+        // @ts-ignore how to type it?
+        result[key] = value;
+      }
+    }
+
+    return result;
+  }
+
+  return styles as StyleRecord;
+}
+
+function isEmpty(value: any) {
   if (!value) {
     return true;
   }
@@ -128,6 +175,8 @@ export {
   getMessage,
   matches,
   normalize,
+  getStylePropAsRecord,
   isEmpty,
   printElement,
+  display,
 };

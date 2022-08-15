@@ -1,20 +1,30 @@
 import { matcherHint } from 'jest-matcher-utils';
+import { ReactTestInstance } from 'react-test-renderer';
 import { checkReactElement, getMessage, matches, normalize } from './utils';
 
-function collectNormalizedText(element) {
+function collectNormalizedText(element: ReactTestInstance) {
   const childrenText = collectChildrenText(element).join('');
   return normalize(childrenText);
 }
 
-function collectChildrenText(element) {
-  if (!element || !element.children) {
-    return typeof element === 'string' ? [element] : [''];
+function collectChildrenText(element: string | ReactTestInstance): string[] {
+  if (typeof element === 'string') return [element];
+  if (!element || !element.children) return [''];
+
+  let result: string[] = [];
+
+  for (const child of element.children) {
+    result = result.concat(collectChildrenText(child));
   }
 
-  return element.children.reduce((texts, child) => texts.concat(collectChildrenText(child)), []);
+  return result;
 }
 
-export function toHaveTextContent(element, checkWith) {
+export function toHaveTextContent(
+  this: jest.MatcherContext,
+  element: ReactTestInstance,
+  checkWith: string | RegExp,
+) {
   checkReactElement(element, toHaveTextContent, this);
 
   const textContent = collectNormalizedText(element);

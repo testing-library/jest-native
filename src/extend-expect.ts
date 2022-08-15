@@ -5,7 +5,7 @@ import { toHaveTextContent } from './to-have-text-content';
 import { toContainElement } from './to-contain-element';
 import { toHaveStyle } from './to-have-style';
 
-export {
+expect.extend({
   toBeDisabled,
   toContainElement,
   toBeEmptyElement,
@@ -14,4 +14,4 @@ export {
   toHaveTextContent,
   toBeEnabled,
   toHaveStyle,
-};
+});

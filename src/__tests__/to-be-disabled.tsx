@@ -25,6 +25,7 @@ describe('.toBeDisabled', () => {
   Object.entries(ALLOWED_COMPONENTS).forEach(([name, Component]) => {
     test(`handle disabled prop for element ${name}`, () => {
       const { queryByTestId } = render(
+        // @ts-ignore how to type it?
         <Component disabled testID={name}>
           <TextInput />
         </Component>,
@@ -38,6 +39,7 @@ describe('.toBeDisabled', () => {
   Object.entries(ALLOWED_COMPONENTS).forEach(([name, Component]) => {
     test(`handle disabled in accessibilityState for element ${name}`, () => {
       const { queryByTestId } = render(
+        // @ts-ignore how to type it?
         <Component accessibilityState={{ disabled: true }} testID={name}>
           <TextInput />
         </Component>,
@@ -53,6 +55,7 @@ describe('.toBeEnabled', () => {
   Object.entries(ALLOWED_COMPONENTS).forEach(([name, Component]) => {
     test(`handle disabled prop for element ${name} when undefined`, () => {
       const { queryByTestId } = render(
+        // @ts-ignore how to type it?
         <Component testID={name}>
           <TextInput />
         </Component>,
@@ -66,6 +69,7 @@ describe('.toBeEnabled', () => {
   Object.entries(ALLOWED_COMPONENTS).forEach(([name, Component]) => {
     test(`handle disabled in accessibilityState for element ${name} when false`, () => {
       const { queryByTestId } = render(
+        // @ts-ignore how to type it?
         <Component accessibilityState={{ disabled: false }} testID={name}>
           <TextInput />
         </Component>,
@@ -103,7 +107,7 @@ describe('for .toBeEnabled/Disabled Button', () => {
   });
 
   test('Errors when matcher misses', () => {
-    const { queryByTestId, queryByTitle } = render(
+    const { queryByTestId, queryByText } = render(
       <View testID="view">
         <Button testID="enabled" title="enabled" />
         <Button disabled testID="disabled" title="disabled" />
@@ -111,6 +115,6 @@ describe('for .toBeEnabled/Disabled Button', () => {
     );
 
     expect(() => expect(queryByTestId('enabled')).toBeDisabled()).toThrow();
-    expect(() => expect(queryByTitle('disabled')).toBeEnabled()).toThrow();
+    expect(() => expect(queryByText('disabled')).toBeEnabled()).toThrow();
   });
 });

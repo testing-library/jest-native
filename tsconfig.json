@@ -1,0 +1,47 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+
+    // https://github.com/microsoft/TypeScript/wiki/Node-Target-Mapping as now we support node12.
+    "lib": ["ES2019"],
+    "module": "commonjs",
+    "target": "ES2019",
+
+    "jsx": "preserve",
+    "declaration": false,
+    "rootDir": "./",
+    "outDir": "dist",
+
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "useUnknownInCatchVariables": false,
+
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Module Resolution Options */
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "allowUmdGlobalAccess": true,
+    "resolveJsonModule": true,
+
+    /* Advanced Options */
+    "skipLibCheck": true /* Skip type checking of declaration files. */,
+    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
+  },
+  "files": ["./extend-expect.d.ts"],
+  "exclude": ["node_modules", "android", "ios"],
+  "include": ["./src", "setup-test.ts"]
+}

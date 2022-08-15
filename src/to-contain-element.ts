@@ -1,10 +1,15 @@
+import type { ReactTestInstance } from 'react-test-renderer';
 import { matcherHint, RECEIVED_COLOR as receivedColor } from 'jest-matcher-utils';
 import { checkReactElement, printElement } from './utils';
 
-export function toContainElement(container, element) {
+export function toContainElement(
+  this: jest.MatcherContext,
+  container: ReactTestInstance,
+  element: ReactTestInstance | null | undefined,
+) {
   checkReactElement(container, toContainElement, this);
 
-  if (element !== null) {
+  if (element != null) {
     checkReactElement(element, toContainElement, this);
   }
 
