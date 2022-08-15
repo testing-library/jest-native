@@ -64,7 +64,7 @@ function checkReactElement(
   }
 
   // @ts-expect-error not sure where to get this fiber property
-  if (!VALID_ELEMENTS.includes(element.type.toString()) && !element._fiber) {
+  if (!element._fiber && !VALID_ELEMENTS.includes(element.type.toString())) {
     throw new ReactElementTypeError(element, matcherFn, context);
   }
 }
