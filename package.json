@@ -10,7 +10,7 @@
     "commit:all": "npm run commit:add && npm run commit",
     "readme:toc": "doctoc README.md --maxlevel 3 --title '## Table of Contents'",
     "test": "jest --colors",
-    "lint": "eslint \"**/*.js\"",
+    "lint": "eslint .",
     "pretty-quick": "pretty-quick --staged",
     "prepublishOnly": "rm -rf dist; babel src --out-dir dist --ignore 'src/__tests__/*'",
     "semantic-release": "semantic-release",
