@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "types": "extend-expect.d.ts",
   "scripts": {
+    "prepare": "husky install",
     "commit": "git-cz",
     "commit:add": "git add .",
     "commit:all": "npm run commit:add && npm run commit",
@@ -58,11 +59,6 @@
     "react": ">=16.0.0",
     "react-native": ">=0.59",
     "react-test-renderer": ">=16.0.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run pretty-quick"
-    }
   },
   "prettier": {
     "printWidth": 100,
