@@ -54,6 +54,11 @@
     "react-test-renderer": "18.0.0",
     "semantic-release": "^19.0.3"
   },
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-native": ">=0.59",
+    "react-test-renderer": ">=16.0.0"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "npm run pretty-quick"
