@@ -16,6 +16,7 @@ const parent = queryByTestId('parent');
 const child = queryByTestId('child');
 const textElement = queryByTestId('text-element');
 const nonExistantElement = queryByTestId('not-exists');
+const fakeElement = undefined;
 
 test('.toContainElement positive test cases', () => {
   expect(grandparent).toContainElement(parent);

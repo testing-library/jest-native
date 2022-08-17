@@ -1,7 +1,8 @@
-import { ReactTestInstance } from 'react-test-renderer';
+import type { ReactTestInstance } from 'react-test-renderer';
 
 declare global {
   namespace jest {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface Matchers<R, T> {
       toBeDisabled(): R;
       toContainElement(element: ReactTestInstance | null): R;
