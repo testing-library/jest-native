@@ -1,17 +1,11 @@
 import { matcherHint } from 'jest-matcher-utils';
-import { compose, defaultTo, isEmpty, not, path } from 'ramda';
-
-import { checkReactElement, printElement } from './utils';
+import { checkReactElement, isEmpty, printElement } from './utils';
 
 export function toBeEmpty(element) {
   checkReactElement(element, toBeEmpty, this);
 
   return {
-    pass: compose(
-      isEmpty,
-      defaultTo({}),
-      path(['props', 'children']),
-    )(element),
+    pass: isEmpty(element?.props?.children),
     message: () => {
       return [
         matcherHint(`${this.isNot ? '.not' : ''}.toBeEmpty`, 'element', ''),

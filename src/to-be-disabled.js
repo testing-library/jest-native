@@ -1,6 +1,4 @@
-import { compose, defaultTo, includes, path, propEq, anyPass } from 'ramda';
 import { matcherHint } from 'jest-matcher-utils';
-
 import { checkReactElement, getType, printElement } from './utils';
 
 // Elements that support 'disabled'
@@ -23,20 +21,13 @@ function isElementDisabledByParent(parent) {
 }
 
 function isElementDisabled(element) {
-  const propDisabled = path(['props', 'disabled'], element);
-  const hasStatesDisabled = compose(
-    includes('disabled'),
-    defaultTo([]),
-    path(['props', 'accessibilityStates']),
-  );
-  const hasStateDisabled = compose(
-    propEq('disabled', true),
-    defaultTo({}),
-    path(['props', 'accessibilityState']),
-  );
-  const stateDisabled = anyPass([hasStatesDisabled, hasStateDisabled])(element);
+  if (!DISABLE_TYPES.includes(getType(element))) return false;
 
-  return DISABLE_TYPES.includes(getType(element)) && (Boolean(propDisabled) || stateDisabled);
+  return (
+    !!element?.props?.disabled ||
+    !!element?.props?.accessibilityState?.disabled ||
+    !!element?.props?.accessibilityStates?.includes('disabled')
+  );
 }
 
 function isAncestorDisabled(element) {

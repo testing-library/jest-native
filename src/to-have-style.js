@@ -1,29 +1,24 @@
 import { matcherHint } from 'jest-matcher-utils';
-import jestDiff from 'jest-diff';
+import { diff } from 'jest-diff';
 import chalk from 'chalk';
-import { all, compose, flatten, mergeAll, toPairs } from 'ramda';
-
-import { checkReactElement } from './utils';
+import { checkReactElement, mergeAll } from './utils';
 
 function isSubset(expected, received) {
-  return compose(
-    all(([prop, value]) =>
-      Array.isArray(value)
-        ? isSubset(mergeAll(value), mergeAll(received[prop]))
-        : received[prop] === value,
-    ),
-    toPairs,
-  )(expected);
+  return Object.entries(expected).every(([prop, value]) =>
+    Array.isArray(value)
+      ? isSubset(mergeAll(value), mergeAll(received[prop]))
+      : received[prop] === value,
+  );
 }
 
 function mergeAllStyles(styles) {
-  return compose(mergeAll, flatten)(styles);
+  return mergeAll(styles.flat());
 }
 
 function printoutStyles(styles) {
   return Object.keys(styles)
     .sort()
-    .map(prop =>
+    .map((prop) =>
       Array.isArray(styles[prop])
         ? `${prop}: ${JSON.stringify(styles[prop], null, 2)};`
         : `${prop}: ${styles[prop]};`,
@@ -36,7 +31,7 @@ function printoutStyles(styles) {
  */
 function narrow(expected, received) {
   return Object.keys(received)
-    .filter(prop => expected[prop])
+    .filter((prop) => expected[prop])
     .reduce(
       (obj, prop) =>
         Object.assign(obj, {
@@ -54,7 +49,7 @@ function narrow(expected, received) {
 function expectedDiff(expected, elementStyles) {
   const received = narrow(expected, elementStyles);
 
-  const diffOutput = jestDiff(printoutStyles(expected), printoutStyles(received));
+  const diffOutput = diff(printoutStyles(expected), printoutStyles(received));
   // Remove the "+ Received" annotation because this is a one-way diff
   return diffOutput.replace(`${chalk.red('+ Received')}\n`, '');
 }

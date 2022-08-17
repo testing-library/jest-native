@@ -1,6 +1,4 @@
-import { equals } from 'ramda';
-import { matcherHint, stringify, RECEIVED_COLOR as receivedColor } from 'jest-matcher-utils';
-
+import { matcherHint, RECEIVED_COLOR as receivedColor } from 'jest-matcher-utils';
 import { checkReactElement, printElement } from './utils';
 
 export function toContainElement(container, element) {
@@ -13,11 +11,8 @@ export function toContainElement(container, element) {
   let matches = [];
 
   if (element) {
-    matches = container.findAll(node => {
-      const sameType = equals(node.type, element.type);
-      const sameProps = equals(node.props, element.props);
-
-      return sameType && sameProps;
+    matches = container.findAll((node) => {
+      return node.type === element.type && this.equals(node.props, element.props);
     });
   }
 
