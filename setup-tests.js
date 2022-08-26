@@ -1,5 +1,5 @@
-import ansiEscapesSerializer from 'jest-serializer-ansi-escapes';
+import snapshotSerializerAnsi from 'jest-snapshot-serializer-ansi';
 
 import './src/extend-expect';
 
-expect.addSnapshotSerializer(ansiEscapesSerializer);
+expect.addSnapshotSerializer(snapshotSerializerAnsi);
