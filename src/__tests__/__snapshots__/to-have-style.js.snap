@@ -8,8 +8,8 @@ exports[`.toHaveStyle handles negative test cases 1`] = `
 <dim>  backgroundColor: blue;</>
 <dim>  transform: [</>
 <dim>    {</>
-<green>-     \\"scale\\": 1</>
-<red>+     \\"scale\\": 2</>
+<green>-     "scale": 1</>
+<red>+     "scale": 2</>
 <dim>    }</>
 <dim>  ];</>"
 `;
@@ -21,7 +21,7 @@ exports[`.toHaveStyle handles transform when transform undefined 1`] = `
 
 <green>- transform: [</>
 <green>-   {</>
-<green>-     \\"scale\\": 1</>
+<green>-     "scale": 1</>
 <green>-   }</>
 <green>- ];</>
 <red>+ transform: undefined;</>"
