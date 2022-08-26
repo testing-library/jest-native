@@ -1,28 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`.toHaveStyle handles negative test cases 1`] = `
-"<dim>expect(</><red>element</><dim>).toHaveStyle()</>
+"expect(element).toHaveStyle()
 
-<green>- Expected</>
+- Expected
 
-<dim>  backgroundColor: blue;</>
-<dim>  transform: [</>
-<dim>    {</>
-<green>-     \\"scale\\": 1</>
-<red>+     \\"scale\\": 2</>
-<dim>    }</>
-<dim>  ];</>"
+  backgroundColor: blue;
+  transform: [
+    {
+-     "scale": 1
++     "scale": 2
+    }
+  ];"
 `;
 
 exports[`.toHaveStyle handles transform when transform undefined 1`] = `
-"<dim>expect(</><red>element</><dim>).toHaveStyle()</>
+"expect(element).toHaveStyle()
 
-<green>- Expected</>
+- Expected
 
-<green>- transform: [</>
-<green>-   {</>
-<green>-     \\"scale\\": 1</>
-<green>-   }</>
-<green>- ];</>
-<red>+ transform: undefined;</>"
+- transform: [
+-   {
+-     "scale": 1
+-   }
+- ];
++ transform: undefined;"
 `;
