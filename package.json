@@ -39,7 +39,7 @@
     "@babel/cli": "^7.18.10",
     "@babel/core": "^7.18.10",
     "@babel/runtime": "^7.18.9",
-    "@callstack/eslint-config": "^12.0.2",
+    "@callstack/eslint-config": "^13.0.0",
     "@relmify/jest-serializer-strip-ansi": "^1.0.2",
     "@testing-library/react-native": "^11.0.0",
     "commitizen": "^4.2.5",
