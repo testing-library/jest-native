@@ -31,7 +31,7 @@ describe('.toBeDisabled', () => {
       );
 
       expect(queryByTestId(name)).toBeDisabled();
-      expect(() => expect(queryByTestId(name)).not.toBeDisabled()).toThrowError();
+      expect(() => expect(queryByTestId(name)).not.toBeDisabled()).toThrow();
     });
   });
 
@@ -44,7 +44,7 @@ describe('.toBeDisabled', () => {
       );
 
       expect(queryByTestId(name)).toBeDisabled();
-      expect(() => expect(queryByTestId(name)).not.toBeDisabled()).toThrowError();
+      expect(() => expect(queryByTestId(name)).not.toBeDisabled()).toThrow();
     });
   });
 });
@@ -59,7 +59,7 @@ describe('.toBeEnabled', () => {
       );
 
       expect(queryByTestId(name)).toBeEnabled();
-      expect(() => expect(queryByTestId(name)).not.toBeEnabled()).toThrowError();
+      expect(() => expect(queryByTestId(name)).not.toBeEnabled()).toThrow();
     });
   });
 
@@ -72,7 +72,7 @@ describe('.toBeEnabled', () => {
       );
 
       expect(queryByTestId(name)).toBeEnabled();
-      expect(() => expect(queryByTestId(name)).not.toBeEnabled()).toThrowError();
+      expect(() => expect(queryByTestId(name)).not.toBeEnabled()).toThrow();
     });
   });
 });
@@ -110,7 +110,7 @@ describe('for .toBeEnabled/Disabled Button', () => {
       </View>,
     );
 
-    expect(() => expect(queryByTestId('enabled')).toBeDisabled()).toThrowError();
-    expect(() => expect(queryByTitle('disabled')).toBeEnabled()).toThrowError();
+    expect(() => expect(queryByTestId('enabled')).toBeDisabled()).toThrow();
+    expect(() => expect(queryByTitle('disabled')).toBeEnabled()).toThrow();
   });
 });

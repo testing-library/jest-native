@@ -36,24 +36,24 @@ test('.toContainElement positive test cases', () => {
   expect(textElement).not.toContainElement(child);
 
   // obscure cases
-  expect(() => expect(child).toContainElement(null)).toThrowError();
-  expect(() => expect(parent).toContainElement(null)).toThrowError();
-  expect(() => expect(grandparent).toContainElement(null)).toThrowError();
+  expect(() => expect(child).toContainElement(null)).toThrow();
+  expect(() => expect(parent).toContainElement(null)).toThrow();
+  expect(() => expect(grandparent).toContainElement(null)).toThrow();
 });
 
 test('.toContainElement negative test cases', () => {
-  expect(() => expect(nonExistantElement).not.toContainElement(child)).toThrowError();
-  expect(() => expect(parent).toContainElement(grandparent)).toThrowError();
-  expect(() => expect(nonExistantElement).toContainElement(grandparent)).toThrowError();
-  expect(() => expect(grandparent).toContainElement(nonExistantElement)).toThrowError();
-  expect(() => expect(nonExistantElement).toContainElement(nonExistantElement)).toThrowError();
-  expect(() => expect(nonExistantElement).toContainElement(fakeElement)).toThrowError();
-  expect(() => expect(fakeElement).toContainElement(nonExistantElement)).toThrowError();
-  expect(() => expect(fakeElement).not.toContainElement(nonExistantElement)).toThrowError();
-  expect(() => expect(fakeElement).toContainElement(grandparent)).toThrowError();
-  expect(() => expect(grandparent).toContainElement(fakeElement)).toThrowError();
-  expect(() => expect(fakeElement).toContainElement(fakeElement)).toThrowError();
-  expect(() => expect(grandparent).not.toContainElement(child)).toThrowError();
-  expect(() => expect(grandparent).not.toContainElement(textElement)).toThrowError();
-  expect(() => expect(grandparent).not.toContainElement(undefined)).toThrowError();
+  expect(() => expect(nonExistantElement).not.toContainElement(child)).toThrow();
+  expect(() => expect(parent).toContainElement(grandparent)).toThrow();
+  expect(() => expect(nonExistantElement).toContainElement(grandparent)).toThrow();
+  expect(() => expect(grandparent).toContainElement(nonExistantElement)).toThrow();
+  expect(() => expect(nonExistantElement).toContainElement(nonExistantElement)).toThrow();
+  expect(() => expect(nonExistantElement).toContainElement(fakeElement)).toThrow();
+  expect(() => expect(fakeElement).toContainElement(nonExistantElement)).toThrow();
+  expect(() => expect(fakeElement).not.toContainElement(nonExistantElement)).toThrow();
+  expect(() => expect(fakeElement).toContainElement(grandparent)).toThrow();
+  expect(() => expect(grandparent).toContainElement(fakeElement)).toThrow();
+  expect(() => expect(fakeElement).toContainElement(fakeElement)).toThrow();
+  expect(() => expect(grandparent).not.toContainElement(child)).toThrow();
+  expect(() => expect(grandparent).not.toContainElement(textElement)).toThrow();
+  expect(() => expect(grandparent).not.toContainElement(undefined)).toThrow();
 });

@@ -15,10 +15,10 @@ describe('.toHaveTextContent', () => {
   test('handles negative test cases', () => {
     const { queryByTestId } = render(<Text testID="count-value">2</Text>);
 
-    expect(() => expect(queryByTestId('count-value2')).toHaveTextContent('2')).toThrowError();
+    expect(() => expect(queryByTestId('count-value2')).toHaveTextContent('2')).toThrow();
 
-    expect(() => expect(queryByTestId('count-value')).toHaveTextContent('3')).toThrowError();
-    expect(() => expect(queryByTestId('count-value')).not.toHaveTextContent('2')).toThrowError();
+    expect(() => expect(queryByTestId('count-value')).toHaveTextContent('3')).toThrow();
+    expect(() => expect(queryByTestId('count-value')).not.toHaveTextContent('2')).toThrow();
   });
 
   test('normalizes whitespace by default', () => {

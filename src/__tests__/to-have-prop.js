@@ -22,15 +22,13 @@ test('.toHaveProp', () => {
   expect(queryByTestId('text')).not.toHaveProp('style');
 
   // title is no longer findable as it is a React child
-  expect(() => expect(queryByTestId('button')).toHaveProp('title', 'ok')).toThrowError();
-  expect(() => expect(queryByTestId('button')).toHaveProp('disabled')).toThrowError();
-  expect(() =>
-    expect(queryByTestId('text')).not.toHaveProp('allowFontScaling', false),
-  ).toThrowError();
-  expect(() => expect(queryByTestId('text')).toHaveProp('style')).toThrowError();
+  expect(() => expect(queryByTestId('button')).toHaveProp('title', 'ok')).toThrow();
+  expect(() => expect(queryByTestId('button')).toHaveProp('disabled')).toThrow();
+  expect(() => expect(queryByTestId('text')).not.toHaveProp('allowFontScaling', false)).toThrow();
+  expect(() => expect(queryByTestId('text')).toHaveProp('style')).toThrow();
   expect(() =>
     expect(queryByTestId('text')).toHaveProp('allowFontScaling', 'wrongValue'),
-  ).toThrowError();
+  ).toThrow();
 
   expect(queryByTestId('view')).toHaveProp('accessibilityLabel', null);
 });
