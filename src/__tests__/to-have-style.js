@@ -53,8 +53,8 @@ describe('.toHaveStyle', () => {
     expect(() =>
       expect(container).toHaveStyle({ backgroundColor: 'blue', transform: [{ scale: 1 }] }),
     ).toThrowErrorMatchingSnapshot();
-    expect(() => expect(container).toHaveStyle({ fontWeight: 'bold' })).toThrowError();
-    expect(() => expect(container).not.toHaveStyle({ color: 'black' })).toThrowError();
+    expect(() => expect(container).toHaveStyle({ fontWeight: 'bold' })).toThrow();
+    expect(() => expect(container).not.toHaveStyle({ color: 'black' })).toThrow();
   });
 
   test('handles when the style prop is undefined', () => {

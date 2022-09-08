@@ -18,13 +18,13 @@ test('.toBeEmpty', () => {
   expect(notEmpty).not.toBeEmpty();
 
   // negative test cases wrapped in throwError assertions for coverage.
-  expect(() => expect(empty).not.toBeEmpty()).toThrowError();
+  expect(() => expect(empty).not.toBeEmpty()).toThrow();
 
-  expect(() => expect(notEmpty).toBeEmpty()).toThrowError();
+  expect(() => expect(notEmpty).toBeEmpty()).toThrow();
 
-  expect(() => expect(fakeElement).toBeEmpty()).toThrowError();
+  expect(() => expect(fakeElement).toBeEmpty()).toThrow();
 
   expect(() => {
     expect(nonExistantElement).toBeEmpty();
-  }).toThrowError();
+  }).toThrow();
 });
