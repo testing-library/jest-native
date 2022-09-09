@@ -1,6 +1,7 @@
 import { matcherHint } from 'jest-matcher-utils';
 import { diff } from 'jest-diff';
 import chalk from 'chalk';
+import { StyleSheet } from 'react-native';
 import { checkReactElement, mergeAll } from './utils';
 
 function isSubset(expected, received) {
@@ -9,10 +10,6 @@ function isSubset(expected, received) {
       ? isSubset(mergeAll(value), mergeAll(received[prop]))
       : received[prop] === value,
   );
-}
-
-function mergeAllStyles(styles) {
-  return mergeAll(styles.flat());
 }
 
 function printoutStyles(styles) {
@@ -59,8 +56,8 @@ export function toHaveStyle(element, style) {
 
   const elementStyle = element.props.style ?? {};
 
-  const expected = Array.isArray(style) ? mergeAllStyles(style) : style;
-  const received = Array.isArray(elementStyle) ? mergeAllStyles(elementStyle) : elementStyle;
+  const expected = Array.isArray(style) ? StyleSheet.flatten(style) : style;
+  const received = Array.isArray(elementStyle) ? StyleSheet.flatten(elementStyle) : elementStyle;
 
   return {
     pass: isSubset(expected, received),

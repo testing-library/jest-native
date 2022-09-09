@@ -11,10 +11,10 @@ describe('.toHaveStyle', () => {
         style={[
           {
             backgroundColor: 'blue',
-            height: '100%',
             transform: [{ scale: 2 }, { rotate: '45deg' }],
           },
-          [{ width: '50%' }],
+          [{ height: '100%' }],
+          [[{ width: '50%' }]],
           styles.container,
         ]}
       >
