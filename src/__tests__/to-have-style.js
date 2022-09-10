@@ -11,6 +11,7 @@ describe('.toHaveStyle', () => {
         style={[
           {
             backgroundColor: 'blue',
+            height: '40%',
             transform: [{ scale: 2 }, { rotate: '45deg' }],
           },
           [{ height: '100%' }],
@@ -30,7 +31,9 @@ describe('.toHaveStyle', () => {
     expect(container).toHaveStyle({ height: '100%' });
     expect(container).toHaveStyle({ color: 'white' });
     expect(container).toHaveStyle({ width: '50%' });
+    expect(container).toHaveStyle([[{ width: '50%' }]]);
     expect(container).toHaveStyle({ transform: [{ scale: 2 }, { rotate: '45deg' }] });
+    expect(container).toHaveStyle({ transform: [{ rotate: '45deg' }, { scale: 2 }] });
     expect(container).toHaveStyle({ transform: [{ rotate: '45deg' }] });
   });
 

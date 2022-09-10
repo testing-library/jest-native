@@ -1,4 +1,4 @@
-import { checkReactElement, isEmpty, mergeAll } from '../utils';
+import { checkReactElement, isEmpty } from '../utils';
 
 describe('checkReactElement', () => {
   test('it does not throw an error for valid native primitives', () => {
@@ -18,14 +18,6 @@ describe('checkReactElement', () => {
       checkReactElement({ type: 'Button' }, () => {});
     }).toThrow();
   });
-});
-
-test('mergeAll', () => {
-  expect(mergeAll([{ foo: 1 }, { bar: 2 }, { baz: 3 }])).toEqual({ foo: 1, bar: 2, baz: 3 });
-  expect(mergeAll([{ foo: 1 }, { foo: 2 }, { bar: 2 }])).toEqual({ foo: 2, bar: 2 });
-  expect(mergeAll([null, { foo: 1 }, { foo: 2 }, { bar: 2 }])).toEqual({ foo: 2, bar: 2 });
-  expect(mergeAll([{ foo: 1 }, { foo: 2 }, { bar: 2 }, undefined])).toEqual({ foo: 2, bar: 2 });
-  expect(mergeAll([{ foo: 1 }, { foo: 2 }, null, { bar: 2 }])).toEqual({ foo: 2, bar: 2 });
 });
 
 test('isEmpty', () => {

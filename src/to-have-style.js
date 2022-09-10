@@ -1,14 +1,14 @@
+import { StyleSheet } from 'react-native';
 import { matcherHint } from 'jest-matcher-utils';
 import { diff } from 'jest-diff';
 import chalk from 'chalk';
-import { StyleSheet } from 'react-native';
-import { checkReactElement, mergeAll } from './utils';
+import { checkReactElement } from './utils';
 
 function isSubset(expected, received) {
   return Object.entries(expected).every(([prop, value]) =>
     Array.isArray(value)
-      ? isSubset(mergeAll(value), mergeAll(received[prop]))
-      : received[prop] === value,
+      ? isSubset(StyleSheet.flatten(value), StyleSheet.flatten(received[prop]))
+      : received?.[prop] === value,
   );
 }
 
