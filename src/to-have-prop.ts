@@ -2,11 +2,11 @@ import { matcherHint, stringify, printExpected } from 'jest-matcher-utils';
 import type { ReactTestInstance } from 'react-test-renderer';
 import { checkReactElement, getMessage } from './utils';
 
-function printAttribute(name: string, value: any) {
+function printAttribute(name: string, value: unknown) {
   return value === undefined ? name : `${name}=${stringify(value)}`;
 }
 
-function getPropComment(name: string, value: any) {
+function getPropComment(name: string, value: unknown) {
   return value === undefined
     ? `element.hasProp(${name})`
     : `element.getAttribute(${name}) === ${stringify(value)}`;
@@ -16,7 +16,7 @@ export function toHaveProp(
   this: jest.MatcherContext,
   element: ReactTestInstance,
   name: string,
-  expectedValue: any,
+  expectedValue: unknown,
 ) {
   checkReactElement(element, toHaveProp, this);
 

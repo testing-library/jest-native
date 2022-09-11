@@ -29,7 +29,7 @@ const VALID_ELEMENTS = [
 class ReactElementTypeError extends Error {
   constructor(
     received: ReactTestInstance | null | undefined,
-    matcherFn: Function,
+    matcherFn: jest.CustomMatcher,
     context: jest.MatcherContext,
   ) {
     super();
@@ -56,7 +56,7 @@ class ReactElementTypeError extends Error {
 
 function checkReactElement(
   element: ReactTestInstance | null | undefined,
-  matcherFn: Function,
+  matcherFn: jest.CustomMatcher,
   context: jest.MatcherContext,
 ) {
   if (!element) {
@@ -69,13 +69,10 @@ function checkReactElement(
   }
 }
 
-function getType({ type }: any) {
-  return type.displayName || type.name || type;
-}
-
-function printElement({ props }: any) {
+function printElement(element: ReactTestInstance | null | undefined) {
+  if (!element) return '';
   return `  ${prettyFormat(
-    { props },
+    { props: element.props },
     {
       plugins: [ReactTestComponent, ReactElement],
       printFunctionName: false,
@@ -84,7 +81,7 @@ function printElement({ props }: any) {
   )}`;
 }
 
-function display(value: any) {
+function display(value: unknown) {
   return typeof value === 'string' ? value : stringify(value);
 }
 
@@ -140,7 +137,7 @@ function getStylePropAsRecord(styles: Falsy | Object | Object[]): StyleRecord {
   return styles as StyleRecord;
 }
 
-function isEmpty(value: any) {
+function isEmpty(value: unknown) {
   if (!value) {
     return true;
   }
@@ -171,7 +168,6 @@ export function printDeprecationWarning(functionName, message) {
 export {
   ReactElementTypeError,
   checkReactElement,
-  getType,
   getMessage,
   matches,
   normalize,

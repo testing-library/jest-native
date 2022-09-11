@@ -17,7 +17,7 @@
     "semantic-release": "semantic-release",
     "test:coverage": "jest --coverage --colors",
     "test:watch": "jest --watch --coverage",
-    "typescript": "tsc"
+    "typescript": "tsc -noEmit"
   },
   "files": [
     "dist",
@@ -87,7 +87,8 @@
       "react-native-a11y/has-accessibility-hint": "off",
       "react-native-a11y/has-valid-accessibility-ignores-invert-colors": "off",
       "react-native-a11y/has-valid-accessibility-value": "off",
-      "@typescript-eslint/consistent-type-imports": "error"
+      "@typescript-eslint/consistent-type-imports": "error",
+      "@typescript-eslint/no-explicit-any": "error"
     }
   },
   "eslintIgnore": [
