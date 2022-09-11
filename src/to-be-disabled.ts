@@ -61,9 +61,9 @@ export function toBeEnabled(
   this: jest.MatcherContext,
   element: ReactTestInstance | null | undefined,
 ) {
-  checkReactElement(element, toBeDisabled, this);
+  checkReactElement(element, toBeEnabled, this);
 
-  const isEnabled = !isElementDisabled(element);
+  const isEnabled = !(isElementDisabled(element) || isAncestorDisabled(element));
 
   return {
     pass: isEnabled,
