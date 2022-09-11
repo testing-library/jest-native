@@ -10,6 +10,7 @@ import {
 import prettyFormat, { plugins } from 'pretty-format';
 import type { ReactTestInstance } from 'react-test-renderer';
 import type { Falsy, TextStyle, ViewStyle } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const { ReactTestComponent, ReactElement } = plugins;
 
@@ -118,23 +119,7 @@ type StyleRecord = {
 function getStylePropAsRecord(styles: Falsy | Object | Object[]): StyleRecord {
   if (!styles) return {};
 
-  if (Array.isArray(styles)) {
-    const flatStyles = styles.flat();
-    let result = {};
-
-    for (const styleItem of flatStyles) {
-      const entries = Object.entries(styleItem);
-
-      for (const [key, value] of entries) {
-        // @ts-ignore how to type it?
-        result[key] = value;
-      }
-    }
-
-    return result;
-  }
-
-  return styles as StyleRecord;
+  return StyleSheet.flatten(styles);
 }
 
 function isEmpty(value: unknown) {
