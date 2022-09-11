@@ -55,6 +55,5 @@ test('.toContainElement negative test cases', () => {
   expect(() => expect(fakeElement).toContainElement(fakeElement)).toThrow();
   expect(() => expect(grandparent).not.toContainElement(child)).toThrow();
   expect(() => expect(grandparent).not.toContainElement(textElement)).toThrow();
-  // @ts-ignore is on purpose
   expect(() => expect(grandparent).not.toContainElement(undefined)).toThrow();
 });

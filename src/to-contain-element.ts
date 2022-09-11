@@ -9,7 +9,7 @@ export function toContainElement(
 ) {
   checkReactElement(container, toContainElement, this);
 
-  if (element != null) {
+  if (element !== null) {
     checkReactElement(element, toContainElement, this);
   }
 

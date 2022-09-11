@@ -1,5 +1,5 @@
 import type { ReactTestInstance } from 'react-test-renderer';
-import { StyleProp, TextStyle, ViewStyle } from 'react-native';
+import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 declare global {
   namespace jest {

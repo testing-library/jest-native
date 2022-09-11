@@ -9,7 +9,7 @@ import {
 } from 'jest-matcher-utils';
 import prettyFormat, { plugins } from 'pretty-format';
 import type { ReactTestInstance } from 'react-test-renderer';
-import { Falsy, TextStyle, ViewStyle } from 'react-native';
+import type { Falsy, TextStyle, ViewStyle } from 'react-native';
 
 const { ReactTestComponent, ReactElement } = plugins;
 
@@ -28,7 +28,7 @@ const VALID_ELEMENTS = [
 
 class ReactElementTypeError extends Error {
   constructor(
-    received: ReactTestInstance | null,
+    received: ReactTestInstance | null | undefined,
     matcherFn: Function,
     context: jest.MatcherContext,
   ) {
@@ -55,7 +55,7 @@ class ReactElementTypeError extends Error {
 }
 
 function checkReactElement(
-  element: ReactTestInstance | null,
+  element: ReactTestInstance | null | undefined,
   matcherFn: Function,
   context: jest.MatcherContext,
 ) {

@@ -1,5 +1,5 @@
 import { matcherHint, stringify, printExpected } from 'jest-matcher-utils';
-import { ReactTestInstance } from 'react-test-renderer';
+import type { ReactTestInstance } from 'react-test-renderer';
 import { checkReactElement, getMessage } from './utils';
 
 function printAttribute(name: string, value: any) {

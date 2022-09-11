@@ -6,18 +6,8 @@ exports[`.toHaveStyle handles negative test cases 1`] = `
 - Expected
 
   backgroundColor: blue;
-  transform: [
-    {
--     "scale": 1
-+     "scale": 2
-+   },
-+   {
-+     "rotate": "45deg"
-    }
-  ];"
-<dim>  backgroundColor: blue;</>
-<green>- transform: [{\\"scale\\": 1}];</>
-<red>+ transform: [{\\"scale\\": 2}];</>"
+- transform: [{"scale": 1}];
++ transform: [{"scale": 2}];"
 `;
 
 exports[`.toHaveStyle handles transform when transform undefined 1`] = `
@@ -25,12 +15,6 @@ exports[`.toHaveStyle handles transform when transform undefined 1`] = `
 
 - Expected
 
-- transform: [
--   {
--     "scale": 1
--   }
-- ];
+- transform: [{"scale": 1}];
 + transform: undefined;"
-<green>- transform: [{\\"scale\\": 1}];</>
-<red>+ transform: undefined;</>"
 `;

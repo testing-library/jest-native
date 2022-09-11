@@ -34,7 +34,7 @@
     "chalk": "^4.1.2",
     "jest-diff": "^29.0.1",
     "jest-matcher-utils": "^29.0.1",
-    "pretty-format": "^29.0.1",
+    "pretty-format": "^29.0.3",
     "redent": "^3.0.0"
   },
   "devDependencies": {
@@ -44,9 +44,9 @@
     "@callstack/eslint-config": "^13.0.1",
     "@relmify/jest-serializer-strip-ansi": "^1.0.2",
     "@testing-library/react-native": "^11.0.0",
-    "@types/jest": "^28.1.6",
-    "@types/react": "^18.0.17",
-    "@types/react-native": "^0.69.5",
+    "@types/jest": "^29.0.1",
+    "@types/react": "^18.0.19",
+    "@types/react-native": "^0.69.8",
     "@types/react-test-renderer": "^18.0.0",
     "commitizen": "^4.2.5",
     "cz-conventional-changelog": "^3.3.0",
@@ -60,7 +60,7 @@
     "react-native": "^0.69.4",
     "react-test-renderer": "18.0.0",
     "semantic-release": "^19.0.3",
-    "typescript": "^4.7.4"
+    "typescript": "^4.8.3"
   },
   "peerDependencies": {
     "react": ">=16.0.0",
@@ -86,11 +86,13 @@
       "react-native-a11y/has-valid-accessibility-descriptors": "off",
       "react-native-a11y/has-accessibility-hint": "off",
       "react-native-a11y/has-valid-accessibility-ignores-invert-colors": "off",
-      "react-native-a11y/has-valid-accessibility-value": "off"
+      "react-native-a11y/has-valid-accessibility-value": "off",
+      "@typescript-eslint/consistent-type-imports": "error"
     }
   },
   "eslintIgnore": [
     "node_modules/",
+    "dist/",
     "lib/"
   ],
   "release": {

@@ -1,9 +1,9 @@
 import { matcherHint } from 'jest-matcher-utils';
 import { diff } from 'jest-diff';
 import chalk from 'chalk';
+import type { ReactTestInstance } from 'react-test-renderer';
+import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { checkReactElement, getStylePropAsRecord, display } from './utils';
-import { ReactTestInstance } from 'react-test-renderer';
-import { StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 type StyleRecord = {
   [P in keyof TextStyle | keyof ViewStyle]?: TextStyle[P];
