@@ -33,8 +33,6 @@ describe('.toHaveStyle', () => {
     expect(container).toHaveStyle({ width: '50%' });
     expect(container).toHaveStyle([[{ width: '50%' }]]);
     expect(container).toHaveStyle({ transform: [{ scale: 2 }, { rotate: '45deg' }] });
-    expect(container).toHaveStyle({ transform: [{ rotate: '45deg' }, { scale: 2 }] });
-    expect(container).toHaveStyle({ transform: [{ rotate: '45deg' }] });
   });
 
   test('handles negative test cases', () => {
@@ -58,6 +56,8 @@ describe('.toHaveStyle', () => {
     ).toThrowErrorMatchingSnapshot();
     expect(() => expect(container).toHaveStyle({ fontWeight: 'bold' })).toThrow();
     expect(() => expect(container).not.toHaveStyle({ color: 'black' })).toThrow();
+    expect(container).not.toHaveStyle({ transform: [{ rotate: '45deg' }, { scale: 2 }] });
+    expect(container).not.toHaveStyle({ transform: [{ rotate: '45deg' }] });
   });
 
   test('handles when the style prop is undefined', () => {

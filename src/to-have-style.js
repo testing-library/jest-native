@@ -4,14 +4,6 @@ import { diff } from 'jest-diff';
 import chalk from 'chalk';
 import { checkReactElement } from './utils';
 
-function isSubset(expected, received) {
-  return Object.entries(expected).every(([prop, value]) =>
-    Array.isArray(value)
-      ? isSubset(StyleSheet.flatten(value), StyleSheet.flatten(received[prop]))
-      : received?.[prop] === value,
-  );
-}
-
 function printoutStyles(styles) {
   return Object.keys(styles)
     .sort()
@@ -24,7 +16,7 @@ function printoutStyles(styles) {
 }
 
 /**
- * Recursively narrows down the properties in received to those with counterparts in expected
+ * Narrows down the properties in received to those with counterparts in expected
  */
 function narrow(expected, received) {
   return Object.keys(received)
@@ -32,10 +24,7 @@ function narrow(expected, received) {
     .reduce(
       (obj, prop) =>
         Object.assign(obj, {
-          [prop]:
-            Array.isArray(expected[prop]) && Array.isArray(received[prop])
-              ? expected[prop].map((_, i) => narrow(expected[prop][i], received[prop][i]))
-              : received[prop],
+          [prop]: received[prop],
         }),
       {},
     );
@@ -60,7 +49,7 @@ export function toHaveStyle(element, style) {
   const received = Array.isArray(elementStyle) ? StyleSheet.flatten(elementStyle) : elementStyle;
 
   return {
-    pass: isSubset(expected, received),
+    pass: Object.entries(expected).every(([prop, value]) => this.equals(received?.[prop], value)),
     message: () => {
       const matcher = `${this.isNot ? '.not' : ''}.toHaveStyle`;
       return [matcherHint(matcher, 'element', ''), expectedDiff(expected, received)].join('\n\n');
