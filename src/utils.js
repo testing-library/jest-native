@@ -93,10 +93,6 @@ function normalize(text) {
   return text.replace(/\s+/g, ' ').trim();
 }
 
-function mergeAll(objects) {
-  return Object.assign({}, ...(objects ?? [{}]));
-}
-
 function isEmpty(value) {
   if (!value) {
     return true;
@@ -120,7 +116,6 @@ export {
   getMessage,
   matches,
   normalize,
-  mergeAll,
   isEmpty,
   printElement,
 };

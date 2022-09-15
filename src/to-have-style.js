@@ -1,19 +1,8 @@
+import { StyleSheet } from 'react-native';
 import { matcherHint } from 'jest-matcher-utils';
 import { diff } from 'jest-diff';
 import chalk from 'chalk';
-import { checkReactElement, mergeAll } from './utils';
-
-function isSubset(expected, received) {
-  return Object.entries(expected).every(([prop, value]) =>
-    Array.isArray(value)
-      ? isSubset(mergeAll(value), mergeAll(received[prop]))
-      : received[prop] === value,
-  );
-}
-
-function mergeAllStyles(styles) {
-  return mergeAll(styles.flat());
-}
+import { checkReactElement } from './utils';
 
 function printoutStyles(styles) {
   return Object.keys(styles)
@@ -27,7 +16,7 @@ function printoutStyles(styles) {
 }
 
 /**
- * Recursively narrows down the properties in received to those with counterparts in expected
+ * Narrows down the properties in received to those with counterparts in expected
  */
 function narrow(expected, received) {
   return Object.keys(received)
@@ -35,10 +24,7 @@ function narrow(expected, received) {
     .reduce(
       (obj, prop) =>
         Object.assign(obj, {
-          [prop]:
-            Array.isArray(expected[prop]) && Array.isArray(received[prop])
-              ? expected[prop].map((_, i) => narrow(expected[prop][i], received[prop][i]))
-              : received[prop],
+          [prop]: received[prop],
         }),
       {},
     );
@@ -59,11 +45,11 @@ export function toHaveStyle(element, style) {
 
   const elementStyle = element.props.style ?? {};
 
-  const expected = Array.isArray(style) ? mergeAllStyles(style) : style;
-  const received = Array.isArray(elementStyle) ? mergeAllStyles(elementStyle) : elementStyle;
+  const expected = Array.isArray(style) ? StyleSheet.flatten(style) : style;
+  const received = Array.isArray(elementStyle) ? StyleSheet.flatten(elementStyle) : elementStyle;
 
   return {
-    pass: isSubset(expected, received),
+    pass: Object.entries(expected).every(([prop, value]) => this.equals(received?.[prop], value)),
     message: () => {
       const matcher = `${this.isNot ? '.not' : ''}.toHaveStyle`;
       return [matcherHint(matcher, 'element', ''), expectedDiff(expected, received)].join('\n\n');

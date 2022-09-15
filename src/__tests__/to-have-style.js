@@ -11,10 +11,11 @@ describe('.toHaveStyle', () => {
         style={[
           {
             backgroundColor: 'blue',
-            height: '100%',
+            height: '40%',
             transform: [{ scale: 2 }, { rotate: '45deg' }],
           },
-          [{ width: '50%' }],
+          [{ height: '100%' }],
+          [[{ width: '50%' }]],
           styles.container,
         ]}
       >
@@ -30,8 +31,8 @@ describe('.toHaveStyle', () => {
     expect(container).toHaveStyle({ height: '100%' });
     expect(container).toHaveStyle({ color: 'white' });
     expect(container).toHaveStyle({ width: '50%' });
+    expect(container).toHaveStyle([[{ width: '50%' }]]);
     expect(container).toHaveStyle({ transform: [{ scale: 2 }, { rotate: '45deg' }] });
-    expect(container).toHaveStyle({ transform: [{ rotate: '45deg' }] });
   });
 
   test('handles negative test cases', () => {
@@ -55,6 +56,8 @@ describe('.toHaveStyle', () => {
     ).toThrowErrorMatchingSnapshot();
     expect(() => expect(container).toHaveStyle({ fontWeight: 'bold' })).toThrow();
     expect(() => expect(container).not.toHaveStyle({ color: 'black' })).toThrow();
+    expect(container).not.toHaveStyle({ transform: [{ rotate: '45deg' }, { scale: 2 }] });
+    expect(container).not.toHaveStyle({ transform: [{ rotate: '45deg' }] });
   });
 
   test('handles when the style prop is undefined', () => {
