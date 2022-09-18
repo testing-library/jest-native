@@ -2,41 +2,35 @@ import { matcherHint } from 'jest-matcher-utils';
 import { diff } from 'jest-diff';
 import chalk from 'chalk';
 import type { ReactTestInstance } from 'react-test-renderer';
-import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
+import type { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { checkReactElement, display } from './utils';
 
-type StyleRecord = {
-  [P in keyof TextStyle | keyof ViewStyle]?: TextStyle[P];
-};
+type Styles = TextStyle | ViewStyle | ImageStyle;
+type StyleParameter = StyleProp<Styles>;
 
 const getKeys = Object.keys as <T extends object>(obj: T) => Array<keyof T>;
 
-function printoutStyles(styles: StyleRecord) {
+function printoutStyles(styles: Styles) {
   return getKeys(styles)
     .sort()
-    .map((prop) => {
-      const propertyKey = prop as keyof StyleRecord;
-      return `${propertyKey}: ${display(styles[propertyKey])};`;
-    })
+    .map((prop) => `${prop}: ${display(styles[prop])};`)
     .join('\n');
 }
 
 /**
  * Recursively narrows down the properties in received to those with counterparts in expected
  */
-function narrow(expected: StyleRecord, received: StyleRecord) {
+function narrow(expected: Styles, received: Styles) {
   return getKeys(received)
     .filter((prop) => expected[prop])
     .reduce((obj, prop) => {
-      const propertyKey = prop as keyof StyleRecord;
-
       if (Array.isArray(expected[prop]) && Array.isArray(received[prop])) {
         return Object.assign(obj, {
           // @ts-ignore not sure how to type it
-          [prop]: expected[propertyKey]?.map((_, i) =>
+          [prop]: expected[prop]?.map((_, i) =>
             // @ts-ignore not sure how to type it
-            narrow(expected[propertyKey][i], received[propertyKey][i]),
+            narrow(expected[prop][i], received[prop][i]),
           ),
         });
       }
@@ -49,7 +43,7 @@ function narrow(expected: StyleRecord, received: StyleRecord) {
 
 // Highlights only style rules that were expected but were not found in the
 // received computed styles
-function expectedDiff(expected: StyleRecord, received: StyleRecord) {
+function expectedDiff(expected: Styles, received: Styles) {
   const receivedNarrow = narrow(expected, received);
 
   const diffOutput = diff(printoutStyles(expected), printoutStyles(receivedNarrow));
@@ -63,11 +57,11 @@ function expectedDiff(expected: StyleRecord, received: StyleRecord) {
 export function toHaveStyle(
   this: jest.MatcherContext,
   element: ReactTestInstance,
-  style: StyleProp<ViewStyle> | StyleProp<TextStyle>,
+  style: StyleParameter,
 ) {
   checkReactElement(element, toHaveStyle, this);
 
-  const elementStyle = (element.props.style ?? {}) as StyleProp<ViewStyle> | StyleProp<TextStyle>;
+  const elementStyle = (element.props.style ?? {}) as StyleParameter;
 
   const expected = StyleSheet.flatten(style);
   const received = StyleSheet.flatten(elementStyle);
