@@ -3,24 +3,14 @@ import { diff } from 'jest-diff';
 import chalk from 'chalk';
 import type { ReactTestInstance } from 'react-test-renderer';
 import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
-import { checkReactElement, getStylePropAsRecord, display } from './utils';
+import { StyleSheet } from 'react-native';
+import { checkReactElement, display } from './utils';
 
 type StyleRecord = {
   [P in keyof TextStyle | keyof ViewStyle]?: TextStyle[P];
 };
 
 const getKeys = Object.keys as <T extends object>(obj: T) => Array<keyof T>;
-
-function isSubset(expected: StyleRecord, received: StyleRecord): boolean {
-  return Object.entries(expected).every(([prop, value]) => {
-    const propertyKey = prop as keyof StyleRecord;
-    if (Array.isArray(value)) {
-      return isSubset(getStylePropAsRecord(value), getStylePropAsRecord(received[propertyKey]));
-    }
-
-    return received[propertyKey] === value;
-  });
-}
 
 function printoutStyles(styles: StyleRecord) {
   return getKeys(styles)
@@ -79,11 +69,11 @@ export function toHaveStyle(
 
   const elementStyle = (element.props.style ?? {}) as StyleProp<ViewStyle> | StyleProp<TextStyle>;
 
-  const expected = getStylePropAsRecord(style);
-  const received = getStylePropAsRecord(elementStyle);
+  const expected = StyleSheet.flatten(style);
+  const received = StyleSheet.flatten(elementStyle);
 
   return {
-    pass: isSubset(expected, received),
+    pass: this.equals(received, expected),
     message: () => {
       const matcher = `${this.isNot ? '.not' : ''}.toHaveStyle`;
       return [matcherHint(matcher, 'element', ''), expectedDiff(expected, received)].join('\n\n');

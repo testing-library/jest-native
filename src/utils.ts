@@ -9,8 +9,6 @@ import {
 } from 'jest-matcher-utils';
 import prettyFormat, { plugins } from 'pretty-format';
 import type { ReactTestInstance } from 'react-test-renderer';
-import type { Falsy, TextStyle, ViewStyle } from 'react-native';
-import { StyleSheet } from 'react-native';
 
 const { ReactTestComponent, ReactElement } = plugins;
 
@@ -112,16 +110,6 @@ function normalize(text: string) {
   return text.replace(/\s+/g, ' ').trim();
 }
 
-type StyleRecord = {
-  [P in keyof TextStyle | keyof ViewStyle]?: TextStyle[P];
-};
-
-function getStylePropAsRecord(styles: Falsy | Object | Object[]): StyleRecord {
-  if (!styles) return {};
-
-  return StyleSheet.flatten(styles);
-}
-
 function isEmpty(value: unknown) {
   if (!value) {
     return true;
@@ -156,7 +144,6 @@ export {
   getMessage,
   matches,
   normalize,
-  getStylePropAsRecord,
   isEmpty,
   printElement,
   display,

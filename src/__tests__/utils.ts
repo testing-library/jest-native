@@ -1,4 +1,4 @@
-import { checkReactElement, isEmpty, getStylePropAsRecord } from '../utils';
+import { checkReactElement, isEmpty } from '../utils';
 
 describe('checkReactElement', () => {
   test('it does not throw an error for valid native primitives', () => {
@@ -20,34 +20,6 @@ describe('checkReactElement', () => {
       // @ts-ignore how to type it?
       checkReactElement({ type: 'Button' }, () => {}, null);
     }).toThrow();
-  });
-});
-
-describe('getStylePropAsRecord', () => {
-  test('basic', () => {
-    expect(getStylePropAsRecord({ color: 'black' })).toEqual({
-      color: 'black',
-    });
-  });
-
-  test('basic merge', () => {
-    expect(getStylePropAsRecord([{ color: 'black' }, { backgroundColor: 'red' }])).toEqual({
-      color: 'black',
-      backgroundColor: 'red',
-    });
-  });
-
-  test('handles falsy', () => {
-    expect(getStylePropAsRecord([{ color: 'black' }, false, { backgroundColor: 'red' }])).toEqual({
-      color: 'black',
-      backgroundColor: 'red',
-    });
-  });
-
-  test('overwrite by order', () => {
-    expect(getStylePropAsRecord([{ color: 'black' }, { color: 'red' }])).toEqual({
-      color: 'red',
-    });
   });
 });
 
