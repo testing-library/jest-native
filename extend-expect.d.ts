@@ -11,7 +11,7 @@ declare global {
       toHaveProp(attr: string, value?: unknown): R;
       toHaveTextContent(text: string | RegExp, options?: { normalizeWhitespace: boolean }): R;
       toBeEnabled(): R;
-      toHaveStyle(style: StyleProp<ViewStyle> | StyleProp<TextStyle> | StyleProp<ImageStyle>): R;
+      toHaveStyle(style: StyleProp<ViewStyle | TextStyle | ImageStyle>): R;
 
       /** @deprecated This function has been renamed to `toBeEmptyElement`. */
       toBeEmpty(): R;
