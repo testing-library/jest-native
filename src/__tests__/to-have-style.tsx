@@ -54,8 +54,8 @@ describe('.toHaveStyle', () => {
     expect(() =>
       expect(container).toHaveStyle({ backgroundColor: 'blue', transform: [{ scale: 1 }] }),
     ).toThrowErrorMatchingSnapshot();
-    expect(() => expect(container).toHaveStyle({ fontWeight: 'bold' })).toThrow();
-    expect(() => expect(container).not.toHaveStyle({ color: 'black' })).toThrow();
+    expect(container).not.toHaveStyle({ fontWeight: 'bold' });
+    expect(container).not.toHaveStyle({ color: 'black' });
     expect(container).not.toHaveStyle({ transform: [{ rotate: '45deg' }, { scale: 2 }] });
     expect(container).not.toHaveStyle({ transform: [{ rotate: '45deg' }] });
   });

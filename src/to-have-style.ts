@@ -73,7 +73,9 @@ export function toHaveStyle(
   const received = StyleSheet.flatten(elementStyle);
 
   return {
-    pass: this.equals(received, expected),
+    pass: Object.entries(expected).every(([prop, value]) =>
+      this.equals(received?.[prop as keyof typeof received], value),
+    ),
     message: () => {
       const matcher = `${this.isNot ? '.not' : ''}.toHaveStyle`;
       return [matcherHint(matcher, 'element', ''), expectedDiff(expected, received)].join('\n\n');
