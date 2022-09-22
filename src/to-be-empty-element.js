@@ -1,12 +1,8 @@
 import { matcherHint } from 'jest-matcher-utils';
 import { checkReactElement, isEmpty, printElement } from './utils';
 
-/**
- * @deprecated This function is deprecated. You should use `toBeEmptyElement`
- *
- * */
-export function toBeEmpty(element) {
-  checkReactElement(element, toBeEmpty, this);
+export function toBeEmptyElement(element) {
+  checkReactElement(element, toBeEmptyElement, this);
 
   return {
     pass: isEmpty(element?.props?.children),
