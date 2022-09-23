@@ -1,6 +1,5 @@
 import { toBeDisabled, toBeEnabled } from './to-be-disabled';
-import { toBeEmptyElement } from './to-be-empty-element';
-import { toBeEmpty } from './to-be-empty';
+import { toBeEmptyElement, toBeEmpty } from './to-be-empty-element';
 import { toHaveProp } from './to-have-prop';
 import { toHaveTextContent } from './to-have-text-content';
 import { toContainElement } from './to-contain-element';
@@ -10,7 +9,7 @@ export {
   toBeDisabled,
   toContainElement,
   toBeEmptyElement,
-  toBeEmpty,
+  toBeEmpty, // Deprecated
   toHaveProp,
   toHaveTextContent,
   toBeEnabled,

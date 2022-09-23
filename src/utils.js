@@ -109,6 +109,18 @@ function isEmpty(value) {
   return false;
 }
 
+const warned = {};
+
+export function printDeprecationWarning(functionName, message) {
+  if (warned[functionName]) {
+    return;
+  }
+
+  // eslint-disable-next-line no-console
+  console.warn(`Deprecation Warning:\n${message}`);
+  warned[functionName] = true;
+}
+
 export {
   ReactElementTypeError,
   checkReactElement,

@@ -176,6 +176,16 @@ const { getByTestId } = render(<View testID="empty" />);
 expect(getByTestId('empty')).toBeEmptyElement();
 ```
 
+---
+
+**NOTE**
+
+`toBeEmptyElement()` matcher has been renamed from `toBeEmpty()` because of the naming conflict with
+Jest Extended export with the
+[same name](https://github.com/jest-community/jest-extended#tobeempty).
+
+---
+
 ### `toContainElement`
 
 ```typescript
