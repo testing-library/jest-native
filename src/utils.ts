@@ -126,9 +126,9 @@ function isEmpty(value: unknown) {
   return false;
 }
 
-const warned = {};
+const warned: Record<string, boolean> = {};
 
-export function printDeprecationWarning(functionName, message) {
+export function printDeprecationWarning(functionName: string, message: string) {
   if (warned[functionName]) {
     return;
   }
