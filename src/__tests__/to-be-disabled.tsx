@@ -25,7 +25,7 @@ describe('.toBeDisabled', () => {
   Object.entries(ALLOWED_COMPONENTS).forEach(([name, Component]) => {
     test(`handle disabled prop for element ${name}`, () => {
       const { queryByTestId } = render(
-        // @ts-ignore how to type it?
+        //@ts-expect-error JSX element type 'Component' does not have any construct or call signatures.ts(2604)
         <Component disabled testID={name}>
           <TextInput />
         </Component>,
@@ -39,7 +39,7 @@ describe('.toBeDisabled', () => {
   Object.entries(ALLOWED_COMPONENTS).forEach(([name, Component]) => {
     test(`handle disabled in accessibilityState for element ${name}`, () => {
       const { queryByTestId } = render(
-        // @ts-ignore how to type it?
+        //@ts-expect-error JSX element type 'Component' does not have any construct or call signatures.ts(2604)
         <Component accessibilityState={{ disabled: true }} testID={name}>
           <TextInput />
         </Component>,
@@ -55,7 +55,7 @@ describe('.toBeEnabled', () => {
   Object.entries(ALLOWED_COMPONENTS).forEach(([name, Component]) => {
     test(`handle disabled prop for element ${name} when undefined`, () => {
       const { queryByTestId } = render(
-        // @ts-ignore how to type it?
+        //@ts-expect-error JSX element type 'Component' does not have any construct or call signatures.ts(2604)
         <Component testID={name}>
           <TextInput />
         </Component>,
@@ -69,7 +69,7 @@ describe('.toBeEnabled', () => {
   Object.entries(ALLOWED_COMPONENTS).forEach(([name, Component]) => {
     test(`handle disabled in accessibilityState for element ${name} when false`, () => {
       const { queryByTestId } = render(
-        // @ts-ignore how to type it?
+        //@ts-expect-error JSX element type 'Component' does not have any construct or call signatures.ts(2604)
         <Component accessibilityState={{ disabled: false }} testID={name}>
           <TextInput />
         </Component>,
