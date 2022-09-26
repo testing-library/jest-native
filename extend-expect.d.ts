@@ -6,6 +6,7 @@ declare global {
     interface Matchers<R, T> {
       toBeDisabled(): R;
       toContainElement(element: ReactTestInstance | null): R;
+      /** @deprecated This function has been renamed to `toBeEmptyElement`. */
       toBeEmpty(): R;
       toBeEmptyElement(): R;
       toHaveProp(attr: string, value?: any): R;
