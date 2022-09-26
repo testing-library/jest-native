@@ -18,7 +18,7 @@ export function toBeEmptyElement(element) {
 }
 
 /**
- * @deprecated This function is deprecated. You should use `toBeEmptyElement`
+ * @deprecated This function has been renamed to `toBeEmptyElement`.
  *
  * */
 export function toBeEmpty(element) {
