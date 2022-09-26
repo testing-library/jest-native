@@ -20,7 +20,7 @@
     "typescript": "tsc -noEmit"
   },
   "files": [
-    "dist",
+    "build",
     "extend-expect.js",
     "extend-expect.d.ts"
   ],
