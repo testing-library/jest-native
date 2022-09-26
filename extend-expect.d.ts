@@ -6,11 +6,14 @@ declare global {
     interface Matchers<R, T> {
       toBeDisabled(): R;
       toContainElement(element: ReactTestInstance | null): R;
-      toBeEmpty(): R;
+      toBeEmptyElement(): R;
       toHaveProp(attr: string, value?: any): R;
       toHaveTextContent(text: string | RegExp, options?: { normalizeWhitespace: boolean }): R;
       toBeEnabled(): R;
       toHaveStyle(style: object[] | object): R;
+
+      /** @deprecated This function has been renamed to `toBeEmptyElement`. */
+      toBeEmpty(): R;
     }
   }
 }

@@ -42,7 +42,7 @@
 - [Matchers](#matchers)
   - [`toBeDisabled`](#tobedisabled)
   - [`toBeEnabled`](#tobeenabled)
-  - [`toBeEmpty`](#tobeempty)
+  - [`toBeEmptyElement`](#tobeemptyelement)
   - [`toContainElement`](#tocontainelement)
   - [`toHaveProp`](#tohaveprop)
   - [`toHaveTextContent`](#tohavetextcontent)
@@ -98,9 +98,9 @@ Alternatively, you can selectively import only the matchers you intend to use, a
 `expect` yourself:
 
 ```javascript
-import { toBeEmpty, toHaveTextContent } from '@testing-library/jest-native';
+import { toBeEmptyElement, toHaveTextContent } from '@testing-library/jest-native';
 
-expect.extend({ toBeEmpty, toHaveTextContent });
+expect.extend({ toBeEmptyElement, toHaveTextContent });
 ```
 
 ## Matchers
@@ -160,10 +160,10 @@ expect(getByTestId('button')).toBeEnabled();
 expect(getByTestId('input')).toBeEnabled();
 ```
 
-### `toBeEmpty`
+### `toBeEmptyElement`
 
 ```javascript
-toBeEmpty();
+toBeEmptyElement();
 ```
 
 Check that the given element has no content.
@@ -173,8 +173,18 @@ Check that the given element has no content.
 ```javascript
 const { getByTestId } = render(<View testID="empty" />);
 
-expect(getByTestId('empty')).toBeEmpty();
+expect(getByTestId('empty')).toBeEmptyElement();
 ```
+
+---
+
+**NOTE**
+
+`toBeEmptyElement()` matcher has been renamed from `toBeEmpty()` because of the naming conflict with
+Jest Extended export with the
+[same name](https://github.com/jest-community/jest-extended#tobeempty).
+
+---
 
 ### `toContainElement`
 
