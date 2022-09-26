@@ -4,7 +4,7 @@ describe('checkReactElement', () => {
   test('it does not throw an error for valid native primitives', () => {
     expect(() => {
       // @ts-expect-error Argument of type '{ type: "text"; }' is not assignable to parameter of type 'ReactTestInstance'. Type '{ type: "text"; }' is missing the following properties from type 'ReactTestInstance': instance, props, parent, children, and 6 more.ts(2345)
-      checkReactElement({ type: 'text' }, () => {}, null);
+      checkReactElement({ type: 'Text' }, () => {}, null);
     }).not.toThrow();
   });
 
@@ -18,7 +18,7 @@ describe('checkReactElement', () => {
   test('it does throw an error for invalid native primitives', () => {
     expect(() => {
       // @ts-expect-error Argument of type '{ type: "button"; }' is not assignable to parameter of type 'ReactTestInstance'. Type '{ type: "button"; }' is missing the following properties from type 'ReactTestInstance': instance, props, parent, children, and 6 more.ts(2345)
-      checkReactElement({ type: 'button' }, () => {}, null);
+      checkReactElement({ type: 'Button' }, () => {}, null);
     }).toThrow();
   });
 });
