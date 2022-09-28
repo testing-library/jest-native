@@ -12,7 +12,6 @@
     "readme:toc": "doctoc README.md --maxlevel 3 --title '## Table of Contents'",
     "test": "jest --colors",
     "lint": "eslint .",
-    "pretty-quick": "pretty-quick --staged",
     "prepublishOnly": "rm -rf dist && tsc -p tsconfig.prod.json",
     "semantic-release": "semantic-release",
     "test:coverage": "jest --coverage --colors",
@@ -20,7 +19,7 @@
     "typecheck": "tsc -noEmit"
   },
   "files": [
-    "build",
+    "dist",
     "extend-expect.js",
     "extend-expect.d.ts"
   ],

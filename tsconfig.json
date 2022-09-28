@@ -11,7 +11,7 @@
     "moduleResolution": "node",
     "declaration": true,
     "noEmit": false,
-    "outDir": "build"
+    "outDir": "dist"
   },
   "files": ["./extend-expect.d.ts"],
   "exclude": ["node_modules", "android", "ios"],
