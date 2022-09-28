@@ -6,7 +6,7 @@ declare global {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface Matchers<R, T> {
       toBeDisabled(): R;
-      toContainElement(element: ReactTestInstance | null | undefined): R;
+      toContainElement(element: ReactTestInstance | null): R;
       toBeEmptyElement(): R;
       toHaveProp(attr: string, value?: unknown): R;
       toHaveTextContent(text: string | RegExp, options?: { normalizeWhitespace: boolean }): R;
