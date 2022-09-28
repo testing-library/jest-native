@@ -1,6 +1,6 @@
 import type { ReactTestInstance } from 'react-test-renderer';
 import { matcherHint } from 'jest-matcher-utils';
-import { checkReactElement, printElement } from './utils';
+import { checkReactElement, getType, printElement } from './utils';
 
 // Elements that support 'disabled'
 const DISABLE_TYPES = [
@@ -17,9 +17,8 @@ const DISABLE_TYPES = [
   'Pressable',
 ];
 
-function isElementDisabled(element: ReactTestInstance | null | undefined) {
-  if (!element) return false;
-  if (!DISABLE_TYPES.includes(element.type.toString())) return false;
+function isElementDisabled(element: ReactTestInstance) {
+  if (!DISABLE_TYPES.includes(getType(element))) return false;
 
   return (
     !!element?.props?.disabled ||
@@ -28,11 +27,9 @@ function isElementDisabled(element: ReactTestInstance | null | undefined) {
   );
 }
 
-function isAncestorDisabled(element: ReactTestInstance | null | undefined): boolean {
-  if (element == null) return false;
+function isAncestorDisabled(element: ReactTestInstance): boolean {
   const parent = element.parent;
-
-  return Boolean(parent) && (isElementDisabled(element) || isAncestorDisabled(parent));
+  return parent != null && (isElementDisabled(element) || isAncestorDisabled(parent));
 }
 
 export function toBeDisabled(this: jest.MatcherContext, element: ReactTestInstance) {

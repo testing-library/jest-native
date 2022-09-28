@@ -68,6 +68,11 @@ function checkReactElement(
   }
 }
 
+function getType({ type }: ReactTestInstance) {
+  // @ts-expect-error: ReactTestInstance contains too loose typing
+  return type.displayName || type.name || type;
+}
+
 function printElement(element: ReactTestInstance | null | undefined) {
   if (!element) return '';
   return `  ${prettyFormat(
@@ -141,6 +146,7 @@ export function printDeprecationWarning(functionName: string, message: string) {
 export {
   ReactElementTypeError,
   checkReactElement,
+  getType,
   getMessage,
   matches,
   normalize,
