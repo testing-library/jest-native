@@ -17,7 +17,7 @@
     "semantic-release": "semantic-release",
     "test:coverage": "jest --coverage --colors",
     "test:watch": "jest --watch --coverage",
-    "typescript": "tsc -noEmit"
+    "typecheck": "tsc -noEmit"
   },
   "files": [
     "build",
