@@ -57,7 +57,7 @@ function checkReactElement(
   element: ReactTestInstance | null | undefined,
   matcherFn: jest.CustomMatcher,
   context: jest.MatcherContext,
-) {
+): asserts element is ReactTestInstance {
   if (!element) {
     throw new ReactElementTypeError(element, matcherFn, context);
   }

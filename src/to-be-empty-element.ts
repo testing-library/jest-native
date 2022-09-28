@@ -2,10 +2,7 @@ import { matcherHint } from 'jest-matcher-utils';
 import type { ReactTestInstance } from 'react-test-renderer';
 import { checkReactElement, isEmpty, printDeprecationWarning, printElement } from './utils';
 
-export function toBeEmptyElement(
-  this: jest.MatcherContext,
-  element: ReactTestInstance | null | undefined,
-) {
+export function toBeEmptyElement(this: jest.MatcherContext, element: ReactTestInstance) {
   checkReactElement(element, toBeEmptyElement, this);
 
   return {
@@ -23,12 +20,8 @@ export function toBeEmptyElement(
 
 /**
  * @deprecated This function has been renamed to `toBeEmptyElement`.
- *
- * */
-export function toBeEmpty(
-  this: jest.MatcherContext,
-  element: ReactTestInstance | null | undefined,
-) {
+ */
+export function toBeEmpty(this: jest.MatcherContext, element: ReactTestInstance) {
   printDeprecationWarning(
     'toBeEmpty',
     `"toBeEmpty()" matcher has been renamed to "toBeEmptyElement()". Old name will be deleted in future versions of @testing-library/jest-native.`,

@@ -5,7 +5,7 @@ import { checkReactElement, printElement } from './utils';
 export function toContainElement(
   this: jest.MatcherContext,
   container: ReactTestInstance,
-  element: ReactTestInstance | null | undefined,
+  element: ReactTestInstance | null,
 ) {
   checkReactElement(container, toContainElement, this);
 

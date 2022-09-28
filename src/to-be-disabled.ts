@@ -35,10 +35,7 @@ function isAncestorDisabled(element: ReactTestInstance | null | undefined): bool
   return Boolean(parent) && (isElementDisabled(element) || isAncestorDisabled(parent));
 }
 
-export function toBeDisabled(
-  this: jest.MatcherContext,
-  element: ReactTestInstance | null | undefined,
-) {
+export function toBeDisabled(this: jest.MatcherContext, element: ReactTestInstance) {
   checkReactElement(element, toBeDisabled, this);
 
   const isDisabled = isElementDisabled(element) || isAncestorDisabled(element);
@@ -57,10 +54,7 @@ export function toBeDisabled(
   };
 }
 
-export function toBeEnabled(
-  this: jest.MatcherContext,
-  element: ReactTestInstance | null | undefined,
-) {
+export function toBeEnabled(this: jest.MatcherContext, element: ReactTestInstance) {
   checkReactElement(element, toBeEnabled, this);
 
   const isEnabled = !(isElementDisabled(element) || isAncestorDisabled(element));
