@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
 import type { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import type { ReactTestInstance } from 'react-test-renderer';
+import { StyleSheet } from 'react-native';
 import { matcherHint } from 'jest-matcher-utils';
 import { diff } from 'jest-diff';
 import chalk from 'chalk';

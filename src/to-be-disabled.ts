@@ -1,5 +1,5 @@
-import { matcherHint } from 'jest-matcher-utils';
 import type { ReactTestInstance } from 'react-test-renderer';
+import { matcherHint } from 'jest-matcher-utils';
 import { checkReactElement, printElement } from './utils';
 
 // Elements that support 'disabled'

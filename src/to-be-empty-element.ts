@@ -1,5 +1,5 @@
-import { matcherHint } from 'jest-matcher-utils';
 import type { ReactTestInstance } from 'react-test-renderer';
+import { matcherHint } from 'jest-matcher-utils';
 import { checkReactElement, isEmpty, printDeprecationWarning, printElement } from './utils';
 
 export function toBeEmptyElement(this: jest.MatcherContext, element: ReactTestInstance) {
