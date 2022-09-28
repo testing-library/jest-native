@@ -6,22 +6,21 @@ import type { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { checkReactElement, display } from './utils';
 
-type Styles = TextStyle | ViewStyle | ImageStyle;
-type StyleParameter = StyleProp<Styles>;
+type Style = TextStyle | ViewStyle | ImageStyle;
 
 const getKeys = Object.keys as <T extends object>(obj: T) => Array<keyof T>;
 
-function printoutStyles(styles: Styles) {
-  return getKeys(styles)
+function printoutStyles(style: Style) {
+  return getKeys(style)
     .sort()
-    .map((prop) => `${prop}: ${display(styles[prop])};`)
+    .map((prop) => `${prop}: ${display(style[prop])};`)
     .join('\n');
 }
 
 /**
  * Recursively narrows down the properties in received to those with counterparts in expected
  */
-function narrow(expected: Styles, received: Styles) {
+function narrow(expected: Style, received: Style) {
   return getKeys(received)
     .filter((prop) => expected[prop])
     .reduce((obj, prop) => {
@@ -43,7 +42,7 @@ function narrow(expected: Styles, received: Styles) {
 
 // Highlights only style rules that were expected but were not found in the
 // received computed styles
-function expectedDiff(expected: Styles, received: Styles) {
+function expectedDiff(expected: Style, received: Style) {
   const receivedNarrow = narrow(expected, received);
 
   const diffOutput = diff(printoutStyles(expected), printoutStyles(receivedNarrow));
@@ -57,14 +56,12 @@ function expectedDiff(expected: Styles, received: Styles) {
 export function toHaveStyle(
   this: jest.MatcherContext,
   element: ReactTestInstance,
-  style: StyleParameter,
+  style: StyleProp<Style>,
 ) {
   checkReactElement(element, toHaveStyle, this);
 
-  const elementStyle = (element.props.style ?? {}) as StyleParameter;
-
   const expected = StyleSheet.flatten(style);
-  const received = StyleSheet.flatten(elementStyle);
+  const received = StyleSheet.flatten(element.props.style);
 
   return {
     pass: Object.entries(expected).every(([prop, value]) =>
