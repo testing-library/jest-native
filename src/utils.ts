@@ -26,11 +26,7 @@ const VALID_ELEMENTS = [
 ];
 
 class ReactElementTypeError extends Error {
-  constructor(
-    received: ReactTestInstance | null | undefined,
-    matcherFn: jest.CustomMatcher,
-    context: jest.MatcherContext,
-  ) {
+  constructor(received: unknown, matcherFn: jest.CustomMatcher, context: jest.MatcherContext) {
     super();
 
     /* istanbul ignore next */
@@ -43,6 +39,7 @@ class ReactElementTypeError extends Error {
     } catch (e) {
       // Deliberately empty.
     }
+
     /* istanbul ignore next */
     this.message = [
       matcherHint(`${context.isNot ? '.not' : ''}.${matcherFn.name}`, 'received', ''),
@@ -62,7 +59,7 @@ function checkReactElement(
     throw new ReactElementTypeError(element, matcherFn, context);
   }
 
-  // @ts-expect-error not sure where to get this fiber property
+  // @ts-expect-error internal _fiber property of ReactTestInstance
   if (!element._fiber && !VALID_ELEMENTS.includes(element.type.toString())) {
     throw new ReactElementTypeError(element, matcherFn, context);
   }
@@ -73,8 +70,11 @@ function getType({ type }: ReactTestInstance) {
   return type.displayName || type.name || type;
 }
 
-function printElement(element: ReactTestInstance | null | undefined) {
-  if (!element) return '';
+function printElement(element: ReactTestInstance | null) {
+  if (element == null) {
+    return 'null';
+  }
+
   return `  ${prettyFormat(
     { props: element.props },
     {
@@ -152,5 +152,4 @@ export {
   normalize,
   isEmpty,
   printElement,
-  display,
 };

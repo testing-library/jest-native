@@ -7,15 +7,14 @@ function collectNormalizedText(element: ReactTestInstance) {
   return normalize(childrenText);
 }
 
-function collectChildrenText(element: string | ReactTestInstance): string[] {
+function collectChildrenText(element: ReactTestInstance | string): string[] {
   if (typeof element === 'string') return [element];
-  if (!element || !element.children) return [''];
+  if (!element || !element.children) return [];
 
-  let result: string[] = [];
-
-  for (const child of element.children) {
-    result = result.concat(collectChildrenText(child));
-  }
+  const result: string[] = [];
+  element.children.forEach((child) => {
+    result.push(...collectChildrenText(child));
+  });
 
   return result;
 }
