@@ -52,8 +52,8 @@ export function toHaveStyle(
 ) {
   checkReactElement(element, toHaveStyle, this);
 
-  const expected = StyleSheet.flatten(style) as StyleLike;
-  const received = StyleSheet.flatten(element.props.style) as StyleLike;
+  const expected = (StyleSheet.flatten(style) ?? {}) as StyleLike;
+  const received = (StyleSheet.flatten(element.props.style) ?? {}) as StyleLike;
 
   return {
     pass: Object.entries(expected).every(([prop, value]) => this.equals(received?.[prop], value)),
