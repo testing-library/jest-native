@@ -54,7 +54,7 @@ export function toBeDisabled(this: jest.MatcherContext, element: ReactTestInstan
 export function toBeEnabled(this: jest.MatcherContext, element: ReactTestInstance) {
   checkReactElement(element, toBeEnabled, this);
 
-  const isEnabled = !isElementDisabled(element);
+  const isEnabled = !isElementDisabled(element) && !isAncestorDisabled(element);
 
   return {
     pass: isEnabled,
