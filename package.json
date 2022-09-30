@@ -34,7 +34,7 @@
     "jest-diff": "^29.0.1",
     "jest-matcher-utils": "^29.0.1",
     "pretty-format": "^29.0.3",
-    "redent": "^3.0.0"
+    "redent": "^4.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.18.10",
