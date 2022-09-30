@@ -1,16 +1,21 @@
+import type { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
+import type { ReactTestInstance } from 'react-test-renderer';
 import { StyleSheet } from 'react-native';
 import { matcherHint } from 'jest-matcher-utils';
 import { diff } from 'jest-diff';
 import chalk from 'chalk';
 import { checkReactElement } from './utils';
 
-function printoutStyles(styles) {
-  return Object.keys(styles)
+type Style = TextStyle | ViewStyle | ImageStyle;
+type StyleLike = Record<string, unknown>;
+
+function printoutStyles(style: StyleLike) {
+  return Object.keys(style)
     .sort()
     .map((prop) =>
-      Array.isArray(styles[prop])
-        ? `${prop}: ${JSON.stringify(styles[prop], null, 2)};`
-        : `${prop}: ${styles[prop]};`,
+      Array.isArray(style[prop])
+        ? `${prop}: ${JSON.stringify(style[prop], null, 2)};`
+        : `${prop}: ${style[prop]};`,
     )
     .join('\n');
 }
@@ -18,7 +23,7 @@ function printoutStyles(styles) {
 /**
  * Narrows down the properties in received to those with counterparts in expected
  */
-function narrow(expected, received) {
+function narrow(expected: StyleLike, received: StyleLike) {
   return Object.keys(received)
     .filter((prop) => expected[prop])
     .reduce(
@@ -32,21 +37,23 @@ function narrow(expected, received) {
 
 // Highlights only style rules that were expected but were not found in the
 // received computed styles
-function expectedDiff(expected, elementStyles) {
-  const received = narrow(expected, elementStyles);
+function expectedDiff(expected: StyleLike, received: StyleLike) {
+  const receivedNarrow = narrow(expected, received);
 
-  const diffOutput = diff(printoutStyles(expected), printoutStyles(received));
+  const diffOutput = diff(printoutStyles(expected), printoutStyles(receivedNarrow));
   // Remove the "+ Received" annotation because this is a one-way diff
-  return diffOutput.replace(`${chalk.red('+ Received')}\n`, '');
+  return diffOutput?.replace(`${chalk.red('+ Received')}\n`, '') ?? '';
 }
 
-export function toHaveStyle(element, style) {
+export function toHaveStyle(
+  this: jest.MatcherContext,
+  element: ReactTestInstance,
+  style: StyleProp<Style>,
+) {
   checkReactElement(element, toHaveStyle, this);
 
-  const elementStyle = element.props.style ?? {};
-
-  const expected = Array.isArray(style) ? StyleSheet.flatten(style) : style;
-  const received = Array.isArray(elementStyle) ? StyleSheet.flatten(elementStyle) : elementStyle;
+  const expected = (StyleSheet.flatten(style) ?? {}) as StyleLike;
+  const received = (StyleSheet.flatten(element.props.style) ?? {}) as StyleLike;
 
   return {
     pass: Object.entries(expected).every(([prop, value]) => this.equals(received?.[prop], value)),

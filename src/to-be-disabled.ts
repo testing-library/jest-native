@@ -1,3 +1,4 @@
+import type { ReactTestInstance } from 'react-test-renderer';
 import { matcherHint } from 'jest-matcher-utils';
 import { checkReactElement, getType, printElement } from './utils';
 
@@ -16,11 +17,7 @@ const DISABLE_TYPES = [
   'Pressable',
 ];
 
-function isElementDisabledByParent(parent) {
-  return isElementDisabled(parent);
-}
-
-function isElementDisabled(element) {
+function isElementDisabled(element: ReactTestInstance) {
   if (!DISABLE_TYPES.includes(getType(element))) return false;
 
   return (
@@ -30,15 +27,12 @@ function isElementDisabled(element) {
   );
 }
 
-function isAncestorDisabled(element) {
+function isAncestorDisabled(element: ReactTestInstance): boolean {
   const parent = element.parent;
-
-  return (
-    Boolean(parent) && (isElementDisabledByParent(element, parent) || isAncestorDisabled(parent))
-  );
+  return parent != null && (isElementDisabled(element) || isAncestorDisabled(parent));
 }
 
-export function toBeDisabled(element) {
+export function toBeDisabled(this: jest.MatcherContext, element: ReactTestInstance) {
   checkReactElement(element, toBeDisabled, this);
 
   const isDisabled = isElementDisabled(element) || isAncestorDisabled(element);
@@ -57,10 +51,10 @@ export function toBeDisabled(element) {
   };
 }
 
-export function toBeEnabled(element) {
-  checkReactElement(element, toBeDisabled, this);
+export function toBeEnabled(this: jest.MatcherContext, element: ReactTestInstance) {
+  checkReactElement(element, toBeEnabled, this);
 
-  const isEnabled = !isElementDisabled(element);
+  const isEnabled = !isElementDisabled(element) && !isAncestorDisabled(element);
 
   return {
     pass: isEnabled,

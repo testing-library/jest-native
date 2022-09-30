@@ -4,8 +4,8 @@ import { render } from '@testing-library/react-native';
 
 test('.toHaveProp', () => {
   const { queryByTestId } = render(
-    <View accessibilityLabel={null} testID="view">
-      <Text allowFontScaling={false} testID="text" editable={false}>
+    <View style={null} testID="view">
+      <Text allowFontScaling={false} testID="text" ellipsizeMode="head">
         text
       </Text>
       <Button disabled testID="button" title="ok" />
@@ -13,11 +13,11 @@ test('.toHaveProp', () => {
   );
 
   expect(queryByTestId('button')).toHaveProp('accessibilityState', { disabled: true });
-  expect(queryByTestId('text')).toHaveProp('editable', false);
+  expect(queryByTestId('text')).toHaveProp('ellipsizeMode', 'head');
   expect(queryByTestId('text')).toHaveProp('allowFontScaling', false);
 
   expect(queryByTestId('button')).not.toHaveProp('accessibilityStates');
-  expect(queryByTestId('button')).not.toHaveProp('editable', false);
+  expect(queryByTestId('button')).not.toHaveProp('ellipsizeMode', undefined);
   expect(queryByTestId('button')).not.toHaveProp('allowFontScaling', false);
   expect(queryByTestId('text')).not.toHaveProp('style');
 
@@ -30,5 +30,5 @@ test('.toHaveProp', () => {
     expect(queryByTestId('text')).toHaveProp('allowFontScaling', 'wrongValue'),
   ).toThrow();
 
-  expect(queryByTestId('view')).toHaveProp('accessibilityLabel', null);
+  expect(queryByTestId('view')).toHaveProp('style', null);
 });

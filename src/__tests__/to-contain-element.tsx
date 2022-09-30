@@ -47,13 +47,21 @@ test('.toContainElement negative test cases', () => {
   expect(() => expect(nonExistantElement).toContainElement(grandparent)).toThrow();
   expect(() => expect(grandparent).toContainElement(nonExistantElement)).toThrow();
   expect(() => expect(nonExistantElement).toContainElement(nonExistantElement)).toThrow();
+
+  // @ts-expect-error intentionally passing incorrect type
   expect(() => expect(nonExistantElement).toContainElement(fakeElement)).toThrow();
   expect(() => expect(fakeElement).toContainElement(nonExistantElement)).toThrow();
   expect(() => expect(fakeElement).not.toContainElement(nonExistantElement)).toThrow();
   expect(() => expect(fakeElement).toContainElement(grandparent)).toThrow();
+
+  // @ts-expect-error intentionally passing incorrect type
   expect(() => expect(grandparent).toContainElement(fakeElement)).toThrow();
+
+  // @ts-expect-error intentionally passing incorrect type
   expect(() => expect(fakeElement).toContainElement(fakeElement)).toThrow();
   expect(() => expect(grandparent).not.toContainElement(child)).toThrow();
   expect(() => expect(grandparent).not.toContainElement(textElement)).toThrow();
+
+  // @ts-expect-error intentionally passing incorrect type
   expect(() => expect(grandparent).not.toContainElement(undefined)).toThrow();
 });

@@ -7,7 +7,6 @@ describe('.toHaveTextContent', () => {
     const { queryByTestId } = render(<Text testID="count-value">2</Text>);
 
     expect(queryByTestId('count-value')).toHaveTextContent('2');
-    expect(queryByTestId('count-value')).toHaveTextContent(2);
     expect(queryByTestId('count-value')).toHaveTextContent(/2/);
     expect(queryByTestId('count-value')).not.toHaveTextContent('21');
   });
@@ -73,7 +72,7 @@ describe('.toHaveTextContent', () => {
   });
 
   test('can handle multiple levels with no explicit children prop', () => {
-    const NoChildren = ({ text }) => <Text>{text}</Text>;
+    const NoChildren = ({ text }: { text: string }) => <Text>{text}</Text>;
     const answer = 'Answer';
     const { container } = render(
       <View>

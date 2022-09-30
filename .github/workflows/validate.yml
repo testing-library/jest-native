@@ -29,6 +29,9 @@ jobs:
       - name: ▶️ Run linter
         run: yarn lint
 
+      - name: ▶️ Run typecheck
+        run: yarn typecheck
+
       - name: ▶️ Run tests with coverage
         run: yarn test:coverage
 

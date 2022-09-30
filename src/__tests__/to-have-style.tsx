@@ -4,7 +4,7 @@ import { render } from '@testing-library/react-native';
 
 describe('.toHaveStyle', () => {
   test('handles positive test cases', () => {
-    const styles = StyleSheet.create({ container: { color: 'white' } });
+    const styles = StyleSheet.create({ container: { borderBottomColor: 'white' } });
     const { getByTestId } = render(
       <View
         testID="container"
@@ -29,7 +29,7 @@ describe('.toHaveStyle', () => {
     expect(container).toHaveStyle([{ backgroundColor: 'blue' }, { height: '100%' }]);
     expect(container).toHaveStyle({ backgroundColor: 'blue' });
     expect(container).toHaveStyle({ height: '100%' });
-    expect(container).toHaveStyle({ color: 'white' });
+    expect(container).toHaveStyle({ borderBottomColor: 'white' });
     expect(container).toHaveStyle({ width: '50%' });
     expect(container).toHaveStyle([[{ width: '50%' }]]);
     expect(container).toHaveStyle({ transform: [{ scale: 2 }, { rotate: '45deg' }] });
@@ -41,7 +41,7 @@ describe('.toHaveStyle', () => {
         testID="container"
         style={{
           backgroundColor: 'blue',
-          color: 'black',
+          borderBottomColor: 'black',
           height: '100%',
           transform: [{ scale: 2 }, { rotate: '45deg' }],
         }}
@@ -54,8 +54,8 @@ describe('.toHaveStyle', () => {
     expect(() =>
       expect(container).toHaveStyle({ backgroundColor: 'blue', transform: [{ scale: 1 }] }),
     ).toThrowErrorMatchingSnapshot();
-    expect(() => expect(container).toHaveStyle({ fontWeight: 'bold' })).toThrow();
-    expect(() => expect(container).not.toHaveStyle({ color: 'black' })).toThrow();
+    expect(container).not.toHaveStyle({ fontWeight: 'bold' });
+    expect(container).not.toHaveStyle({ color: 'black' });
     expect(container).not.toHaveStyle({ transform: [{ rotate: '45deg' }, { scale: 2 }] });
     expect(container).not.toHaveStyle({ transform: [{ rotate: '45deg' }] });
   });
