@@ -1,6 +1,5 @@
 name: validate
 on:
-  push: {}
   pull_request: {}
 
 jobs:
