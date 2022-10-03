@@ -1,19 +1,20 @@
+import { Modal, StyleSheet } from 'react-native';
 import { matcherHint } from 'jest-matcher-utils';
-import { mergeAll } from 'ramda';
+import type { ReactTestInstance } from 'react-test-renderer';
 
 import { checkReactElement, printElement } from './utils';
 
-function isStyleVisible(element) {
+function isStyleVisible(element: ReactTestInstance) {
   const style = element.props.style || {};
-  const { display = 'flex', opacity = 1 } = Array.isArray(style) ? mergeAll(style) : style;
+  const { display, opacity } = StyleSheet.flatten(style);
   return display !== 'none' && opacity !== 0;
 }
 
-function isAttributeVisible(element) {
-  return element.type !== 'Modal' || element.props.visible !== false;
+function isAttributeVisible(element: ReactTestInstance) {
+  return element.type !== Modal || element.props.visible !== false;
 }
 
-function isElementVisible(element) {
+function isElementVisible(element: ReactTestInstance): boolean {
   return (
     isStyleVisible(element) &&
     isAttributeVisible(element) &&
@@ -21,7 +22,7 @@ function isElementVisible(element) {
   );
 }
 
-export function toBeVisible(element) {
+export function toBeVisible(this: jest.MatcherContext, element: ReactTestInstance) {
   checkReactElement(element, toBeVisible, this);
   const isVisible = isElementVisible(element);
   return {
