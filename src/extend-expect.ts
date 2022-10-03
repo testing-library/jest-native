@@ -1,18 +1,19 @@
 import { toBeDisabled, toBeEnabled } from './to-be-disabled';
-import { toBeEmpty } from './to-be-empty';
-import { toHaveProp } from './to-have-prop';
-import { toHaveTextContent } from './to-have-text-content';
+import { toBeEmptyElement, toBeEmpty } from './to-be-empty-element';
 import { toContainElement } from './to-contain-element';
+import { toHaveProp } from './to-have-prop';
 import { toHaveStyle } from './to-have-style';
+import { toHaveTextContent } from './to-have-text-content';
 import { toBeVisible } from './to-be-visible';
 
-export {
+expect.extend({
   toBeDisabled,
-  toContainElement,
-  toBeEmpty,
-  toHaveProp,
-  toHaveTextContent,
   toBeEnabled,
+  toBeEmptyElement,
+  toBeEmpty, // Deprecated
+  toContainElement,
+  toHaveProp,
   toHaveStyle,
+  toHaveTextContent,
   toBeVisible,
-};
+});

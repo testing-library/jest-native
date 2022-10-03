@@ -8,6 +8,7 @@ import {
   stringify,
 } from 'jest-matcher-utils';
 import prettyFormat, { plugins } from 'pretty-format';
+import type { ReactTestInstance } from 'react-test-renderer';
 
 const { ReactTestComponent, ReactElement } = plugins;
 
@@ -25,7 +26,7 @@ const VALID_ELEMENTS = [
 ];
 
 class ReactElementTypeError extends Error {
-  constructor(received, matcherFn, context) {
+  constructor(received: unknown, matcherFn: jest.CustomMatcher, context: jest.MatcherContext) {
     super();
 
     /* istanbul ignore next */
@@ -38,6 +39,7 @@ class ReactElementTypeError extends Error {
     } catch (e) {
       // Deliberately empty.
     }
+
     /* istanbul ignore next */
     this.message = [
       matcherHint(`${context.isNot ? '.not' : ''}.${matcherFn.name}`, 'received', ''),
@@ -48,19 +50,33 @@ class ReactElementTypeError extends Error {
   }
 }
 
-function checkReactElement(element, ...args) {
-  if (!VALID_ELEMENTS.includes(element.type) && !element._fiber) {
-    throw new ReactElementTypeError(element, ...args);
+function checkReactElement(
+  element: ReactTestInstance | null | undefined,
+  matcherFn: jest.CustomMatcher,
+  context: jest.MatcherContext,
+): asserts element is ReactTestInstance {
+  if (!element) {
+    throw new ReactElementTypeError(element, matcherFn, context);
+  }
+
+  // @ts-expect-error internal _fiber property of ReactTestInstance
+  if (!element._fiber && !VALID_ELEMENTS.includes(element.type.toString())) {
+    throw new ReactElementTypeError(element, matcherFn, context);
   }
 }
 
-function getType({ type }) {
+function getType({ type }: ReactTestInstance) {
+  // @ts-expect-error: ReactTestInstance contains too loose typing
   return type.displayName || type.name || type;
 }
 
-function printElement({ props }) {
+function printElement(element: ReactTestInstance | null) {
+  if (element == null) {
+    return 'null';
+  }
+
   return `  ${prettyFormat(
-    { props },
+    { props: element.props },
     {
       plugins: [ReactTestComponent, ReactElement],
       printFunctionName: false,
@@ -69,11 +85,17 @@ function printElement({ props }) {
   )}`;
 }
 
-function display(value) {
+function display(value: unknown) {
   return typeof value === 'string' ? value : stringify(value);
 }
 
-function getMessage(matcher, expectedLabel, expectedValue, receivedLabel, receivedValue) {
+function getMessage(
+  matcher: string,
+  expectedLabel: string,
+  expectedValue: string | RegExp,
+  receivedLabel: string,
+  receivedValue: string | null,
+) {
   return [
     `${matcher}\n`,
     `${expectedLabel}:\n${expectedColor(redent(display(expectedValue), 2))}`,
@@ -81,23 +103,19 @@ function getMessage(matcher, expectedLabel, expectedValue, receivedLabel, receiv
   ].join('\n');
 }
 
-function matches(textToMatch, matcher) {
+function matches(textToMatch: string, matcher: string | RegExp) {
   if (matcher instanceof RegExp) {
     return matcher.test(textToMatch);
-  } else {
-    return textToMatch.includes(String(matcher));
   }
+
+  return textToMatch.includes(matcher);
 }
 
-function normalize(text) {
+function normalize(text: string) {
   return text.replace(/\s+/g, ' ').trim();
 }
 
-function mergeAll(objects) {
-  return Object.assign({}, ...(objects ?? [{}]));
-}
-
-function isEmpty(value) {
+function isEmpty(value: unknown) {
   if (!value) {
     return true;
   }
@@ -113,6 +131,18 @@ function isEmpty(value) {
   return false;
 }
 
+const warned: Record<string, boolean> = {};
+
+export function printDeprecationWarning(functionName: string, message: string) {
+  if (warned[functionName]) {
+    return;
+  }
+
+  // eslint-disable-next-line no-console
+  console.warn(`Deprecation Warning:\n${message}`);
+  warned[functionName] = true;
+}
+
 export {
   ReactElementTypeError,
   checkReactElement,
@@ -120,7 +150,6 @@ export {
   getMessage,
   matches,
   normalize,
-  mergeAll,
   isEmpty,
   printElement,
 };

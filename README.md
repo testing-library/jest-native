@@ -42,7 +42,7 @@
 - [Matchers](#matchers)
   - [`toBeDisabled`](#tobedisabled)
   - [`toBeEnabled`](#tobeenabled)
-  - [`toBeEmpty`](#tobeempty)
+  - [`toBeEmptyElement`](#tobeemptyelement)
   - [`toContainElement`](#tocontainelement)
   - [`toHaveProp`](#tohaveprop)
   - [`toHaveTextContent`](#tohavetextcontent)
@@ -99,9 +99,9 @@ Alternatively, you can selectively import only the matchers you intend to use, a
 `expect` yourself:
 
 ```javascript
-import { toBeEmpty, toHaveTextContent } from '@testing-library/jest-native';
+import { toBeEmptyElement, toHaveTextContent } from '@testing-library/jest-native';
 
-expect.extend({ toBeEmpty, toHaveTextContent });
+expect.extend({ toBeEmptyElement, toHaveTextContent });
 ```
 
 ## Matchers
@@ -128,7 +128,7 @@ React Native [0.62](https://reactnative.dev/blog/2020/03/26/version-0.62#breakin
 ```javascript
 const { getByTestId } = render(
   <View>
-    <Button disabled testID="button" title="submit" onPress={e => e} />
+    <Button disabled testID="button" title="submit" onPress={(e) => e} />
     <TextInput accessibilityState={{ disabled: true }} testID="input" value="text" />
   </View>,
 );
@@ -152,7 +152,7 @@ Works similarly to `expect().not.toBeDisabled()`.
 ```javascript
 const { getByTestId } = render(
   <View>
-    <Button testID="button" title="submit" onPress={e => e} />
+    <Button testID="button" title="submit" onPress={(e) => e} />
     <TextInput testID="input" value="text" />
   </View>,
 );
@@ -161,10 +161,10 @@ expect(getByTestId('button')).toBeEnabled();
 expect(getByTestId('input')).toBeEnabled();
 ```
 
-### `toBeEmpty`
+### `toBeEmptyElement`
 
 ```javascript
-toBeEmpty();
+toBeEmptyElement();
 ```
 
 Check that the given element has no content.
@@ -174,8 +174,18 @@ Check that the given element has no content.
 ```javascript
 const { getByTestId } = render(<View testID="empty" />);
 
-expect(getByTestId('empty')).toBeEmpty();
+expect(getByTestId('empty')).toBeEmptyElement();
 ```
+
+---
+
+**NOTE**
+
+`toBeEmptyElement()` matcher has been renamed from `toBeEmpty()` because of the naming conflict with
+Jest Extended export with the
+[same name](https://github.com/jest-community/jest-extended#tobeempty).
+
+---
 
 ### `toContainElement`
 
@@ -289,14 +299,17 @@ const { queryByText } = render(
   </Text>,
 );
 
-expect(queryByText('Hello World')).toHaveStyle({ color: 'black', fontWeight: '600', fontSize: 16 });
-expect(queryByText('Hello World')).toHaveStyle({ color: 'black' });
-expect(queryByText('Hello World')).toHaveStyle({ fontWeight: '600' });
-expect(queryByText('Hello World')).toHaveStyle({ fontSize: 16 });
-expect(queryByText('Hello World')).toHaveStyle({ transform: [{ scale: 2 }, { rotate: '45deg' }] });
-expect(queryByText('Hello World')).toHaveStyle({ transform: [{ rotate: '45deg' }] });
-expect(queryByText('Hello World')).toHaveStyle([{ color: 'black' }, { fontWeight: '600' }]);
-expect(queryByText('Hello World')).not.toHaveStyle({ color: 'white' });
+expect(getByText('Hello World')).toHaveStyle({ color: 'black' });
+expect(getByText('Hello World')).toHaveStyle({ fontWeight: '600' });
+expect(getByText('Hello World')).toHaveStyle({ fontSize: 16 });
+expect(getByText('Hello World')).toHaveStyle([{ fontWeight: '600' }, { color: 'black' }]);
+expect(getByText('Hello World')).toHaveStyle({ color: 'black', fontWeight: '600', fontSize: 16 });
+expect(getByText('Hello World')).toHaveStyle({ transform: [{ scale: 2 }, { rotate: '45deg' }] });
+expect(getByText('Hello World')).not.toHaveStyle({ color: 'white' });
+expect(getByText('Hello World')).not.toHaveStyle({ transform: [{ scale: 2 }] });
+expect(getByText('Hello World')).not.toHaveStyle({
+  transform: [{ rotate: '45deg' }, { scale: 2 }],
+});
 ```
 
 ### `toBeVisible`
