@@ -404,7 +404,8 @@ const { getByTestId } = render(
   </Modal>,
 );
 
-expect(getByTestId('view-within-not-visible-modal')).not.toBeVisible();
+// Children elements of not visible modals are not rendered.
+expect(queryByTestId('view-within-modal')).toBeNull();
 ```
 
 ```javascript

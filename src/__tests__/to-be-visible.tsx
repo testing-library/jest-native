@@ -1,0 +1,87 @@
+import React from 'react';
+import { Modal, View } from 'react-native';
+import { render } from '@testing-library/react-native';
+
+describe('.toBeVisible', () => {
+  test('handles empty view', () => {
+    const { getByTestId } = render(<View testID="test" />);
+    expect(getByTestId('test')).toBeVisible();
+  });
+
+  test('handles view with opacity', () => {
+    const { getByTestId } = render(<View testID="test" style={{ opacity: 0.2 }} />);
+    expect(getByTestId('test')).toBeVisible();
+  });
+
+  test('handles view with 0 opacity', () => {
+    const { getByTestId } = render(<View testID="test" style={{ opacity: 0 }} />);
+    expect(getByTestId('test')).not.toBeVisible();
+  });
+
+  test('handles view with display "none"', () => {
+    const { getByTestId } = render(<View testID="test" style={{ display: 'none' }} />);
+    expect(getByTestId('test')).not.toBeVisible();
+  });
+
+  test('handles ancestor view with 0 opacity', () => {
+    const { getByTestId } = render(
+      <View style={{ opacity: 0 }}>
+        <View>
+          <View testID="test" />
+        </View>
+      </View>,
+    );
+    expect(getByTestId('test')).not.toBeVisible();
+  });
+
+  test('handles ancestor view with display "none"', () => {
+    const { getByTestId } = render(
+      <View style={{ display: 'none' }}>
+        <View>
+          <View testID="test" />
+        </View>
+      </View>,
+    );
+    expect(getByTestId('test')).not.toBeVisible();
+  });
+
+  test('handles empty modal', () => {
+    const { getByTestId } = render(<Modal testID="test" />);
+    expect(getByTestId('test')).toBeVisible();
+  });
+
+  test('handles view within modal', () => {
+    const { getByTestId } = render(
+      <Modal>
+        <View>
+          <View testID="view-within-modal" />
+        </View>
+      </Modal>,
+    );
+    expect(getByTestId('view-within-modal')).toBeVisible();
+  });
+
+  test('handles view within not visible modal', () => {
+    const { getByTestId, queryByTestId } = render(
+      <Modal testID="test" visible={false}>
+        <View>
+          <View testID="view-within-modal" />
+        </View>
+      </Modal>,
+    );
+    expect(getByTestId('test')).not.toBeVisible();
+    // Children elements of not visible modals are not rendered.
+    expect(() => expect(getByTestId('view-within-modal')).not.toBeVisible()).toThrow();
+    expect(queryByTestId('view-within-modal')).toBeNull();
+  });
+
+  test('handles not visible modal', () => {
+    const { getByTestId } = render(<Modal testID="test" visible={false} />);
+    expect(getByTestId('test')).not.toBeVisible();
+  });
+
+  it('handles non-React elements', () => {
+    expect(() => expect({ name: 'Non-React element' }).not.toBeVisible()).toThrow();
+    expect(() => expect(true).not.toBeVisible()).toThrow();
+  });
+});
