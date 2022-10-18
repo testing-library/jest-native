@@ -325,6 +325,8 @@ An element is visible if **all** the following conditions are met:
 - it does not have its style property `display` set to `none`.
 - it does not have its style property `opacity` set to `0`.
 - it is not a `Modal` component or it does not have the prop `visible` set to `false`.
+- it is accessible (i.e. `accessibilityElementsHidden` prop is not defined or `false`, and
+  `importantForAccessibility` prop is not equal to `no-hide-descendants`).
 - its ancestor elements are also visible.
 
 #### Examples
@@ -412,6 +414,20 @@ expect(queryByTestId('view-within-modal')).toBeNull();
 const { getByTestId } = render(<Modal testID="not-visible-modal" visible={false} />);
 
 expect(getByTestId('not-visible-modal')).not.toBeVisible();
+```
+
+```javascript
+const { getByTestId } = render(<View testID="test" accessibilityElementsHidden />);
+
+expect(getByTestId('test')).not.toBeVisible();
+```
+
+```javascript
+const { getByTestId } = render(
+  <View testID="test" importantForAccessibility="no-hide-descendants" />,
+);
+
+expect(getByTestId('test')).not.toBeVisible();
 ```
 
 ## Inspiration

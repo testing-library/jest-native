@@ -80,6 +80,46 @@ describe('.toBeVisible', () => {
     expect(getByTestId('test')).not.toBeVisible();
   });
 
+  test('handles innacessible view (iOS)', () => {
+    const { getByTestId, update } = render(<View testID="test" accessibilityElementsHidden />);
+    expect(getByTestId('test')).not.toBeVisible();
+
+    update(<View testID="test" accessibilityElementsHidden={false} />);
+    expect(getByTestId('test')).toBeVisible();
+  });
+
+  test('handles view within innacessible view (iOS)', () => {
+    const { getByTestId } = render(
+      <View accessibilityElementsHidden>
+        <View>
+          <View testID="test" />
+        </View>
+      </View>,
+    );
+    expect(getByTestId('test')).not.toBeVisible();
+  });
+
+  test('handles innacessible view (Android)', () => {
+    const { getByTestId, update } = render(
+      <View testID="test" importantForAccessibility="no-hide-descendants" />,
+    );
+    expect(getByTestId('test')).not.toBeVisible();
+
+    update(<View testID="test" importantForAccessibility="auto" />);
+    expect(getByTestId('test')).toBeVisible();
+  });
+
+  test('handles view within innacessible view (Android)', () => {
+    const { getByTestId } = render(
+      <View importantForAccessibility="no-hide-descendants">
+        <View>
+          <View testID="test" />
+        </View>
+      </View>,
+    );
+    expect(getByTestId('test')).not.toBeVisible();
+  });
+
   it('handles non-React elements', () => {
     expect(() => expect({ name: 'Non-React element' }).not.toBeVisible()).toThrow();
     expect(() => expect(true).not.toBeVisible()).toThrow();
