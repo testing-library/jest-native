@@ -318,7 +318,7 @@ expect(getByText('Hello World')).not.toHaveStyle({
 toBeVisible();
 ```
 
-Check that the given element is visible.
+Check that the given element is visible to the user.
 
 An element is visible if **all** the following conditions are met:
 
