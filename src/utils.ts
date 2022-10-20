@@ -78,6 +78,8 @@ function printElement(element: ReactTestInstance | null) {
   return redent(
     prettyFormat(
       {
+        // This prop is needed persuade the prettyFormat that the element is
+        // a ReactTestRendererJSON instance, so it is formatted as JSX.
         $$typeof: Symbol.for('react.test.json'),
         type: element.type,
         props: element.props,
