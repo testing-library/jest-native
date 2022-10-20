@@ -15,6 +15,7 @@ declare global {
 
       /** @deprecated This function has been renamed to `toBeEmptyElement`. */
       toBeEmpty(): R;
+      toBeVisible(): R;
     }
   }
 }

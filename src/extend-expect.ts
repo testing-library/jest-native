@@ -4,6 +4,7 @@ import { toContainElement } from './to-contain-element';
 import { toHaveProp } from './to-have-prop';
 import { toHaveStyle } from './to-have-style';
 import { toHaveTextContent } from './to-have-text-content';
+import { toBeVisible } from './to-be-visible';
 
 expect.extend({
   toBeDisabled,
@@ -14,4 +15,5 @@ expect.extend({
   toHaveProp,
   toHaveStyle,
   toHaveTextContent,
+  toBeVisible,
 });

@@ -47,6 +47,7 @@
   - [`toHaveProp`](#tohaveprop)
   - [`toHaveTextContent`](#tohavetextcontent)
   - [`toHaveStyle`](#tohavestyle)
+  - [`toBeVisible`](#tobevisible)
 - [Inspiration](#inspiration)
 - [Other solutions](#other-solutions)
 - [Contributors](#contributors)
@@ -309,6 +310,123 @@ expect(getByText('Hello World')).not.toHaveStyle({ transform: [{ scale: 2 }] });
 expect(getByText('Hello World')).not.toHaveStyle({
   transform: [{ rotate: '45deg' }, { scale: 2 }],
 });
+```
+
+### `toBeVisible`
+
+```typescript
+toBeVisible();
+```
+
+Check that the given element is visible to the user.
+
+An element is visible if **all** the following conditions are met:
+
+- it does not have its style property `display` set to `none`.
+- it does not have its style property `opacity` set to `0`.
+- it is not a `Modal` component or it does not have the prop `visible` set to `false`.
+- it is not hidden from accessibility as checked by [`isInaccessible`](https://callstack.github.io/react-native-testing-library/docs/api#isinaccessible) function from React Native Testing Library
+- its ancestor elements are also visible.
+
+#### Examples
+
+```javascript
+const { getByTestId } = render(<View testID="empty-view" />);
+
+expect(getByTestId('empty-view')).toBeVisible();
+```
+
+```javascript
+const { getByTestId } = render(<View testID="view-with-opacity" style={{ opacity: 0.2 }} />);
+
+expect(getByTestId('view-with-opacity')).toBeVisible();
+```
+
+```javascript
+const { getByTestId } = render(<Modal testID="empty-modal" />);
+
+expect(getByTestId('empty-modal')).toBeVisible();
+```
+
+```javascript
+const { getByTestId } = render(
+  <Modal>
+    <View>
+      <View testID="view-within-modal" />
+    </View>
+  </Modal>,
+);
+
+expect(getByTestId('view-within-modal')).toBeVisible();
+```
+
+```javascript
+const { getByTestId } = render(<View testID="invisible-view" style={{ opacity: 0 }} />);
+
+expect(getByTestId('invisible-view')).not.toBeVisible();
+```
+
+```javascript
+const { getByTestId } = render(<View testID="display-none-view" style={{ display: 'none' }} />);
+
+expect(getByTestId('display-none-view')).not.toBeVisible();
+```
+
+```javascript
+const { getByTestId } = render(
+  <View style={{ opacity: 0 }}>
+    <View>
+      <View testID="view-within-invisible-view" />
+    </View>
+  </View>,
+);
+
+expect(getByTestId('view-within-invisible-view')).not.toBeVisible();
+```
+
+```javascript
+const { getByTestId } = render(
+  <View style={{ display: 'none' }}>
+    <View>
+      <View testID="view-within-display-none-view" />
+    </View>
+  </View>,
+);
+
+expect(getByTestId('view-within-display-none-view')).not.toBeVisible();
+```
+
+```javascript
+const { getByTestId } = render(
+  <Modal visible={false}>
+    <View>
+      <View testID="view-within-not-visible-modal" />
+    </View>
+  </Modal>,
+);
+
+// Children elements of not visible modals are not rendered.
+expect(queryByTestId('view-within-modal')).toBeNull();
+```
+
+```javascript
+const { getByTestId } = render(<Modal testID="not-visible-modal" visible={false} />);
+
+expect(getByTestId('not-visible-modal')).not.toBeVisible();
+```
+
+```javascript
+const { getByTestId } = render(<View testID="test" accessibilityElementsHidden />);
+
+expect(getByTestId('test')).not.toBeVisible();
+```
+
+```javascript
+const { getByTestId } = render(
+  <View testID="test" importantForAccessibility="no-hide-descendants" />,
+);
+
+expect(getByTestId('test')).not.toBeVisible();
 ```
 
 ## Inspiration
