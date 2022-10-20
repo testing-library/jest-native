@@ -75,14 +75,22 @@ function printElement(element: ReactTestInstance | null) {
     return 'null';
   }
 
-  return `  ${prettyFormat(
-    { props: element.props },
-    {
-      plugins: [ReactTestComponent, ReactElement],
-      printFunctionName: false,
-      highlight: true,
-    },
-  )}`;
+  return redent(
+    prettyFormat(
+      {
+        $$typeof: Symbol.for('react.test.json'),
+        type: element.type,
+        props: element.props,
+      },
+      {
+        plugins: [ReactTestComponent, ReactElement],
+        printFunctionName: false,
+        printBasicPrototype: false,
+        highlight: true,
+      },
+    ),
+    2,
+  );
 }
 
 function display(value: unknown) {
