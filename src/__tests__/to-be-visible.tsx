@@ -80,7 +80,7 @@ describe('.toBeVisible', () => {
     expect(getByTestId('test')).not.toBeVisible();
   });
 
-  test('handles innacessible view (iOS)', () => {
+  test('handles inaccessible view (iOS)', () => {
     const { getByTestId, update } = render(<View testID="test" accessibilityElementsHidden />);
     expect(getByTestId('test')).not.toBeVisible();
 
@@ -88,7 +88,7 @@ describe('.toBeVisible', () => {
     expect(getByTestId('test')).toBeVisible();
   });
 
-  test('handles view within innacessible view (iOS)', () => {
+  test('handles view within inaccessible view (iOS)', () => {
     const { getByTestId } = render(
       <View accessibilityElementsHidden>
         <View>
@@ -99,7 +99,7 @@ describe('.toBeVisible', () => {
     expect(getByTestId('test')).not.toBeVisible();
   });
 
-  test('handles innacessible view (Android)', () => {
+  test('handles inaccessible view (Android)', () => {
     const { getByTestId, update } = render(
       <View testID="test" importantForAccessibility="no-hide-descendants" />,
     );
@@ -109,7 +109,7 @@ describe('.toBeVisible', () => {
     expect(getByTestId('test')).toBeVisible();
   });
 
-  test('handles view within innacessible view (Android)', () => {
+  test('handles view within inaccessible view (Android)', () => {
     const { getByTestId } = render(
       <View importantForAccessibility="no-hide-descendants">
         <View>
