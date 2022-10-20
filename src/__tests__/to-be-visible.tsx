@@ -124,4 +124,12 @@ describe('.toBeVisible', () => {
     expect(() => expect({ name: 'Non-React element' }).not.toBeVisible()).toThrow();
     expect(() => expect(true).not.toBeVisible()).toThrow();
   });
+
+  it('throws an error when expectation is not matched', () => {
+    const { getByTestId, update } = render(<View testID="test" />);
+    expect(() => expect(getByTestId('test')).not.toBeVisible()).toThrowErrorMatchingSnapshot();
+
+    update(<View testID="test" style={{ opacity: 0 }} />);
+    expect(() => expect(getByTestId('test')).toBeVisible()).toThrowErrorMatchingSnapshot();
+  });
 });
