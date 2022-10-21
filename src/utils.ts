@@ -75,14 +75,24 @@ function printElement(element: ReactTestInstance | null) {
     return 'null';
   }
 
-  return `  ${prettyFormat(
-    { props: element.props },
-    {
-      plugins: [ReactTestComponent, ReactElement],
-      printFunctionName: false,
-      highlight: true,
-    },
-  )}`;
+  return redent(
+    prettyFormat(
+      {
+        // This prop is needed persuade the prettyFormat that the element is
+        // a ReactTestRendererJSON instance, so it is formatted as JSX.
+        $$typeof: Symbol.for('react.test.json'),
+        type: element.type,
+        props: element.props,
+      },
+      {
+        plugins: [ReactTestComponent, ReactElement],
+        printFunctionName: false,
+        printBasicPrototype: false,
+        highlight: true,
+      },
+    ),
+    2,
+  );
 }
 
 function display(value: unknown) {
