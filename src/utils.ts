@@ -99,6 +99,23 @@ function display(value: unknown) {
   return typeof value === 'string' ? value : stringify(value);
 }
 
+export function stringifyDefined(input: unknown) {
+  if (input == null || typeof input !== 'object') {
+    return stringify(input);
+  }
+
+  const output: Record<string, unknown> = {};
+  Object.keys(input).forEach((key) => {
+    // @ts-expect-error: input is an object
+    if (input[key] !== undefined) {
+      // @ts-expect-error: input is an object
+      output[key] = input[key];
+    }
+  });
+
+  return stringify(output);
+}
+
 function getMessage(
   matcher: string,
   expectedLabel: string,

@@ -1,4 +1,4 @@
-import type { ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
+import type { AccessibilityState, ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import type { ReactTestInstance } from 'react-test-renderer';
 
 declare global {
@@ -16,6 +16,8 @@ declare global {
       /** @deprecated This function has been renamed to `toBeEmptyElement`. */
       toBeEmpty(): R;
       toBeVisible(): R;
+
+      toHaveAccessibilityState(state: AccessibilityState): R;
     }
   }
 }
