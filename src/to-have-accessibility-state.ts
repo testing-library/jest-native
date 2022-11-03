@@ -1,7 +1,6 @@
-import { AccessibilityState, Modal, StyleSheet } from 'react-native';
-import { matcherHint, stringify } from 'jest-matcher-utils';
+import type { AccessibilityState } from 'react-native';
 import type { ReactTestInstance } from 'react-test-renderer';
-
+import { matcherHint, stringify } from 'jest-matcher-utils';
 import { checkReactElement, getMessage, stringifyDefined } from './utils';
 
 export function toHaveAccessibilityState(
