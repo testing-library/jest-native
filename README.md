@@ -34,6 +34,7 @@
 
 ## Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [The problem](#the-problem)
 - [This solution](#this-solution)
 - [Compatibility](#compatibility)
@@ -41,13 +42,23 @@
 - [Usage](#usage)
 - [Matchers](#matchers)
   - [`toBeDisabled`](#tobedisabled)
+    - [Examples](#examples)
   - [`toBeEnabled`](#tobeenabled)
+    - [Examples](#examples-1)
   - [`toBeEmptyElement`](#tobeemptyelement)
+    - [Examples](#examples-2)
   - [`toContainElement`](#tocontainelement)
+    - [Examples](#examples-3)
   - [`toHaveProp`](#tohaveprop)
+    - [Examples](#examples-4)
   - [`toHaveTextContent`](#tohavetextcontent)
+    - [Examples](#examples-5)
   - [`toHaveStyle`](#tohavestyle)
+    - [Examples](#examples-6)
   - [`toBeVisible`](#tobevisible)
+    - [Examples](#examples-7)
+  - [`toHaveAccessibilityState`](#tohaveaccessibilitystate)
+    - [Examples](#examples-8)
 - [Inspiration](#inspiration)
 - [Other solutions](#other-solutions)
 - [Contributors](#contributors)
@@ -226,7 +237,7 @@ expect(parent).not.toContainElement(grandparent);
 toHaveProp(prop: string, value?: any);
 ```
 
-Check that an element has a given prop.
+Check that the element has a given prop.
 
 You can optionally check that the attribute has a specific expected value.
 
@@ -431,10 +442,47 @@ const { getByTestId } = render(
 expect(getByTestId('test')).not.toBeVisible();
 ```
 
+### `toHaveAccessibilityState`
+
+```ts
+toHaveAccessibilityState(state: {
+  disabled?: boolean;
+  selected?: boolean;
+  checked?: boolean | 'mixed';
+  busy?: boolean;
+  expanded?: boolean;
+});
+```
+
+Check that the element has given accessibility state entries. This matcher takes into account
+implied default accessibility state entries of `disabled: false`, `selected: false`, `busy: false`,
+matching the screen reader behaviour of React Native apps on both iOS and Android.
+
+This matcher is comptabile with `*ByRole` and `*ByA11State` queries from React Native Testing
+Library.
+
+#### Examples
+
+```js
+render(<View testID="view" />);
+expect(screen.getByTestId('view')).toHaveAccessibilityState({ disabled: false });
+expect(screen.getByTestId('view')).toHaveAccessibilityState({ selected: false });
+expect(screen.getByTestId('view')).toHaveAccessibilityState({ busy: false });
+expect(screen.getByTestId('view')).not.toHaveAccessibilityState({ checked: false });
+expect(screen.getByTestId('view')).not.toHaveAccessibilityState({ expanded: false });
+```
+
+```js
+render(<View testID="view" accessibilityState={{ expanded: true, checked: true }} />);
+expect(screen.getByTestId('view')).toHaveAccessibilityState({ expanded: true });
+expect(screen.getByTestId('view')).toHaveAccessibilityState({ checked: true });
+expect(screen.getByTestId('view')).toHaveAccessibilityState({ expanded: true, checked: true });
+```
+
 ## Inspiration
 
 This library was made to be a companion for
-[RNTL](https://github.com/callstack/react-native-testing-library).
+[React Native Testing Library](https://github.com/callstack/react-native-testing-library).
 
 It was inspired by [jest-dom](https://github.com/gnapse/jest-dom/), the companion library for
 [DTL](https://github.com/kentcdodds/dom-testing-library/). We emulated as many of those helpers as
