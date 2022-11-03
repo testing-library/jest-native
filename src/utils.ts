@@ -100,7 +100,7 @@ function display(value: unknown) {
 }
 
 export function stringifyDefined(input: unknown) {
-  if (input == null || typeof input !== 'object') {
+  if (input == null || typeof input !== 'object' || Array.isArray(input)) {
     return stringify(input);
   }
 

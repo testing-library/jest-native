@@ -1,4 +1,4 @@
-import { checkReactElement, isEmpty } from '../utils';
+import { checkReactElement, isEmpty, stringifyDefined } from '../utils';
 
 describe('checkReactElement', () => {
   test('it does not throw an error for valid native primitives', () => {
@@ -36,4 +36,15 @@ test('isEmpty', () => {
   expect(isEmpty(1)).toEqual(false);
   expect(isEmpty(NaN)).toEqual(true);
   expect(isEmpty([''])).toEqual(false);
+});
+
+test('stringifyDefined', () => {
+  expect(stringifyDefined(null)).toEqual('null');
+  expect(stringifyDefined(undefined)).toEqual('undefined');
+  expect(stringifyDefined([])).toEqual('[]');
+  expect(stringifyDefined({})).toEqual('{}');
+  expect(stringifyDefined(1)).toEqual('1');
+  expect(stringifyDefined(false)).toEqual('false');
+  expect(stringifyDefined({ test: undefined, test2: undefined })).toEqual('{}');
+  expect(stringifyDefined({ test: 'value', test2: undefined })).toEqual('{"test": "value"}');
 });
