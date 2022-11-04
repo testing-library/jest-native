@@ -20,9 +20,15 @@ test('.toHaveAccessibilityState to handle explict state', () => {
 
   expect(getByTestId('disabled')).toHaveAccessibilityState({ disabled: true });
   expect(getByTestId('disabled')).not.toHaveAccessibilityState({ disabled: false });
+  expect(() =>
+    expect(getByTestId('disabled')).toHaveAccessibilityState({ disabled: false }),
+  ).toThrow();
 
   expect(getByTestId('selected')).toHaveAccessibilityState({ selected: true });
   expect(getByTestId('selected')).not.toHaveAccessibilityState({ selected: false });
+  expect(() =>
+    expect(getByTestId('selected')).not.toHaveAccessibilityState({ selected: true }),
+  ).toThrow();
 
   expect(getByTestId('busy')).toHaveAccessibilityState({ busy: true });
   expect(getByTestId('busy')).not.toHaveAccessibilityState({ busy: false });
