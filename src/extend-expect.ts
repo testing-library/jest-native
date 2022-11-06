@@ -1,5 +1,6 @@
 import { toBeDisabled, toBeEnabled } from './to-be-disabled';
 import { toBeEmptyElement, toBeEmpty } from './to-be-empty-element';
+import { toBeInTheDocument } from './to-be-in-the-document';
 import { toContainElement } from './to-contain-element';
 import { toHaveProp } from './to-have-prop';
 import { toHaveStyle } from './to-have-style';
@@ -13,6 +14,7 @@ expect.extend({
   toBeEnabled,
   toBeEmptyElement,
   toBeEmpty, // Deprecated
+  toBeInTheDocument,
   toContainElement,
   toHaveProp,
   toHaveStyle,
