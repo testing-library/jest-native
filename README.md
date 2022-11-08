@@ -224,6 +224,33 @@ expect(parent).toContainElement(child);
 expect(parent).not.toContainElement(grandparent);
 ```
 
+### `toBeInTheDocument`
+
+```ts
+toBeInTheDocument();
+```
+
+Check that the given element is still present in the element tree.
+
+You can use this for already capture element to verify that it is no longer present in the element
+tree.
+
+#### Examples
+
+```tsx
+render(
+  <View>
+    <View testID="child" />
+  </View>,
+);
+
+const child = screen.getByTestId('child');
+expect(child).toBeInTheDocument();
+
+screen.update(<View />);
+expect(child).not.toBeInTheDocument();
+```
+
 ### `toHaveProp`
 
 ```typescript

@@ -48,3 +48,17 @@ test('toBeInTheDocument() on null element', () => {
     element could not be found in the document"
   `);
 });
+
+test('example test', () => {
+  render(
+    <View>
+      <View testID="child" />
+    </View>,
+  );
+
+  const child = screen.getByTestId('child');
+  expect(child).toBeInTheDocument();
+
+  screen.update(<View />);
+  expect(child).not.toBeInTheDocument();
+});
