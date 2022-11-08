@@ -1,7 +1,7 @@
 import type { ReactTestInstance } from 'react-test-renderer';
-import { matcherHint, stringify, RECEIVED_COLOR } from 'jest-matcher-utils';
-import { checkReactElement, printElement } from './utils';
 import { screen } from '@testing-library/react-native';
+import { matcherHint, RECEIVED_COLOR } from 'jest-matcher-utils';
+import { checkReactElement, printElement } from './utils';
 
 export function toBeInTheDocument(this: jest.MatcherContext, element: ReactTestInstance) {
   if (element !== null) {
