@@ -1,7 +1,7 @@
 import type { AccessibilityState } from 'react-native';
 import type { ReactTestInstance } from 'react-test-renderer';
 import { matcherHint, stringify } from 'jest-matcher-utils';
-import { checkReactElement, getMessage, stringifyDefined } from './utils';
+import { checkReactElement, getMessage } from './utils';
 
 export function toHaveAccessibilityState(
   this: jest.MatcherContext,
@@ -24,7 +24,7 @@ export function toHaveAccessibilityState(
         `Expected the element ${this.isNot ? 'not to' : 'to'} have acessibility state`,
         stringify(expectedState),
         'Received element with implied accessibility state',
-        stringifyDefined(impliedState),
+        stringify(impliedState),
       );
     },
   };
@@ -47,9 +47,7 @@ export const accessibilityStateKeys: (keyof AccessibilityState)[] = [
 const defaultState: AccessibilityState = {
   disabled: false,
   selected: false,
-  checked: undefined,
   busy: false,
-  expanded: undefined,
 };
 
 const getAccessibilityState = (element: ReactTestInstance) => {

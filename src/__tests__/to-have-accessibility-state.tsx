@@ -20,15 +20,27 @@ test('.toHaveAccessibilityState to handle explicit state', () => {
 
   expect(getByTestId('disabled')).toHaveAccessibilityState({ disabled: true });
   expect(getByTestId('disabled')).not.toHaveAccessibilityState({ disabled: false });
-  expect(() =>
-    expect(getByTestId('disabled')).toHaveAccessibilityState({ disabled: false }),
-  ).toThrow();
+  expect(() => expect(getByTestId('disabled')).toHaveAccessibilityState({ disabled: false }))
+    .toThrowErrorMatchingInlineSnapshot(`
+    "expect(element).toHaveAccessibilityState({"disabled": false})
+
+    Expected the element to have acessibility state:
+      {"disabled": false}
+    Received element with implied accessibility state:
+      {"busy": false, "disabled": true, "selected": false}"
+  `);
 
   expect(getByTestId('selected')).toHaveAccessibilityState({ selected: true });
   expect(getByTestId('selected')).not.toHaveAccessibilityState({ selected: false });
-  expect(() =>
-    expect(getByTestId('selected')).not.toHaveAccessibilityState({ selected: true }),
-  ).toThrow();
+  expect(() => expect(getByTestId('selected')).not.toHaveAccessibilityState({ selected: true }))
+    .toThrowErrorMatchingInlineSnapshot(`
+    "expect(element).not.toHaveAccessibilityState({"selected": true})
+
+    Expected the element not to have acessibility state:
+      {"selected": true}
+    Received element with implied accessibility state:
+      {"busy": false, "disabled": false, "selected": true}"
+  `);
 
   expect(getByTestId('busy')).toHaveAccessibilityState({ busy: true });
   expect(getByTestId('busy')).not.toHaveAccessibilityState({ busy: false });
