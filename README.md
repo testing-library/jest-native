@@ -470,6 +470,8 @@ Library.
 
 ```js
 render(<View testID="view" accessibilityState={{ expanded: true, checked: true }} />);
+
+// Single value match
 expect(screen.getByTestId('view')).toHaveAccessibilityState({ expanded: true });
 expect(screen.getByTestId('view')).toHaveAccessibilityState({ checked: true });
 
@@ -482,12 +484,12 @@ Default values handling:
 ```js
 render(<View testID="view" />);
 
-// States where default value is `false`
+// Matching states where default value is `false`
 expect(screen.getByTestId('view')).toHaveAccessibilityState({ disabled: false });
 expect(screen.getByTestId('view')).toHaveAccessibilityState({ selected: false });
 expect(screen.getByTestId('view')).toHaveAccessibilityState({ busy: false });
 
-// States where default value is `undefined`
+// Matching states where default value is `undefined`
 expect(screen.getByTestId('view')).not.toHaveAccessibilityState({ checked: false });
 expect(screen.getByTestId('view')).not.toHaveAccessibilityState({ expanded: false });
 ```
