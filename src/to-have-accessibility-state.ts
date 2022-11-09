@@ -61,10 +61,10 @@ const getAccessibilityState = (element: ReactTestInstance) => {
 
 export function matchAccessibilityState(element: ReactTestInstance, matcher: AccessibilityState) {
   const state = getAccessibilityState(element);
-  return accessibilityStateKeys.every((key) => matchState(state, matcher, key));
+  return accessibilityStateKeys.every((key) => matchStateEntry(state, matcher, key));
 }
 
-function matchState(
+function matchStateEntry(
   state: AccessibilityState,
   matcher: AccessibilityState,
   key: keyof AccessibilityState,

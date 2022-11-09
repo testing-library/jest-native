@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View } from 'react-native';
 import { render } from '@testing-library/react-native';
 
-test('.toHaveAccessibilityState to handle explict state', () => {
+test('.toHaveAccessibilityState to handle explicit state', () => {
   const { getByTestId } = render(
     <View>
       <View testID="disabled" accessibilityState={{ disabled: true }} />
@@ -65,7 +65,7 @@ test('.toHaveAccessibilityState to handle explict state', () => {
   });
 });
 
-test('.toHaveAccessibilityState to handle implict state', () => {
+test('.toHaveAccessibilityState to handle implicit state', () => {
   const { getByTestId } = render(<View testID="subject" />);
 
   expect(getByTestId('subject')).toHaveAccessibilityState({ disabled: false });
