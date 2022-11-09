@@ -444,29 +444,52 @@ toHaveAccessibilityState(state: {
 });
 ```
 
-Check that the element has given accessibility state entries. This matcher takes into account
-implied default accessibility state entries of `disabled: false`, `selected: false`, `busy: false`,
-matching the screen reader behaviour of React Native apps on both iOS and Android.
+Check that the element has given accessibility state entries.
 
-This matcher is comptabile with `*ByRole` and `*ByA11State` queries from React Native Testing
+This check is based on `accessibilityState` prop but also takes into account the default entries
+which have been found by experimenting with accessibility inspector and screen readers on both iOS
+and Android.
+
+Some state entries behave as if explicit `false` value is the same as not having given state entry,
+so their default value is `false`:
+
+- `disabled`
+- `selected`
+- `busy`
+
+The remaining state entries behave as if explicit `false` value is different than not having given
+state entry, so their default value is `undefined`:
+
+- `checked`
+- `expanded`
+
+This matcher is compatible with `*ByRole` and `*ByA11State` queries from React Native Testing
 Library.
 
 #### Examples
 
 ```js
-render(<View testID="view" />);
-expect(screen.getByTestId('view')).toHaveAccessibilityState({ disabled: false });
-expect(screen.getByTestId('view')).toHaveAccessibilityState({ selected: false });
-expect(screen.getByTestId('view')).toHaveAccessibilityState({ busy: false });
-expect(screen.getByTestId('view')).not.toHaveAccessibilityState({ checked: false });
-expect(screen.getByTestId('view')).not.toHaveAccessibilityState({ expanded: false });
-```
-
-```js
 render(<View testID="view" accessibilityState={{ expanded: true, checked: true }} />);
 expect(screen.getByTestId('view')).toHaveAccessibilityState({ expanded: true });
 expect(screen.getByTestId('view')).toHaveAccessibilityState({ checked: true });
+
+// Can match multiple entries
 expect(screen.getByTestId('view')).toHaveAccessibilityState({ expanded: true, checked: true });
+```
+
+Default values handling:
+
+```js
+render(<View testID="view" />);
+
+// States where default value is `false`
+expect(screen.getByTestId('view')).toHaveAccessibilityState({ disabled: false });
+expect(screen.getByTestId('view')).toHaveAccessibilityState({ selected: false });
+expect(screen.getByTestId('view')).toHaveAccessibilityState({ busy: false });
+
+// States where default value is `undefined`
+expect(screen.getByTestId('view')).not.toHaveAccessibilityState({ checked: false });
+expect(screen.getByTestId('view')).not.toHaveAccessibilityState({ expanded: false });
 ```
 
 ## Inspiration
