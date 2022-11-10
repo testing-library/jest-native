@@ -6,6 +6,7 @@ import { toHaveStyle } from './to-have-style';
 import { toHaveTextContent } from './to-have-text-content';
 import { toBeVisible } from './to-be-visible';
 import { toHaveAccessibilityState } from './to-have-accessibility-state';
+import { toHaveAccessibilityValue } from './to-have-accessibility-value';
 
 expect.extend({
   toBeDisabled,
@@ -18,4 +19,5 @@ expect.extend({
   toHaveTextContent,
   toBeVisible,
   toHaveAccessibilityState,
+  toHaveAccessibilityValue,
 });
