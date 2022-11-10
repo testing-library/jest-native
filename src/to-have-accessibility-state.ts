@@ -30,14 +30,6 @@ export function toHaveAccessibilityState(
   };
 }
 
-export const accessibilityStateKeys: (keyof AccessibilityState)[] = [
-  'disabled',
-  'selected',
-  'checked',
-  'busy',
-  'expanded',
-];
-
 /**
  * Default accessibility state values based on experiments using accessibility
  * inspector/screen reader on iOS and Android.
@@ -57,7 +49,15 @@ const getAccessibilityState = (element: ReactTestInstance) => {
   };
 };
 
-export function matchAccessibilityState(element: ReactTestInstance, matcher: AccessibilityState) {
+const accessibilityStateKeys: (keyof AccessibilityState)[] = [
+  'disabled',
+  'selected',
+  'checked',
+  'busy',
+  'expanded',
+];
+
+function matchAccessibilityState(element: ReactTestInstance, matcher: AccessibilityState) {
   const state = getAccessibilityState(element);
   return accessibilityStateKeys.every((key) => matchStateEntry(state, matcher, key));
 }
