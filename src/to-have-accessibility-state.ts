@@ -21,7 +21,7 @@ export function toHaveAccessibilityState(
       );
       return getMessage(
         matcher,
-        `Expected the element ${this.isNot ? 'not to' : 'to'} have acessibility state`,
+        `Expected the element ${this.isNot ? 'not to' : 'to'} have accessibility state`,
         stringify(expectedState),
         'Received element with implied accessibility state',
         stringify(impliedState),

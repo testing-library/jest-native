@@ -24,7 +24,7 @@ test('.toHaveAccessibilityState to handle explicit state', () => {
     .toThrowErrorMatchingInlineSnapshot(`
     "expect(element).toHaveAccessibilityState({"disabled": false})
 
-    Expected the element to have acessibility state:
+    Expected the element to have accessibility state:
       {"disabled": false}
     Received element with implied accessibility state:
       {"busy": false, "disabled": true, "selected": false}"
@@ -36,7 +36,7 @@ test('.toHaveAccessibilityState to handle explicit state', () => {
     .toThrowErrorMatchingInlineSnapshot(`
     "expect(element).not.toHaveAccessibilityState({"selected": true})
 
-    Expected the element not to have acessibility state:
+    Expected the element not to have accessibility state:
       {"selected": true}
     Received element with implied accessibility state:
       {"busy": false, "disabled": false, "selected": true}"
