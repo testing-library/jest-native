@@ -21,7 +21,7 @@ test('.toHaveAccessibilityValue to handle min, max, now', () => {
     .toThrowErrorMatchingInlineSnapshot(`
     "expect(element).toHaveAccessibilityValue({"min": 2})
 
-    Expected the element to have acessibility value:
+    Expected the element to have accessibility value:
       {"min": 2}
     Received element with accessibility value:
       {"min": 1}"
@@ -33,7 +33,7 @@ test('.toHaveAccessibilityValue to handle min, max, now', () => {
     .toThrowErrorMatchingInlineSnapshot(`
     "expect(element).toHaveAccessibilityValue({"max": 5})
 
-    Expected the element to have acessibility value:
+    Expected the element to have accessibility value:
       {"max": 5}
     Received element with accessibility value:
       {"max": 10}"
@@ -45,7 +45,7 @@ test('.toHaveAccessibilityValue to handle min, max, now', () => {
     .toThrowErrorMatchingInlineSnapshot(`
     "expect(element).toHaveAccessibilityValue({"now": 3})
 
-    Expected the element to have acessibility value:
+    Expected the element to have accessibility value:
       {"now": 3}
     Received element with accessibility value:
       {"now": 5}"
@@ -86,7 +86,7 @@ test('.toHaveAccessibilityValue to handle string text', () => {
     .toThrowErrorMatchingInlineSnapshot(`
     "expect(element).toHaveAccessibilityValue({"text": "Hello other!"})
 
-    Expected the element to have acessibility value:
+    Expected the element to have accessibility value:
       {"text": "Hello other!"}
     Received element with accessibility value:
       {"text": "Hello world!"}"
@@ -107,7 +107,7 @@ test('.toHaveAccessibilityValue to handle regex text', () => {
     .toThrowErrorMatchingInlineSnapshot(`
     "expect(element).toHaveAccessibilityValue({"text": /other/i})
 
-    Expected the element to have acessibility value:
+    Expected the element to have accessibility value:
       {"text": /other/i}
     Received element with accessibility value:
       {"text": "Hello world!"}"
@@ -120,7 +120,7 @@ test('.toHaveAccessibilityValue to handle regex text', () => {
     .toThrowErrorMatchingInlineSnapshot(`
     "expect(element).toHaveAccessibilityValue({"now": 3, "text": /hello/i})
 
-    Expected the element to have acessibility value:
+    Expected the element to have accessibility value:
       {"now": 3, "text": /hello/i}
     Received element with accessibility value:
       {"now": 5, "text": "Hello world!"}"
@@ -129,7 +129,7 @@ test('.toHaveAccessibilityValue to handle regex text', () => {
     .toThrowErrorMatchingInlineSnapshot(`
     "expect(element).toHaveAccessibilityValue({"now": 5, "text": /other/i})
 
-    Expected the element to have acessibility value:
+    Expected the element to have accessibility value:
       {"now": 5, "text": /other/i}
     Received element with accessibility value:
       {"now": 5, "text": "Hello world!"}"

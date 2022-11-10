@@ -29,7 +29,7 @@ export function toHaveAccessibilityValue(
       );
       return getMessage(
         matcher,
-        `Expected the element ${this.isNot ? 'not to' : 'to'} have acessibility value`,
+        `Expected the element ${this.isNot ? 'not to' : 'to'} have accessibility value`,
         stringify(expectedValue),
         'Received element with accessibility value',
         stringify(value),
