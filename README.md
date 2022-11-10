@@ -325,7 +325,9 @@ An element is visible if **all** the following conditions are met:
 - it does not have its style property `display` set to `none`.
 - it does not have its style property `opacity` set to `0`.
 - it is not a `Modal` component or it does not have the prop `visible` set to `false`.
-- it is not hidden from accessibility as checked by [`isInaccessible`](https://callstack.github.io/react-native-testing-library/docs/api#isinaccessible) function from React Native Testing Library
+- it is not hidden from accessibility as checked by
+  [`isHiddenFromAccessibility`](https://callstack.github.io/react-native-testing-library/docs/api/#ishiddenfromaccessibility)
+  function from React Native Testing Library
 - its ancestor elements are also visible.
 
 #### Examples
