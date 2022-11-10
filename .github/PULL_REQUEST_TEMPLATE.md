@@ -26,8 +26,7 @@ Please fill out the information below to expedite the review and (hopefully) mer
 <!-- Add "(N/A)" to the end of each line that's irrelevant to your changes -->
 <!-- to check an item, place an "x" in the box like so: "- [x] Documentation" -->
 
-- [ ] Documentation added to the
-      [docs](https://github.com/testing-library/jest-native/README.md)
+- [ ] Documentation added to the [docs](https://github.com/testing-library/jest-native/README.md)
 - [ ] Typescript definitions updated
 - [ ] Tests
 - [ ] Ready to be merged <!-- In your opinion -->

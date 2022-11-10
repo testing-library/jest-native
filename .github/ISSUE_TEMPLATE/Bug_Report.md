@@ -21,7 +21,7 @@ We'll probably ask you to submit the fix (after giving some direction). If you'v
 ### Relevant code or config:
 
 ```js
-const your = code => 'here';
+const your = (code) => 'here';
 ```
 
 ### What you did:
