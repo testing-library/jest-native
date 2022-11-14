@@ -1,5 +1,4 @@
 import type { ReactTestInstance } from 'react-test-renderer';
-import { screen } from '@testing-library/react-native';
 import { matcherHint, RECEIVED_COLOR } from 'jest-matcher-utils';
 import { checkReactElement, printElement } from './utils';
 
@@ -8,7 +7,7 @@ export function toBeInTheDocument(this: jest.MatcherContext, element: ReactTestI
     checkReactElement(element, toBeInTheDocument, this);
   }
 
-  const pass = element === null ? false : screen.container === getRootElement(element);
+  const pass = element === null ? false : getScreen().container === getRootElement(element);
 
   const errorFound = () => {
     return `expected document not to contain element but found:\n${printElement(element)}`;
@@ -36,4 +35,21 @@ function getRootElement(element: ReactTestInstance) {
     root = root.parent;
   }
   return root;
+}
+
+function getScreen() {
+  try {
+    // eslint-disable-next-line import/no-extraneous-dependencies
+    const { screen } = require('@testing-library/react-native');
+    if (!screen) {
+      throw new Error('screen is undefined');
+    }
+
+    return screen;
+  } catch (error) {
+    throw new Error(
+      'Could not import `screen` object from @testing-library/react-native.\n\n' +
+        'Using toBeInTheDocument() matcher requires @testing-library/react-native v10.1.0 or later to be added to your devDependencies.',
+    );
+  }
 }

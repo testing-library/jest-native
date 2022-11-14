@@ -64,8 +64,7 @@
   "peerDependencies": {
     "react": ">=16.0.0",
     "react-native": ">=0.59",
-    "react-test-renderer": ">=16.0.0",
-    "@testing-library/react-native": ">=11.0.0"
+    "react-test-renderer": ">=16.0.0"
   },
   "prettier": {
     "printWidth": 100,
