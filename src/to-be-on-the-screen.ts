@@ -10,11 +10,11 @@ export function toBeOnTheScreen(this: jest.MatcherContext, element: ReactTestIns
   const pass = element === null ? false : getScreen().container === getRootElement(element);
 
   const errorFound = () => {
-    return `expected document not to contain element but found:\n${printElement(element)}`;
+    return `expected element tree not to contain element but found:\n${printElement(element)}`;
   };
 
   const errorNotFound = () => {
-    return `element could not be found in the document`;
+    return `element could not be found in the element tree`;
   };
 
   return {

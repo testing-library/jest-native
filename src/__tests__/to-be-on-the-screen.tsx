@@ -19,7 +19,7 @@ test('toBeOnTheScreen() on attached element', () => {
   expect(() => expect(element).not.toBeOnTheScreen()).toThrowErrorMatchingInlineSnapshot(`
     "expect(element).not.toBeOnTheScreen()
 
-    expected document not to contain element but found:
+    expected element tree not to contain element but found:
       <View
         testID="test"
       />"
@@ -36,7 +36,7 @@ test('toBeOnTheScreen() on detached element', () => {
   expect(() => expect(element).toBeOnTheScreen()).toThrowErrorMatchingInlineSnapshot(`
     "expect(element).toBeOnTheScreen()
 
-    element could not be found in the document"
+    element could not be found in the element tree"
   `);
 });
 
@@ -45,7 +45,7 @@ test('toBeOnTheScreen() on null element', () => {
   expect(() => expect(null).toBeOnTheScreen()).toThrowErrorMatchingInlineSnapshot(`
     "expect(element).toBeOnTheScreen()
 
-    element could not be found in the document"
+    element could not be found in the element tree"
   `);
 });
 
