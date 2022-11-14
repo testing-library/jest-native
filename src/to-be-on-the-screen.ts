@@ -2,9 +2,9 @@ import type { ReactTestInstance } from 'react-test-renderer';
 import { matcherHint, RECEIVED_COLOR } from 'jest-matcher-utils';
 import { checkReactElement, printElement } from './utils';
 
-export function toBeInTheDocument(this: jest.MatcherContext, element: ReactTestInstance) {
+export function toBeOnTheScreen(this: jest.MatcherContext, element: ReactTestInstance) {
   if (element !== null) {
-    checkReactElement(element, toBeInTheDocument, this);
+    checkReactElement(element, toBeOnTheScreen, this);
   }
 
   const pass = element === null ? false : getScreen().container === getRootElement(element);
@@ -21,7 +21,7 @@ export function toBeInTheDocument(this: jest.MatcherContext, element: ReactTestI
     pass,
     message: () => {
       return [
-        matcherHint(`${this.isNot ? '.not' : ''}.toBeInTheDocument`, 'element', ''),
+        matcherHint(`${this.isNot ? '.not' : ''}.toBeOnTheScreen`, 'element', ''),
         '',
         RECEIVED_COLOR(this.isNot ? errorFound() : errorNotFound()),
       ].join('\n');
@@ -49,7 +49,7 @@ function getScreen() {
   } catch (error) {
     throw new Error(
       'Could not import `screen` object from @testing-library/react-native.\n\n' +
-        'Using toBeInTheDocument() matcher requires @testing-library/react-native v10.1.0 or later to be added to your devDependencies.',
+        'Using toBeOnTheScreen() matcher requires @testing-library/react-native v10.1.0 or later to be added to your devDependencies.',
     );
   }
 }

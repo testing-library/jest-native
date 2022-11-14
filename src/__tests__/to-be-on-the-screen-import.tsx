@@ -7,13 +7,13 @@ jest.mock('@testing-library/react-native', () => ({
   screen: undefined,
 }));
 
-test('toBeInTheDocument() on null element', () => {
+test('toBeOnTheScreen() on null element', () => {
   const screen = render(<View testID="test" />);
 
   const test = screen.getByTestId('test');
-  expect(() => expect(test).toBeInTheDocument()).toThrowErrorMatchingInlineSnapshot(`
+  expect(() => expect(test).toBeOnTheScreen()).toThrowErrorMatchingInlineSnapshot(`
     "Could not import \`screen\` object from @testing-library/react-native.
 
-    Using toBeInTheDocument() matcher requires @testing-library/react-native v10.1.0 or later to be added to your devDependencies."
+    Using toBeOnTheScreen() matcher requires @testing-library/react-native v10.1.0 or later to be added to your devDependencies."
   `);
 });

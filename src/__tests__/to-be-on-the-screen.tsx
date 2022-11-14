@@ -12,12 +12,12 @@ function ShowChildren({ show }: { show: boolean }) {
   );
 }
 
-test('toBeInTheDocument() on attached element', () => {
+test('toBeOnTheScreen() on attached element', () => {
   render(<View testID="test" />);
   const element = screen.getByTestId('test');
-  expect(element).toBeInTheDocument();
-  expect(() => expect(element).not.toBeInTheDocument()).toThrowErrorMatchingInlineSnapshot(`
-    "expect(element).not.toBeInTheDocument()
+  expect(element).toBeOnTheScreen();
+  expect(() => expect(element).not.toBeOnTheScreen()).toThrowErrorMatchingInlineSnapshot(`
+    "expect(element).not.toBeOnTheScreen()
 
     expected document not to contain element but found:
       <View
@@ -26,24 +26,24 @@ test('toBeInTheDocument() on attached element', () => {
   `);
 });
 
-test('toBeInTheDocument() on detached element', () => {
+test('toBeOnTheScreen() on detached element', () => {
   render(<ShowChildren show />);
   const element = screen.getByTestId('text');
 
   screen.update(<ShowChildren show={false} />);
   expect(element).toBeTruthy();
-  expect(element).not.toBeInTheDocument();
-  expect(() => expect(element).toBeInTheDocument()).toThrowErrorMatchingInlineSnapshot(`
-    "expect(element).toBeInTheDocument()
+  expect(element).not.toBeOnTheScreen();
+  expect(() => expect(element).toBeOnTheScreen()).toThrowErrorMatchingInlineSnapshot(`
+    "expect(element).toBeOnTheScreen()
 
     element could not be found in the document"
   `);
 });
 
-test('toBeInTheDocument() on null element', () => {
-  expect(null).not.toBeInTheDocument();
-  expect(() => expect(null).toBeInTheDocument()).toThrowErrorMatchingInlineSnapshot(`
-    "expect(element).toBeInTheDocument()
+test('toBeOnTheScreen() on null element', () => {
+  expect(null).not.toBeOnTheScreen();
+  expect(() => expect(null).toBeOnTheScreen()).toThrowErrorMatchingInlineSnapshot(`
+    "expect(element).toBeOnTheScreen()
 
     element could not be found in the document"
   `);
@@ -57,8 +57,8 @@ test('example test', () => {
   );
 
   const child = screen.getByTestId('child');
-  expect(child).toBeInTheDocument();
+  expect(child).toBeOnTheScreen();
 
   screen.update(<View />);
-  expect(child).not.toBeInTheDocument();
+  expect(child).not.toBeOnTheScreen();
 });

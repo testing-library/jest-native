@@ -224,10 +224,10 @@ expect(parent).toContainElement(child);
 expect(parent).not.toContainElement(grandparent);
 ```
 
-### `toBeInTheDocument`
+### `toBeOnTheScreen`
 
 ```ts
-toBeInTheDocument();
+toBeOnTheScreen();
 ```
 
 Check that the given element is still present in the element tree.
@@ -245,10 +245,10 @@ render(
 );
 
 const child = screen.getByTestId('child');
-expect(child).toBeInTheDocument();
+expect(child).toBeOnTheScreen();
 
 screen.update(<View />);
-expect(child).not.toBeInTheDocument();
+expect(child).not.toBeOnTheScreen();
 ```
 
 ### `toHaveProp`
