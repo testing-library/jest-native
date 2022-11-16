@@ -9,7 +9,7 @@ function collectNormalizedText(element: ReactTestInstance) {
 
 function collectChildrenText(element: ReactTestInstance | string): string[] {
   if (typeof element === 'string') return [element];
-  if (!element || !element.children) return [];
+  if (!element?.children) return [];
 
   const result: string[] = [];
   element.children.forEach((child) => {
