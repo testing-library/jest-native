@@ -49,6 +49,7 @@
   - [`toHaveStyle`](#tohavestyle)
   - [`toBeVisible`](#tobevisible)
   - [`toHaveAccessibilityState`](#tohaveaccessibilitystate)
+  - [`toHaveAccessibilityValue`](#tohaveaccessibilityvalue)
 - [Inspiration](#inspiration)
 - [Other solutions](#other-solutions)
 - [Contributors](#contributors)
@@ -492,6 +493,50 @@ expect(screen.getByTestId('view')).toHaveAccessibilityState({ busy: false });
 // Matching states where default value is `undefined`
 expect(screen.getByTestId('view')).not.toHaveAccessibilityState({ checked: false });
 expect(screen.getByTestId('view')).not.toHaveAccessibilityState({ expanded: false });
+```
+
+### `toHaveAccessibilityValue`
+
+```ts
+toHaveAccessibilityValue(value: {
+  min?: number;
+  max?: number;
+  now?: number;
+  text?: string | RegExp;
+});
+```
+
+Check that the element has given `accessibilityValue` prop entries.
+
+This matcher is compatible with `*ByRole` and `*ByA11Value` queries from React Native Testing
+Library.
+
+#### Examples
+
+```js
+render(<View testID="view" accessibilityValue={{ min: 0, max: 100, now: 65 }} />);
+
+const view = screen.getByTestId('view');
+
+// Single value match
+expect(view).toHaveAccessibilityValue({ now: 65 });
+expect(view).toHaveAccessibilityValue({ max: 0 });
+
+// Can match multiple entries
+expect(view).toHaveAccessibilityValue({ min: 0, max: 100 });
+expect(view).toHaveAccessibilityValue({ min: 0, max: 100, now: 65 });
+
+// All specified entries need to match
+expect(view).not.toHaveAccessibilityValue({ now: 45 });
+expect(view).not.toHaveAccessibilityValue({ min: 20, max: 100, now: 65 });
+```
+
+```js
+render(<View testID="view" accessibilityValue={{ text: 'Almost full' }} />);
+
+const view = screen.getByTestId('view');
+expect(view).toHaveAccessibilityValue({ text: 'Almost full' });
+expect(view).toHaveAccessibilityValue({ text: /full/ });
 ```
 
 ## Inspiration
