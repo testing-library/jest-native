@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, View } from 'react-native';
+import { Modal, Pressable, View } from 'react-native';
 import { render } from '@testing-library/react-native';
 
 describe('.toBeVisible', () => {
@@ -131,5 +131,10 @@ describe('.toBeVisible', () => {
 
     update(<View testID="test" style={{ opacity: 0 }} />);
     expect(() => expect(getByTestId('test')).toBeVisible()).toThrowErrorMatchingSnapshot();
+  });
+
+  it('handles Pressable with function style prop', () => {
+    const { getByTestId } = render(<Pressable testID="test" style={() => ({})} />);
+    expect(getByTestId('test')).toBeVisible();
   });
 });
