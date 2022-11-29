@@ -2,11 +2,14 @@ import { Modal, StyleSheet } from 'react-native';
 import { matcherHint } from 'jest-matcher-utils';
 import type { ReactTestInstance } from 'react-test-renderer';
 
-import { checkReactElement, printElement } from './utils';
+import { checkReactElement, getType, printElement } from './utils';
 
 function isStyleVisible(element: ReactTestInstance) {
   const style = element.props.style || {};
-  const { display, opacity } = StyleSheet.flatten(style);
+  const isStyleFunction = getType(element) === 'Pressable' && typeof style === 'function';
+  const { display, opacity } = StyleSheet.flatten(
+    isStyleFunction ? style({ pressed: false }) : style,
+  );
   return display !== 'none' && opacity !== 0;
 }
 
