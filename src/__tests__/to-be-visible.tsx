@@ -120,12 +120,21 @@ describe('.toBeVisible', () => {
     expect(getByTestId('test')).not.toBeVisible();
   });
 
-  it('handles non-React elements', () => {
+  test('handles null elements', () => {
+    expect(() => expect(null).toBeVisible()).toThrowErrorMatchingInlineSnapshot(`
+      "expect(received).toBeVisible()
+
+      received value must be a React Element.
+      Received has value: null"
+    `);
+  });
+
+  test('handles non-React elements', () => {
     expect(() => expect({ name: 'Non-React element' }).not.toBeVisible()).toThrow();
     expect(() => expect(true).not.toBeVisible()).toThrow();
   });
 
-  it('throws an error when expectation is not matched', () => {
+  test('throws an error when expectation is not matched', () => {
     const { getByTestId, update } = render(<View testID="test" />);
     expect(() => expect(getByTestId('test')).not.toBeVisible()).toThrowErrorMatchingSnapshot();
 
@@ -133,7 +142,7 @@ describe('.toBeVisible', () => {
     expect(() => expect(getByTestId('test')).toBeVisible()).toThrowErrorMatchingSnapshot();
   });
 
-  it('handles Pressable with function style prop', () => {
+  test('handles Pressable with function style prop', () => {
     const { getByTestId } = render(
       <Pressable testID="test" style={() => ({ backgroundColor: 'blue' })} />,
     );

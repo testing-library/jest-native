@@ -22,16 +22,14 @@ function isModalVisible(element: ReactTestInstance) {
   return element.type !== Modal || element.props.visible !== false;
 }
 
-function isElementVisible(element: ReactTestInstance | null): boolean {
-  if (element == null) {
-    return false;
-  }
-
+function isElementVisible(element: ReactTestInstance): boolean {
   let current: ReactTestInstance | null = element;
   while (current) {
-    const isVisible =
-      isVisibleForStyles(current) && isVisibleForAccessibility(current) && isModalVisible(current);
-    if (!isVisible) {
+    if (
+      !isVisibleForStyles(current) ||
+      !isVisibleForAccessibility(current) ||
+      !isModalVisible(current)
+    ) {
       return false;
     }
 
