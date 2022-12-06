@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Pressable, View } from 'react-native';
+import { View, Pressable, Modal } from 'react-native';
 import { render } from '@testing-library/react-native';
 
 describe('.toBeVisible', () => {
@@ -134,7 +134,9 @@ describe('.toBeVisible', () => {
   });
 
   it('handles Pressable with function style prop', () => {
-    const { getByTestId } = render(<Pressable testID="test" style={() => ({})} />);
+    const { getByTestId } = render(
+      <Pressable testID="test" style={() => ({ backgroundColor: 'blue' })} />,
+    );
     expect(getByTestId('test')).toBeVisible();
   });
 });

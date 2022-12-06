@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { render } from '@testing-library/react-native';
 
 describe('.toHaveStyle', () => {
@@ -89,5 +89,12 @@ describe('.toHaveStyle', () => {
     expect(() =>
       expect(container).toHaveStyle({ transform: [{ scale: 1 }] }),
     ).toThrowErrorMatchingSnapshot();
+  });
+
+  test('handles Pressable with function style prop', () => {
+    const { getByTestId } = render(
+      <Pressable testID="test" style={() => ({ backgroundColor: 'blue' })} />,
+    );
+    expect(getByTestId('test')).toHaveStyle({ backgroundColor: 'blue' });
   });
 });
