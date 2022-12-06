@@ -5,7 +5,7 @@ import type { ReactTestInstance } from 'react-test-renderer';
 import { checkReactElement, printElement } from './utils';
 import { getParentElement } from './component-tree';
 
-function isVisibleToStyle(element: ReactTestInstance) {
+function isVisibleForStyles(element: ReactTestInstance) {
   const style = element.props.style || {};
   const { display, opacity } = StyleSheet.flatten(style);
   return display !== 'none' && opacity !== 0;
@@ -30,7 +30,7 @@ function isElementVisible(element: ReactTestInstance | null): boolean {
   let current: ReactTestInstance | null = element;
   while (current) {
     const isVisible =
-      isVisibleToStyle(current) && isVisibleForAccessibility(current) && isModalVisible(current);
+      isVisibleForStyles(current) && isVisibleForAccessibility(current) && isModalVisible(current);
     if (!isVisible) {
       return false;
     }
