@@ -49,6 +49,18 @@ describe('.toBeDisabled', () => {
       expect(() => expect(queryByTestId(name)).not.toBeDisabled()).toThrow();
     });
   });
+
+  test('handle editable prop for TextInput when false', () => {
+    const { queryByTestId } = render(
+      <View testID="view">
+        <TextInput testID="disabled" editable={false} />
+        <TextInput testID="enabled" editable />
+      </View>,
+    );
+
+    expect(queryByTestId('disabled')).toBeDisabled();
+    expect(queryByTestId('enabled')).not.toBeDisabled();
+  });
 });
 
 describe('.toBeEnabled', () => {
@@ -78,6 +90,20 @@ describe('.toBeEnabled', () => {
       expect(queryByTestId(name)).toBeEnabled();
       expect(() => expect(queryByTestId(name)).not.toBeEnabled()).toThrow();
     });
+  });
+
+  test('handle editable prop for TextInput when true', () => {
+    const { queryByTestId } = render(
+      <View testID="view">
+        <TextInput testID="enabled-by-default" />
+        <TextInput testID="enabled" editable />
+        <TextInput testID="disabled" editable={false} />
+      </View>,
+    );
+
+    expect(queryByTestId('enabled-by-default')).toBeEnabled();
+    expect(queryByTestId('enabled')).toBeEnabled();
+    expect(queryByTestId('disabled')).not.toBeEnabled();
   });
 });
 
