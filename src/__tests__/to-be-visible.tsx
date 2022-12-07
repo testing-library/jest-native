@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, View } from 'react-native';
+import { View, Pressable, Modal } from 'react-native';
 import { render } from '@testing-library/react-native';
 
 describe('.toBeVisible', () => {
@@ -120,16 +120,32 @@ describe('.toBeVisible', () => {
     expect(getByTestId('test')).not.toBeVisible();
   });
 
-  it('handles non-React elements', () => {
+  test('handles null elements', () => {
+    expect(() => expect(null).toBeVisible()).toThrowErrorMatchingInlineSnapshot(`
+      "expect(received).toBeVisible()
+
+      received value must be a React Element.
+      Received has value: null"
+    `);
+  });
+
+  test('handles non-React elements', () => {
     expect(() => expect({ name: 'Non-React element' }).not.toBeVisible()).toThrow();
     expect(() => expect(true).not.toBeVisible()).toThrow();
   });
 
-  it('throws an error when expectation is not matched', () => {
+  test('throws an error when expectation is not matched', () => {
     const { getByTestId, update } = render(<View testID="test" />);
     expect(() => expect(getByTestId('test')).not.toBeVisible()).toThrowErrorMatchingSnapshot();
 
     update(<View testID="test" style={{ opacity: 0 }} />);
     expect(() => expect(getByTestId('test')).toBeVisible()).toThrowErrorMatchingSnapshot();
+  });
+
+  test('handles Pressable with function style prop', () => {
+    const { getByTestId } = render(
+      <Pressable testID="test" style={() => ({ backgroundColor: 'blue' })} />,
+    );
+    expect(getByTestId('test')).toBeVisible();
   });
 });
