@@ -23,7 +23,8 @@ function isElementDisabled(element: ReactTestInstance) {
   return (
     !!element?.props?.disabled ||
     !!element?.props?.accessibilityState?.disabled ||
-    !!element?.props?.accessibilityStates?.includes('disabled')
+    !!element?.props?.accessibilityStates?.includes('disabled') ||
+    element?.props?.editable === false
   );
 }
 
