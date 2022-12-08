@@ -119,8 +119,11 @@ toBeDisabled();
 
 Check whether or not an element is disabled from a user perspective.
 
-This matcher will check if the element or its parent has a `disabled` prop, or if it has
-`accessibilityState={{disabled: true}}.
+This matcher will check if the element or its parent has any of thoses props value:
+
+- `disabled={true}`
+- `accessibilityState={{disabled: true}}`
+- `editable={false}`
 
 It also works with `accessibilityStates={['disabled']}` for now. However, this prop is deprecated in
 React Native [0.62](https://reactnative.dev/blog/2020/03/26/version-0.62#breaking-changes)
