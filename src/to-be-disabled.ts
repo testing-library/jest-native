@@ -18,7 +18,13 @@ const DISABLE_TYPES = [
 ];
 
 function isElementDisabled(element: ReactTestInstance) {
-  if (!DISABLE_TYPES.includes(getType(element))) return false;
+  if (getType(element) === 'TextInput' && element?.props?.editable === false) {
+    return true;
+  }
+
+  if (!DISABLE_TYPES.includes(getType(element))) {
+    return false;
+  }
 
   return (
     !!element?.props?.disabled ||

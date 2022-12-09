@@ -49,6 +49,26 @@ describe('.toBeDisabled', () => {
       expect(() => expect(queryByTestId(name)).not.toBeDisabled()).toThrow();
     });
   });
+
+  test('handle editable prop for TextInput', () => {
+    const { getByTestId, getByPlaceholderText } = render(
+      <View>
+        <TextInput testID="disabled" placeholder="disabled" editable={false} />
+        <TextInput testID="enabled-by-default" placeholder="enabled-by-default" />
+        <TextInput testID="enabled" placeholder="enabled" editable />
+      </View>,
+    );
+
+    // Check host TextInput
+    expect(getByTestId('disabled')).toBeDisabled();
+    expect(getByTestId('enabled-by-default')).not.toBeDisabled();
+    expect(getByTestId('enabled')).not.toBeDisabled();
+
+    // Check composite TextInput
+    expect(getByPlaceholderText('disabled')).toBeDisabled();
+    expect(getByPlaceholderText('enabled-by-default')).not.toBeDisabled();
+    expect(getByPlaceholderText('enabled')).not.toBeDisabled();
+  });
 });
 
 describe('.toBeEnabled', () => {
@@ -79,12 +99,32 @@ describe('.toBeEnabled', () => {
       expect(() => expect(queryByTestId(name)).not.toBeEnabled()).toThrow();
     });
   });
+
+  test('handle editable prop for TextInput', () => {
+    const { getByTestId, getByPlaceholderText } = render(
+      <View>
+        <TextInput testID="enabled-by-default" placeholder="enabled-by-default" />
+        <TextInput testID="enabled" placeholder="enabled" editable />
+        <TextInput testID="disabled" placeholder="disabled" editable={false} />
+      </View>,
+    );
+
+    // Check host TextInput
+    expect(getByTestId('enabled-by-default')).toBeEnabled();
+    expect(getByTestId('enabled')).toBeEnabled();
+    expect(getByTestId('disabled')).not.toBeEnabled();
+
+    // Check composite TextInput
+    expect(getByPlaceholderText('enabled-by-default')).toBeEnabled();
+    expect(getByPlaceholderText('enabled')).toBeEnabled();
+    expect(getByPlaceholderText('disabled')).not.toBeEnabled();
+  });
 });
 
 describe('for .toBeEnabled/Disabled Button', () => {
   test('handles disabled prop for button', () => {
     const { queryByTestId } = render(
-      <View testID="view">
+      <View>
         <Button testID="enabled" title="enabled" />
         <Button disabled testID="disabled" title="disabled" />
       </View>,
@@ -96,7 +136,7 @@ describe('for .toBeEnabled/Disabled Button', () => {
 
   test('handles button a11y state', () => {
     const { queryByTestId } = render(
-      <View testID="view">
+      <View>
         <Button accessibilityState={{ disabled: false }} testID="enabled" title="enabled" />
         <Button accessibilityState={{ disabled: true }} testID="disabled" title="disabled" />
       </View>,
@@ -108,7 +148,7 @@ describe('for .toBeEnabled/Disabled Button', () => {
 
   test('Errors when matcher misses', () => {
     const { queryByTestId, queryByText } = render(
-      <View testID="view">
+      <View>
         <Button testID="enabled" title="enabled" />
         <Button disabled testID="disabled" title="disabled" />
       </View>,
