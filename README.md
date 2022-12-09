@@ -119,10 +119,9 @@ toBeDisabled();
 
 Check whether or not an element is disabled from a user perspective.
 
-This matcher will check if the element or its parent has any of those props :
-
-- `disabled={true}`
-- `accessibilityState={{disabled: true}}`
+This matcher will check if the element or its parent has any of the following props :
+- `disabled`
+- `accessibilityState={{ disabled: true }}`
 - `editable={false}` (for `TextInput` only)
 
 It also works with `accessibilityStates={['disabled']}` for now. However, this prop is deprecated in
