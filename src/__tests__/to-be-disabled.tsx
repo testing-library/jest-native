@@ -110,7 +110,7 @@ describe('.toBeEnabled', () => {
 describe('for .toBeEnabled/Disabled Button', () => {
   test('handles disabled prop for button', () => {
     const { queryByTestId } = render(
-      <View testID="view">
+      <View>
         <Button testID="enabled" title="enabled" />
         <Button disabled testID="disabled" title="disabled" />
       </View>,
@@ -122,7 +122,7 @@ describe('for .toBeEnabled/Disabled Button', () => {
 
   test('handles button a11y state', () => {
     const { queryByTestId } = render(
-      <View testID="view">
+      <View>
         <Button accessibilityState={{ disabled: false }} testID="enabled" title="enabled" />
         <Button accessibilityState={{ disabled: true }} testID="disabled" title="disabled" />
       </View>,
@@ -134,7 +134,7 @@ describe('for .toBeEnabled/Disabled Button', () => {
 
   test('Errors when matcher misses', () => {
     const { queryByTestId, queryByText } = render(
-      <View testID="view">
+      <View>
         <Button testID="enabled" title="enabled" />
         <Button disabled testID="disabled" title="disabled" />
       </View>,
