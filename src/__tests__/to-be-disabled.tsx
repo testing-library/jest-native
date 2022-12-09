@@ -50,9 +50,9 @@ describe('.toBeDisabled', () => {
     });
   });
 
-  test('handle editable prop for TextInput when false', () => {
+  test('handle editable prop for TextInput', () => {
     const { queryByTestId } = render(
-      <View testID="view">
+      <View>
         <TextInput testID="disabled" editable={false} />
         <TextInput testID="enabled" editable />
       </View>,
@@ -92,9 +92,9 @@ describe('.toBeEnabled', () => {
     });
   });
 
-  test('handle editable prop for TextInput when true', () => {
+  test('handle editable prop for TextInput', () => {
     const { queryByTestId } = render(
-      <View testID="view">
+      <View>
         <TextInput testID="enabled-by-default" />
         <TextInput testID="enabled" editable />
         <TextInput testID="disabled" editable={false} />

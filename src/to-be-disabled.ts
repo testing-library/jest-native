@@ -19,12 +19,14 @@ const DISABLE_TYPES = [
 
 function isElementDisabled(element: ReactTestInstance) {
   if (!DISABLE_TYPES.includes(getType(element))) return false;
+  if (getType(element) === 'TextInput' && element?.props?.editable === false) {
+    return true;
+  }
 
   return (
     !!element?.props?.disabled ||
     !!element?.props?.accessibilityState?.disabled ||
-    !!element?.props?.accessibilityStates?.includes('disabled') ||
-    element?.props?.editable === false
+    !!element?.props?.accessibilityStates?.includes('disabled')
   );
 }
 
