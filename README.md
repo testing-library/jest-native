@@ -123,7 +123,7 @@ This matcher will check if the element or its parent has any of those props :
 
 - `disabled={true}`
 - `accessibilityState={{disabled: true}}`
-- `editable={false}` for `TextInput` only
+- `editable={false}` (for `TextInput` only)
 
 It also works with `accessibilityStates={['disabled']}` for now. However, this prop is deprecated in
 React Native [0.62](https://reactnative.dev/blog/2020/03/26/version-0.62#breaking-changes)

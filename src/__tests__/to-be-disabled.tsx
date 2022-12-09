@@ -51,15 +51,17 @@ describe('.toBeDisabled', () => {
   });
 
   test('handle editable prop for TextInput', () => {
-    const { queryByTestId } = render(
+    const { getByTestId } = render(
       <View>
         <TextInput testID="disabled" editable={false} />
+        <TextInput testID="enabled-by-default" />
         <TextInput testID="enabled" editable />
       </View>,
     );
 
-    expect(queryByTestId('disabled')).toBeDisabled();
-    expect(queryByTestId('enabled')).not.toBeDisabled();
+    expect(getByTestId('disabled')).toBeDisabled();
+    expect(getByTestId('enabled-by-default')).not.toBeDisabled();
+    expect(getByTestId('enabled')).not.toBeDisabled();
   });
 });
 
@@ -93,7 +95,7 @@ describe('.toBeEnabled', () => {
   });
 
   test('handle editable prop for TextInput', () => {
-    const { queryByTestId } = render(
+    const { getByTestId } = render(
       <View>
         <TextInput testID="enabled-by-default" />
         <TextInput testID="enabled" editable />
@@ -101,9 +103,9 @@ describe('.toBeEnabled', () => {
       </View>,
     );
 
-    expect(queryByTestId('enabled-by-default')).toBeEnabled();
-    expect(queryByTestId('enabled')).toBeEnabled();
-    expect(queryByTestId('disabled')).not.toBeEnabled();
+    expect(getByTestId('enabled-by-default')).toBeEnabled();
+    expect(getByTestId('enabled')).toBeEnabled();
+    expect(getByTestId('disabled')).not.toBeEnabled();
   });
 });
 
