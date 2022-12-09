@@ -51,17 +51,23 @@ describe('.toBeDisabled', () => {
   });
 
   test('handle editable prop for TextInput', () => {
-    const { getByTestId } = render(
+    const { getByTestId, getByPlaceholderText } = render(
       <View>
-        <TextInput testID="disabled" editable={false} />
-        <TextInput testID="enabled-by-default" />
-        <TextInput testID="enabled" editable />
+        <TextInput testID="disabled" placeholder="disabled" editable={false} />
+        <TextInput testID="enabled-by-default" placeholder="enabled-by-default" />
+        <TextInput testID="enabled" placeholder="enabled" editable />
       </View>,
     );
 
+    // Check host TextInput
     expect(getByTestId('disabled')).toBeDisabled();
     expect(getByTestId('enabled-by-default')).not.toBeDisabled();
     expect(getByTestId('enabled')).not.toBeDisabled();
+
+    // Check composite TextInput
+    expect(getByPlaceholderText('disabled')).toBeDisabled();
+    expect(getByPlaceholderText('enabled-by-default')).not.toBeDisabled();
+    expect(getByPlaceholderText('enabled')).not.toBeDisabled();
   });
 });
 
@@ -95,17 +101,23 @@ describe('.toBeEnabled', () => {
   });
 
   test('handle editable prop for TextInput', () => {
-    const { getByTestId } = render(
+    const { getByTestId, getByPlaceholderText } = render(
       <View>
-        <TextInput testID="enabled-by-default" />
-        <TextInput testID="enabled" editable />
-        <TextInput testID="disabled" editable={false} />
+        <TextInput testID="enabled-by-default" placeholder="enabled-by-default" />
+        <TextInput testID="enabled" placeholder="enabled" editable />
+        <TextInput testID="disabled" placeholder="disabled" editable={false} />
       </View>,
     );
 
+    // Check host TextInput
     expect(getByTestId('enabled-by-default')).toBeEnabled();
     expect(getByTestId('enabled')).toBeEnabled();
     expect(getByTestId('disabled')).not.toBeEnabled();
+
+    // Check composite TextInput
+    expect(getByPlaceholderText('enabled-by-default')).toBeEnabled();
+    expect(getByPlaceholderText('enabled')).toBeEnabled();
+    expect(getByPlaceholderText('disabled')).not.toBeEnabled();
   });
 });
 
