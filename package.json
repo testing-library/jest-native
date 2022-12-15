@@ -16,8 +16,7 @@
     "semantic-release": "semantic-release",
     "test:coverage": "jest --coverage --colors",
     "test:watch": "jest --watch --coverage",
-    "typecheck": "tsc -noEmit",
-    "generate-barrels": "barrelsby --config ./barrelsby.json"
+    "typecheck": "tsc -noEmit"
   },
   "files": [
     "dist",
@@ -48,7 +47,6 @@
     "@types/react": "^18.0.19",
     "@types/react-native": "^0.70.7",
     "@types/react-test-renderer": "^18.0.0",
-    "barrelsby": "^2.5.1",
     "commitizen": "^4.2.5",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.21.0",

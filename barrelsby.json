@@ -1,6 +1,0 @@
-{
-  "directory": "./src",
-  "delete": true,
-  "exclude": ["__tests__", "extend-expect.ts", "utils.ts"],
-  "singleQuotes": true
-}
