@@ -2,11 +2,11 @@
 import type { Matchers } from '@jest/expect';
 import type { JestNativeMatchers } from '../../../extend-expect';
 
-interface IsExtendedWithMatchers<R, T extends JestNativeMatchers<R>> {}
+interface IsExtendedWithMatchers<T extends JestNativeMatchers<void>> {}
 
 /*
 this should not type check if something
 is wrong with jest interfaces extension in `extend-expect.d.ts`
 */
-type IsJestExplicitGlobalsExtended = IsExtendedWithMatchers<void, Matchers<void>>;
-type IsJestImplicitGlobalsExtended = IsExtendedWithMatchers<void, jest.Matchers<void>>;
+type IsJestExplicitGlobalsExtended = IsExtendedWithMatchers<Matchers<void>>;
+type IsJestImplicitGlobalsExtended = IsExtendedWithMatchers<jest.Matchers<void>>;
