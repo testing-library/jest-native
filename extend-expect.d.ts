@@ -4,7 +4,7 @@ import type { AccessibilityState, ImageStyle, StyleProp, TextStyle, ViewStyle } 
 import type { ReactTestInstance } from 'react-test-renderer';
 import type { AccessibilityValueMatcher } from './src/to-have-accessibility-value';
 
-interface JestNativeMatchers<R extends void | Promise<void>> {
+interface JestNativeMatchers<R> {
   toBeDisabled(): R;
   toBeEmptyElement(): R;
   toBeEnabled(): R;
