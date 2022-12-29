@@ -71,7 +71,7 @@
     "singleQuote": true,
     "trailingComma": "all",
     "tabWidth": 2,
-    "proseWrap": "preserve"
+    "proseWrap": "always"
   },
   "eslintConfig": {
     "extends": "@callstack",
