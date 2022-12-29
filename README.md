@@ -248,6 +248,9 @@ Check that the element is present in the element tree.
 
 You can check that an already captured element has not been removed from the element tree.
 
+**Note** This matcher requiers React Native Testing Library v10.1 or later, as it includes the
+`screen` object.
+
 #### Examples
 
 ```tsx
