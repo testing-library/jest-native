@@ -3,6 +3,7 @@
 expect(null).toBeDisabled();
 expect(null).toBeEmptyElement();
 expect(null).toBeEnabled();
+expect(null).toBeOnTheScreen();
 expect(null).toBeVisible();
 expect(null).toContainElement(null);
 expect(null).toHaveTextContent('');
