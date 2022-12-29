@@ -185,8 +185,8 @@ expect(getByTestId('empty')).toBeEmptyElement();
 
 ---
 
-> **Note** > `toBeEmptyElement()` matcher has been renamed from `toBeEmpty()` because of the naming
-> conflict with Jest Extended export with the
+> **Note** This matcher has been previously named `toBeEmpty()`, but we changed the naming to avoid
+> conflict with Jest Extendend matcher with the
 > [same name](https://github.com/jest-community/jest-extended#tobeempty).
 
 ---
