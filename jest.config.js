@@ -3,6 +3,6 @@ module.exports = {
   testMatch: ['**/__tests__/**/*.+(js|jsx|ts|tsx)'],
   setupFilesAfterEnv: ['<rootDir>/setup-tests.ts'],
   snapshotSerializers: ['@relmify/jest-serializer-strip-ansi/always'],
-  collectCoverageFrom: ['src/**/*.+(js|jsx|ts|tsx)'],
+  collectCoverageFrom: ['src/**/*.{js|jsx|ts|tsx}'],
   testPathIgnorePatterns: ['/node_modules/', '/__tests__/helpers/', '/dist/', '__mocks__'],
 };
