@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { Matchers } from '@jest/expect';
 import type { AccessibilityState, ImageStyle, StyleProp, TextStyle, ViewStyle } from 'react-native';
 import type { ReactTestInstance } from 'react-test-renderer';
 import type { AccessibilityValueMatcher } from './src/to-have-accessibility-value';
@@ -20,15 +18,15 @@ export interface JestNativeMatchers<R> {
   toBeEmpty(): R;
 }
 
-// implicit jest globals
+// Implicit jest globals.
 declare global {
   namespace jest {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    interface Matchers<R, T> extends JestNativeMatchers<R> {}
+    interface Matchers<R, T = {}> extends JestNativeMatchers<R> {}
   }
 }
 
-// explicit jest globals
+// Explicit `@jest/expect` matchers.
 declare module '@jest/expect' {
   interface Matchers<R extends void | Promise<void>> extends JestNativeMatchers<R> {}
 }
