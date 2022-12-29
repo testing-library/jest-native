@@ -34,6 +34,7 @@
 
 ## Table of Contents
 
+- [Table of Contents](#table-of-contents)
 - [The problem](#the-problem)
 - [This solution](#this-solution)
 - [Compatibility](#compatibility)
@@ -41,15 +42,27 @@
 - [Usage](#usage)
 - [Matchers](#matchers)
   - [`toBeDisabled`](#tobedisabled)
+    - [Examples](#examples)
   - [`toBeEnabled`](#tobeenabled)
+    - [Examples](#examples-1)
   - [`toBeEmptyElement`](#tobeemptyelement)
+    - [Examples](#examples-2)
   - [`toContainElement`](#tocontainelement)
+    - [Examples](#examples-3)
+  - [`toBeOnTheScreen`](#tobeonthescreen)
+    - [Examples](#examples-4)
   - [`toHaveProp`](#tohaveprop)
+    - [Examples](#examples-5)
   - [`toHaveTextContent`](#tohavetextcontent)
+    - [Examples](#examples-6)
   - [`toHaveStyle`](#tohavestyle)
+    - [Examples](#examples-7)
   - [`toBeVisible`](#tobevisible)
+    - [Examples](#examples-8)
   - [`toHaveAccessibilityState`](#tohaveaccessibilitystate)
+    - [Examples](#examples-9)
   - [`toHaveAccessibilityValue`](#tohaveaccessibilityvalue)
+    - [Examples](#examples-10)
 - [Inspiration](#inspiration)
 - [Other solutions](#other-solutions)
 - [Contributors](#contributors)
@@ -120,6 +133,7 @@ toBeDisabled();
 Check whether or not an element is disabled from a user perspective.
 
 This matcher will check if the element or its parent has any of the following props :
+
 - `disabled`
 - `accessibilityState={{ disabled: true }}`
 - `editable={false}` (for `TextInput` only)
@@ -230,10 +244,9 @@ expect(parent).not.toContainElement(grandparent);
 toBeOnTheScreen();
 ```
 
-Check that the given element is still present in the element tree.
+Check that the element is present in the element tree.
 
-You can use this for already capture element to verify that it is no longer present in the element
-tree.
+You can check that an already captured element has not been removed from the element tree.
 
 #### Examples
 
