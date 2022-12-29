@@ -119,7 +119,7 @@ expect.extend({ toBeEmptyElement, toHaveTextContent });
 
 `jest-native` has only been tested to work with
 [React Native Testing Library](https://github.com/callstack/react-native-testing-library). Keep in
-mind that these queries will only work on elements to correspond to
+mind that these queries are intended only to work with elements corresponding to
 [host components](https://reactnative.dev/architecture/glossary#react-host-components-or-host-components).
 
 ### `toBeDisabled`
