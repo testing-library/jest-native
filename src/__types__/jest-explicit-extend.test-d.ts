@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 // This file checks whether explicit Jest `extend` from '@jest/expect' is correctly extended with Jest Matchers.
 
 // eslint-disable-next-line import/no-extraneous-dependencies

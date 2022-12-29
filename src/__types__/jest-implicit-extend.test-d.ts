@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 // This file checks whether implicit Jest `extend` is correctly extended with Jest Matchers.
 
 expect(null).toBeDisabled();
