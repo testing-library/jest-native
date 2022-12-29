@@ -12,7 +12,7 @@ export interface JestNativeMatchers<R> {
   toHaveProp(attr: string, value?: unknown): R;
   toHaveStyle(style: StyleProp<ViewStyle | TextStyle | ImageStyle>): R;
   toHaveAccessibilityState(state: AccessibilityState): R;
-  toHaveAccessibilityValue(state: AccessibilityValueMatcher): R;
+  toHaveAccessibilityValue(value: AccessibilityValueMatcher): R;
 
   /** @deprecated This function has been renamed to `toBeEmptyElement`. */
   toBeEmpty(): R;
