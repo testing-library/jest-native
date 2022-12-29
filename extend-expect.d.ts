@@ -6,6 +6,7 @@ export interface JestNativeMatchers<R> {
   toBeDisabled(): R;
   toBeEmptyElement(): R;
   toBeEnabled(): R;
+  toBeOnTheScreen(): R;
   toBeVisible(): R;
   toContainElement(element: ReactTestInstance | null): R;
   toHaveTextContent(text: string | RegExp, options?: { normalizeWhitespace: boolean }): R;

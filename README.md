@@ -44,6 +44,7 @@
   - [`toBeEnabled`](#tobeenabled)
   - [`toBeEmptyElement`](#tobeemptyelement)
   - [`toContainElement`](#tocontainelement)
+  - [`toBeOnTheScreen`](#tobeonthescreen)
   - [`toHaveProp`](#tohaveprop)
   - [`toHaveTextContent`](#tohavetextcontent)
   - [`toHaveStyle`](#tohavestyle)
@@ -72,15 +73,23 @@ These will make your tests more declarative, clear to read and to maintain.
 
 These matchers should, for the most part, be agnostic enough to work with any React Native testing
 utilities, but they are primarily intended to be used with
-[RNTL](https://github.com/callstack/react-native-testing-library). Any issues raised with existing
-matchers or any newly proposed matchers must be viewed through compatibility with that library and
-its guiding principles first.
+[React Native Testing Library](https://github.com/callstack/react-native-testing-library). Any
+issues raised with existing matchers or any newly proposed matchers must be viewed through
+compatibility with that library and its guiding principles first.
 
 ## Installation
 
 This module should be installed as one of your project's `devDependencies`:
 
+#### Using `yarn`
+
+```sh
+yarn add --dev @testing-library/jest-native
 ```
+
+#### Using `npm`
+
+```sh
 npm install --save-dev @testing-library/jest-native
 ```
 
@@ -108,8 +117,10 @@ expect.extend({ toBeEmptyElement, toHaveTextContent });
 
 ## Matchers
 
-`jest-native` has only been tested to work with `RNTL`. Keep in mind that these queries will only
-work on UI elements that bridge to native.
+`jest-native` has only been tested to work with
+[React Native Testing Library](https://github.com/callstack/react-native-testing-library). Keep in
+mind that these queries are intended only to work with elements corresponding to
+[host components](https://reactnative.dev/architecture/glossary#react-host-components-or-host-components).
 
 ### `toBeDisabled`
 
@@ -120,6 +131,7 @@ toBeDisabled();
 Check whether or not an element is disabled from a user perspective.
 
 This matcher will check if the element or its parent has any of the following props :
+
 - `disabled`
 - `accessibilityState={{ disabled: true }}`
 - `editable={false}` (for `TextInput` only)
@@ -183,11 +195,9 @@ expect(getByTestId('empty')).toBeEmptyElement();
 
 ---
 
-**NOTE**
-
-`toBeEmptyElement()` matcher has been renamed from `toBeEmpty()` because of the naming conflict with
-Jest Extended export with the
-[same name](https://github.com/jest-community/jest-extended#tobeempty).
+> **Note**<br/> This matcher has been previously named `toBeEmpty()`, but we changed that name in
+> order to avoid conflict with Jest Extendend matcher with the
+> [same name](https://github.com/jest-community/jest-extended#tobeempty).
 
 ---
 
@@ -222,6 +232,35 @@ expect(grandparent).toContainElement(child);
 expect(grandparent).toContainElement(textElement);
 expect(parent).toContainElement(child);
 expect(parent).not.toContainElement(grandparent);
+```
+
+### `toBeOnTheScreen`
+
+```ts
+toBeOnTheScreen();
+```
+
+Check that the element is present in the element tree.
+
+You can check that an already captured element has not been removed from the element tree.
+
+> **Note**<br/> This matcher requires React Native Testing Library v10.1 or later, as it includes
+> the `screen` object.
+
+#### Examples
+
+```tsx
+render(
+  <View>
+    <View testID="child" />
+  </View>,
+);
+
+const child = screen.getByTestId('child');
+expect(child).toBeOnTheScreen();
+
+screen.update(<View />);
+expect(child).not.toBeOnTheScreen();
 ```
 
 ### `toHaveProp`
