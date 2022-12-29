@@ -185,7 +185,8 @@ expect(getByTestId('empty')).toBeEmptyElement();
 
 ---
 
-> **Note** This matcher has been previously named `toBeEmpty()`, but we changed the naming to avoid
+> **Note**
+> This matcher has been previously named `toBeEmpty()`, but we changed the naming to avoid
 > conflict with Jest Extendend matcher with the
 > [same name](https://github.com/jest-community/jest-extended#tobeempty).
 
@@ -234,7 +235,8 @@ Check that the element is present in the element tree.
 
 You can check that an already captured element has not been removed from the element tree.
 
-> **Note** This matcher requiers React Native Testing Library v10.1 or later, as it includes the
+> **Note**
+> This matcher requiers React Native Testing Library v10.1 or later, as it includes the
 > `screen` object.
 
 #### Examples
