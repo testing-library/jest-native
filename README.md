@@ -136,9 +136,6 @@ This matcher will check if the element or its parent has any of the following pr
 - `accessibilityState={{ disabled: true }}`
 - `editable={false}` (for `TextInput` only)
 
-It also works with `accessibilityStates={['disabled']}` for now. However, this prop is deprecated in
-React Native [0.62](https://reactnative.dev/blog/2020/03/26/version-0.62#breaking-changes)
-
 #### Examples
 
 ```javascript
@@ -193,13 +190,9 @@ const { getByTestId } = render(<View testID="empty" />);
 expect(getByTestId('empty')).toBeEmptyElement();
 ```
 
----
-
 > **Note**<br/> This matcher has been previously named `toBeEmpty()`, but we changed that name in
 > order to avoid conflict with Jest Extendend matcher with the
 > [same name](https://github.com/jest-community/jest-extended#tobeempty).
-
----
 
 ### `toContainElement`
 
@@ -285,7 +278,6 @@ const { queryByTestId } = render(
   </View>,
 );
 
-expect(queryByTestId('button')).toHaveProp('accessibilityStates', ['disabled']);
 expect(queryByTestId('button')).toHaveProp('accessible');
 expect(queryByTestId('button')).not.toHaveProp('disabled');
 expect(queryByTestId('button')).not.toHaveProp('title', 'ok');
