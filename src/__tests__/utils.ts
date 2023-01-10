@@ -1,25 +1,67 @@
+import { View, Text, TextInput, Pressable, TouchableOpacity } from 'react-native';
 import { checkReactElement, isEmpty } from '../utils';
 
 describe('checkReactElement', () => {
-  test('it does not throw an error for valid native primitives', () => {
-    expect(() => {
-      // @ts-expect-error Argument of type '{ type: "text"; }' is not assignable to parameter of type 'ReactTestInstance'. Type '{ type: "text"; }' is missing the following properties from type 'ReactTestInstance': instance, props, parent, children, and 6 more.ts(2345)
-      checkReactElement({ type: 'Text' }, () => {}, null);
-    }).not.toThrow();
+  test('ReactTestInstance does not throw for host elements', () => {
+    expect(() =>
+      // @ts-expect-error Passing incorrect Jest Matcher data
+      checkReactElement({ type: 'View' }, () => {}, {}),
+    ).not.toThrow();
+    expect(() =>
+      // @ts-expect-error Passing incorrect Jest Matcher data
+      checkReactElement({ type: 'TextInput' }, () => {}, {}),
+    ).not.toThrow();
+    expect(() =>
+      // @ts-expect-error Passing incorrect Jest Matcher data
+      checkReactElement({ type: 'View' }, () => {}, {}),
+    ).not.toThrow();
   });
 
-  test('ReactTestInstance does not throw', () => {
-    expect(() => {
-      // @ts-expect-error Argument of type '{ _fiber: {}; }' is not assignable to parameter of type 'ReactTestInstance'. Object literal may only specify known properties, and '_fiber' does not exist in type 'ReactTestInstance'.ts(2345)
-      checkReactElement({ _fiber: {} }, () => {}, null);
-    }).not.toThrow();
+  test('ReactTestInstance does not throw for composite Text elements', () => {
+    expect(() =>
+      // @ts-expect-error Passing incorrect Jest Matcher data
+      checkReactElement({ type: Text }, () => {}, {}),
+    ).not.toThrow();
   });
 
-  test('it does throw an error for invalid native primitives', () => {
-    expect(() => {
-      // @ts-expect-error Argument of type '{ type: "button"; }' is not assignable to parameter of type 'ReactTestInstance'. Type '{ type: "button"; }' is missing the following properties from type 'ReactTestInstance': instance, props, parent, children, and 6 more.ts(2345)
-      checkReactElement({ type: 'Button' }, () => {}, null);
-    }).toThrow();
+  test('ReactTestInstance does not throw for composite TextInput elements', () => {
+    expect(() =>
+      // @ts-expect-error Passing incorrect Jest Matcher data
+      checkReactElement({ type: TextInput }, () => {}, {}),
+    ).not.toThrow();
+  });
+
+  test('it does throw for composite elements', () => {
+    expect(() =>
+      // @ts-expect-error Incorrect Test Renderer typings
+      checkReactElement({ type: View }, () => {}, {}),
+    ).toThrowErrorMatchingInlineSnapshot(`
+      "expect(received).()
+
+      received value must be a host element or composite Text/TextInput element
+      Received has type:  object
+      Received has value: {"type": [Function Component]}"
+    `);
+    expect(() =>
+      // @ts-expect-error Incorrect Test Renderer typings
+      checkReactElement({ type: Pressable }, () => {}, {}),
+    ).toThrowErrorMatchingInlineSnapshot(`
+      "expect(received).()
+
+      received value must be a host element or composite Text/TextInput element
+      Received has type:  object
+      Received has value: {"type": {"$$typeof": Symbol(react.memo), "compare": null, "type": {"$$typeof": Symbol(react.forward_ref), "render": [Function Pressable]}}}"
+    `);
+    expect(() =>
+      // @ts-expect-error Incorrect Test Renderer typings
+      checkReactElement({ type: TouchableOpacity }, () => {}, {}),
+    ).toThrowErrorMatchingInlineSnapshot(`
+      "expect(received).()
+
+      received value must be a host element or composite Text/TextInput element
+      Received has type:  object
+      Received has value: {"type": {"$$typeof": Symbol(react.forward_ref), "render": [Function anonymous]}}"
+    `);
   });
 });
 
