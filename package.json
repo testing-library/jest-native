@@ -58,7 +58,7 @@
     "react": "18.1.0",
     "react-native": "^0.70.6",
     "react-test-renderer": "18.1.0",
-    "semantic-release": "^19.0.3",
+    "semantic-release": "^20.0.4",
     "typescript": "^4.8.3"
   },
   "peerDependencies": {
