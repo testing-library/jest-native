@@ -1,3 +1,5 @@
+import { Text, TextInput } from 'react-native';
+import type { ReactTestInstance } from 'react-test-renderer';
 import redent from 'redent';
 import {
   RECEIVED_COLOR as receivedColor,
@@ -8,22 +10,9 @@ import {
   stringify,
 } from 'jest-matcher-utils';
 import prettyFormat, { plugins } from 'pretty-format';
-import type { ReactTestInstance } from 'react-test-renderer';
+import { isHostElement } from './component-tree';
 
 const { ReactTestComponent, ReactElement } = plugins;
-
-const VALID_ELEMENTS = [
-  'Image',
-  'Text',
-  'TextInput',
-  'Modal',
-  'View',
-  'RefreshControl',
-  'ScrollView',
-  'ActivityIndicator',
-  'ListView',
-  'ListViewDataSource',
-];
 
 class ReactElementTypeError extends Error {
   constructor(received: unknown, matcherFn: jest.CustomMatcher, context: jest.MatcherContext) {
@@ -44,7 +33,9 @@ class ReactElementTypeError extends Error {
     this.message = [
       matcherHint(`${context.isNot ? '.not' : ''}.${matcherFn.name}`, 'received', ''),
       '',
-      `${receivedColor('received')} value must be a React Element.`,
+      `${receivedColor(
+        'received',
+      )} value must be a host element or composite Text/TextInput element`,
       withType,
     ].join('\n');
   }
@@ -59,8 +50,7 @@ function checkReactElement(
     throw new ReactElementTypeError(element, matcherFn, context);
   }
 
-  // @ts-expect-error internal _fiber property of ReactTestInstance
-  if (!element._fiber && !VALID_ELEMENTS.includes(element.type.toString())) {
+  if (!isHostElement(element) && element.type !== Text && element.type !== TextInput) {
     throw new ReactElementTypeError(element, matcherFn, context);
   }
 }

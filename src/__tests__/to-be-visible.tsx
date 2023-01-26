@@ -124,7 +124,7 @@ describe('.toBeVisible', () => {
     expect(() => expect(null).toBeVisible()).toThrowErrorMatchingInlineSnapshot(`
       "expect(received).toBeVisible()
 
-      received value must be a React Element.
+      received value must be a host element or composite Text/TextInput element
       Received has value: null"
     `);
   });

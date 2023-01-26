@@ -74,8 +74,8 @@ describe('.toHaveTextContent', () => {
   test('can handle multiple levels with no explicit children prop', () => {
     const NoChildren = ({ text }: { text: string }) => <Text>{text}</Text>;
     const answer = 'Answer';
-    const { container } = render(
-      <View>
+    const { getByTestId } = render(
+      <View testID="subject">
         <Text>
           {answer}
           {': '}
@@ -86,7 +86,7 @@ describe('.toHaveTextContent', () => {
       </View>,
     );
 
-    expect(container).toHaveTextContent(/^Answer: 42$/);
+    expect(getByTestId('subject')).toHaveTextContent(/^Answer: 42$/);
   });
 
   test('throws when no match is found', () => {
