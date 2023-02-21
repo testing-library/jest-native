@@ -74,7 +74,7 @@ describe('.toHaveTextContent', () => {
   test('can handle multiple levels with no explicit children prop', () => {
     const NoChildren = ({ text }: { text: string }) => <Text>{text}</Text>;
     const answer = 'Answer';
-    const { container } = render(
+    const { root } = render(
       <View>
         <Text>
           {answer}
@@ -86,27 +86,27 @@ describe('.toHaveTextContent', () => {
       </View>,
     );
 
-    expect(container).toHaveTextContent(/^Answer: 42$/);
+    expect(root).toHaveTextContent(/^Answer: 42$/);
   });
 
   test('throws when no match is found', () => {
-    const { container } = render(<Text>Should succeed</Text>);
+    const { root } = render(<Text>Should succeed</Text>);
 
     expect(() => {
-      expect(container).toHaveTextContent('Should fail');
+      expect(root).toHaveTextContent('Should fail');
     }).toThrow();
   });
 
   test('does not throw error with empty content', () => {
-    const { container } = render(<Text />);
-    expect(container).toHaveTextContent('');
+    const { root } = render(<Text />);
+    expect(root).toHaveTextContent('');
   });
 
   test('is case-sensitive', () => {
-    const { container } = render(<Text>Sensitive text</Text>);
+    const { root } = render(<Text>Sensitive text</Text>);
 
-    expect(container).toHaveTextContent('Sensitive text');
-    expect(container).not.toHaveTextContent('sensitive text');
+    expect(root).toHaveTextContent('Sensitive text');
+    expect(root).not.toHaveTextContent('sensitive text');
   });
 
   test('can handle conditional rendering', () => {
@@ -124,8 +124,8 @@ describe('.toHaveTextContent', () => {
 
   test('can handle text with an interpolated variable', () => {
     const variable = 'variable';
-    const { container } = render(<Text>With a {variable}</Text>);
+    const { root } = render(<Text>With a {variable}</Text>);
 
-    expect(container).toHaveTextContent('With a variable');
+    expect(root).toHaveTextContent('With a variable');
   });
 });

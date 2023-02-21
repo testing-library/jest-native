@@ -20,7 +20,7 @@ describe('.toBeVisible', () => {
 
   test('handles view with display "none"', () => {
     const { getByTestId } = render(<View testID="test" style={{ display: 'none' }} />);
-    expect(getByTestId('test')).not.toBeVisible();
+    expect(getByTestId('test', { includeHiddenElements: true })).not.toBeVisible();
   });
 
   test('handles ancestor view with 0 opacity', () => {
@@ -31,7 +31,7 @@ describe('.toBeVisible', () => {
         </View>
       </View>,
     );
-    expect(getByTestId('test')).not.toBeVisible();
+    expect(getByTestId('test', { includeHiddenElements: true })).not.toBeVisible();
   });
 
   test('handles ancestor view with display "none"', () => {
@@ -42,7 +42,7 @@ describe('.toBeVisible', () => {
         </View>
       </View>,
     );
-    expect(getByTestId('test')).not.toBeVisible();
+    expect(getByTestId('test', { includeHiddenElements: true })).not.toBeVisible();
   });
 
   test('handles empty modal', () => {
@@ -77,12 +77,12 @@ describe('.toBeVisible', () => {
 
   test('handles not visible modal', () => {
     const { getByTestId } = render(<Modal testID="test" visible={false} />);
-    expect(getByTestId('test')).not.toBeVisible();
+    expect(getByTestId('test', { includeHiddenElements: true })).not.toBeVisible();
   });
 
   test('handles inaccessible view (iOS)', () => {
     const { getByTestId, update } = render(<View testID="test" accessibilityElementsHidden />);
-    expect(getByTestId('test')).not.toBeVisible();
+    expect(getByTestId('test', { includeHiddenElements: true })).not.toBeVisible();
 
     update(<View testID="test" accessibilityElementsHidden={false} />);
     expect(getByTestId('test')).toBeVisible();
@@ -96,14 +96,14 @@ describe('.toBeVisible', () => {
         </View>
       </View>,
     );
-    expect(getByTestId('test')).not.toBeVisible();
+    expect(getByTestId('test', { includeHiddenElements: true })).not.toBeVisible();
   });
 
   test('handles inaccessible view (Android)', () => {
     const { getByTestId, update } = render(
       <View testID="test" importantForAccessibility="no-hide-descendants" />,
     );
-    expect(getByTestId('test')).not.toBeVisible();
+    expect(getByTestId('test', { includeHiddenElements: true })).not.toBeVisible();
 
     update(<View testID="test" importantForAccessibility="auto" />);
     expect(getByTestId('test')).toBeVisible();
@@ -117,7 +117,7 @@ describe('.toBeVisible', () => {
         </View>
       </View>,
     );
-    expect(getByTestId('test')).not.toBeVisible();
+    expect(getByTestId('test', { includeHiddenElements: true })).not.toBeVisible();
   });
 
   test('handles null elements', () => {
