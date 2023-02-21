@@ -7,7 +7,7 @@ export function toBeOnTheScreen(this: jest.MatcherContext, element: ReactTestIns
     checkReactElement(element, toBeOnTheScreen, this);
   }
 
-  const pass = element === null ? false : getScreen().container === getRootElement(element);
+  const pass = element === null ? false : getScreenRoot() === getRootElement(element);
 
   const errorFound = () => {
     return `expected element tree not to contain element but found:\n${printElement(element)}`;
@@ -37,7 +37,7 @@ function getRootElement(element: ReactTestInstance) {
   return root;
 }
 
-function getScreen() {
+function getScreenRoot() {
   try {
     // eslint-disable-next-line import/no-extraneous-dependencies
     const { screen } = require('@testing-library/react-native');
@@ -45,7 +45,7 @@ function getScreen() {
       throw new Error('screen is undefined');
     }
 
-    return screen;
+    return screen.UNSAFE_root ?? screen.container;
   } catch (error) {
     throw new Error(
       'Could not import `screen` object from @testing-library/react-native.\n\n' +
