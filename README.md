@@ -239,6 +239,9 @@ You can check that an already captured element has not been removed from the ele
 
 > **Note**<br/> This matcher requires React Native Testing Library v10.1 or later, as it includes
 > the `screen` object.
+>
+> **Note**<br/> If you're using React Native Testing Library v12 or later, you need to install Jest
+> Native v5.4.2 or later.
 
 #### Examples
 
