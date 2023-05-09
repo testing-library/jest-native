@@ -39,6 +39,8 @@
 - [Compatibility](#compatibility)
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Extending Jest matchers](#extending-jest-matchers)
+  - [TypeScript support](#typescript-support)
 - [Matchers](#matchers)
   - [`toBeDisabled`](#tobedisabled)
   - [`toBeEnabled`](#tobeenabled)
@@ -98,6 +100,8 @@ package.
 
 ## Usage
 
+### Extending Jest matchers
+
 Import `@testing-library/jest-native/extend-expect` once (for instance in your
 [tests setup file](https://jestjs.io/docs/configuration#setupfilesafterenv-array)) and you're good
 to go:
@@ -114,6 +118,34 @@ import { toBeEmptyElement, toHaveTextContent } from '@testing-library/jest-nativ
 
 expect.extend({ toBeEmptyElement, toHaveTextContent });
 ```
+
+### TypeScript support
+
+In order to setup proper TypeScript type checking use either one of the following approches.
+
+#### 1. Use TypeScript Jest setup file.
+
+Use `jest-setup.ts` file (instead of `jest-setup.js` file) which is added to Jest config's `setupFilesAfterEnv` option.
+
+The Jest setup file should contain following line:
+
+```typescript
+import '@testing-library/jest-native/extend-expect';
+```
+
+This should enable TypeScript checkign for both `tsc` and VS Code intellisense.
+
+#### 2. Use `declarations.d.ts` file
+
+Alternatively, create `declarations.d.ts` file at the root level of your project, if it does not exist already.
+
+Add following line at the top of your `declarations.d.ts`:
+
+```
+/// <reference types="@testing-library/jest-native" />
+```
+
+This should enable TypeScript checkign for both `tsc` and VS Code intellisense.
 
 ## Matchers
 
