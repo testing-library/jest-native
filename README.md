@@ -125,7 +125,7 @@ In order to setup proper TypeScript type checking use either one of the followin
 
 #### 1. Use TypeScript Jest setup file.
 
-Use `jest-setup.ts` file instead of `jest-setup.js` file, which is added to Jest config's `setupFilesAfterEnv` option.
+Use `jest-setup.ts` file (instead of `jest-setup.js` file) which is added to Jest config's `setupFilesAfterEnv` option.
 
 The Jest setup file should contain following line:
 
@@ -137,7 +137,7 @@ This should enable TypeScript checkign for both `tsc` and VS Code intellisense.
 
 #### 2. Use `declarations.d.ts` file
 
-Create `declarations.d.ts` file at the root level of your project, if it does not exist already.
+Alternatively, create `declarations.d.ts` file at the root level of your project, if it does not exist already.
 
 Add following line at the top of your `declarations.d.ts`:
 
