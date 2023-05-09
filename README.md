@@ -15,18 +15,12 @@
 
 <hr />
 
-[![Build Status](https://travis-ci.org/testing-library/jest-native.svg?branch=main)](https://travis-ci.org/testing-library/jest-native)
-[![Code Coverage](https://img.shields.io/codecov/c/github/testing-library/jest-native.svg?style=flat-square)](https://codecov.io/github/testing-library/jest-native)
 [![version](https://img.shields.io/npm/v/@testing-library/jest-native.svg?style=flat-square)](https://www.npmjs.com/package/@testing-library/jest-native)
+[![Code Coverage](https://img.shields.io/codecov/c/github/testing-library/jest-native.svg?style=flat-square)](https://codecov.io/github/testing-library/jest-native)
+![Build](https://github.com/testing-library/jest-native/actions/workflows/validate.yml/badge.svg)
 [![downloads](https://img.shields.io/npm/dm/@testing-library/jest-native.svg?style=flat-square)](http://www.npmtrends.com/@testing-library/jest-native)
-[![MIT License](https://img.shields.io/npm/l/@testing-library/jest-native.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/main/LICENSE)
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![Code of Conduct](https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square)](https://github.com/testing-library/jest-native/blob/main/CODE_OF_CONDUCT.md)
 [![Discord](https://img.shields.io/discord/723559267868737556.svg?color=7389D8&labelColor=6A7EC2&logo=discord&logoColor=ffffff&style=flat-square)](https://discord.gg/testing-library)
-
-[![Watch on GitHub](https://img.shields.io/github/watchers/testing-library/jest-native.svg?style=social)](https://github.com/testing-library/jest-native/watchers)
 [![Star on GitHub](https://img.shields.io/github/stars/testing-library/jest-native.svg?style=social)](https://github.com/testing-library/jest-native/stargazers)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
