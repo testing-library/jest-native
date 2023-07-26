@@ -3,7 +3,6 @@ import type { ReactTestInstance } from 'react-test-renderer';
 import { StyleSheet } from 'react-native';
 import { matcherHint } from 'jest-matcher-utils';
 import { diff } from 'jest-diff';
-import chalk from 'chalk';
 import { checkReactElement } from './utils';
 
 type Style = TextStyle | ViewStyle | ImageStyle;
@@ -42,7 +41,7 @@ function expectedDiff(expected: StyleLike, received: StyleLike) {
 
   const diffOutput = diff(printoutStyles(expected), printoutStyles(receivedNarrow));
   // Remove the "+ Received" annotation because this is a one-way diff
-  return diffOutput?.replace(`${chalk.red('+ Received')}\n`, '') ?? '';
+  return diffOutput?.replace(`'+ Received'\n`, '') ?? '';
 }
 
 export function toHaveStyle(

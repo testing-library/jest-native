@@ -4,6 +4,7 @@ exports[`.toHaveStyle handles negative test cases 1`] = `
 "expect(element).toHaveStyle()
 
 - Expected
++ Received
 
   backgroundColor: blue;
   transform: [
@@ -21,6 +22,7 @@ exports[`.toHaveStyle handles transform when transform undefined 1`] = `
 "expect(element).toHaveStyle()
 
 - Expected
++ Received
 
 - transform: [
 -   {
