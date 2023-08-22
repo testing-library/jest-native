@@ -13,7 +13,7 @@
     "noEmit": false,
     "outDir": "dist"
   },
-  "files": ["./extend-expect.d.ts"],
+  "files": ["./extend-expect.d.ts", "./legacy-extend-expect.d.ts"],
   "exclude": ["node_modules", "android", "ios"],
   "include": ["src/**/*", "setup-test.ts"]
 }
