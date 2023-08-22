@@ -21,7 +21,9 @@
   "files": [
     "dist",
     "extend-expect.js",
-    "extend-expect.d.ts"
+    "extend-expect.d.ts",
+    "legacy-extend-expect.js",
+    "legacy-extend-expect.d.ts"
   ],
   "keywords": [
     "testing",
