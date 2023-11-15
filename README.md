@@ -1,3 +1,11 @@
+> [!CAUTION]
+> **This package is deprecated and is no longer actively maintained.**
+> 
+> We encourage you to migrate to React Native Testing Library, v12.4 or later, which includes modern [built-in Jest matchers](https://callstack.github.io/react-native-testing-library/docs/jest-matchers) based on the matchers for this repository.
+>
+> The migration process should be relatively straightforward, we have a [migration guide](https://callstack.github.io/react-native-testing-library/docs/migration-jest-native) available.
+
+
 <div align="center">
   <h1>jest-native</h1>
 
